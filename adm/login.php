@@ -70,7 +70,7 @@
 				  </div>
 				</div>
                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"><!--footer-->
-                                        <div class="well well-sm">Desarrollado por: <?php echo development_by;?> - <?php echo version;?></div>
+                                        <div class="well well-sm">Desarrollado por: <?php echo development_by;?>  <?php echo version;?></div>
                                 </div><!--fin footer-->                
             </div>
         	<div class="col-sm-4 col-md-4 col-lg-4">
