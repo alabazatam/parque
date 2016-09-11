@@ -1,0 +1,32 @@
+<?php
+
+	/*
+	 * To change this license header, choose License Headers in Project Properties.
+	 * To change this template file, choose Tools | Templates
+	 * and open the template in the editor.
+	 */
+
+	/**
+	 * Description of Bank
+	 *
+	 * @author marcos
+	 */
+	class Tables{
+		
+		public function __construct() 
+		{
+			
+		}
+			
+		
+		
+		public function getListTables($values = null){
+			$ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->tables
+			->select("*")
+			->where("status=?",1);
+			return $q; 				
+			
+		}
+	}
+	

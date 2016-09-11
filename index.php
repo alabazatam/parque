@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Hola</title>
-    </head>
-    <body>
-		<?php
-		// put your code here
-		?>
-    </body>
-</html>
+<?php include('autoload.php');?>
+<?php include('view_header.php');?>
+
+<?php include('view_footer.php');?>
+<script>
+	$(document).ready(function(){
+		$(location).attr('href', '<?php echo full_url?>/adm/index.php')
+	});
+</script>
