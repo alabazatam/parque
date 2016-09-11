@@ -9,7 +9,7 @@
                     $this->host = 'localhost';
                     $this->port = "5432";
                     $this->charset = "utf8";
-                    $this->dsn = "pgsl:dbname=".$this->dbname.";host=".$this->host.";port=".$this->port.";charset=".$this->charset;  
+                    $this->dsn = "pgsql:dbname=".$this->dbname.";host=".$this->host.";port=".$this->port;  
                     $this->username = 'postgres';
                     $this->password = '123456';
                     

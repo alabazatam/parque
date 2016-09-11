@@ -20,7 +20,6 @@
 				
 		function saveConnectionsHistory($values){
 			unset($values['action'],$values['PHPSESSID']);
-			$values['date_created'] = new NotORM_Literal("NOW()");
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->connections_history()->insert($values);
 			$values['id_connection'] = $ConnectionORM->getConnect()->connections_history()->insert_id();

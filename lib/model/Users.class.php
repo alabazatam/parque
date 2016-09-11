@@ -48,7 +48,7 @@
 			//echo $column_order;die;
             $ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->users
-			->select("*, DATE_FORMAT(users.date_created, '%d/%m/%Y %H:%i:%s') as date_created,DATE_FORMAT(users.date_updated, '%d/%m/%Y %H:%i:%s') as date_updated")
+			->select("*")
 			->join("status","LEFT JOIN status on status.id_status = users.status")
 			->order("$column_order $order")
 			->where("$where")
@@ -75,7 +75,7 @@
 		public function getUserById($values){
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->users
-			->select("*, DATE_FORMAT(date_created, '%d/%m/%Y %H:%i:%s') as date_created,DATE_FORMAT(date_updated, '%d/%m/%Y %H:%i:%s') as date_updated")
+			->select("*")
 			->where("id_user=?",$values['id_user'])->fetch();
 			return $q; 				
 			
@@ -205,7 +205,7 @@
 			//echo $column_order;die;
             $ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->users
-			->select("users.*, DATE_FORMAT(users.date_created, '%d/%m/%Y %H:%i:%s') as date_created,DATE_FORMAT(users.date_updated, '%d/%m/%Y %H:%i:%s') as date_updated")
+			->select("users.*")
 			->join("users_company","INNER JOIN users_company on users_company.id_user = users.id_user")
 			->join("users_perms","INNER JOIN users_perms on users_perms.id_user = users.id_user")
 			->order("$column_order $order")
@@ -273,7 +273,7 @@
 		public function getUserOperatorById($values){
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->users
-			->select("*, DATE_FORMAT(users.date_created, '%d/%m/%Y %H:%i:%s') as date_created,DATE_FORMAT(users.date_updated, '%d/%m/%Y %H:%i:%s') as date_updated")
+			->select("*")
 			->join("users_data","INNER JOIN users_data on users_data.id_users = users.id_user")		
 			->where("users.id_user=?",$values['id_user'])->fetch();
 			return $q; 				
@@ -345,10 +345,10 @@
 			unset($values['action']);
 			$login = $values['login'];
 			$password = hash("sha256", $values['password']);
-            $ConnectionORM = new ConnectionORM();
+                        $ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->users
 			->select("*")
-			->where("login=?",$login)
+			->where("UPPER(login)=?",strtoupper($login))
 			->and("password=?",$password)
 			->and('status=?',1)
 			->fetch();
