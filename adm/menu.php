@@ -17,7 +17,7 @@
 			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i> Administrar<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<?php echo full_url;?>/adm/users/index.php">Usuarios</a></li>
-            <li><a href="<?php echo full_url;?>/adm/users/index.php">Espacios</a></li>
+            <li><a href="<?php echo full_url;?>/adm/espacios/index.php">Espacios</a></li>
           </ul>
         </li>
       </ul>
