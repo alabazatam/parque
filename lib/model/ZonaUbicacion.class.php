@@ -86,22 +86,18 @@
 		}		
 		function saveZonaUbicacion($values){
 			unset($values['action'],$values['PHPSESSID'],$values['id_zona_ubicacion']);
-			$values['password'] = hash('sha256', $values['password']);
-                        $values['date_created'] = new NotORM_Literal("NOW()");
-                        $values['date_updated'] = new NotORM_Literal("NOW()");
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->zona_ubicacion()->insert($values);
-			$values['id_zona_ubicacion'] = $ConnectionORM->getConnect()->zona_ubicacion()->insert_id();
+			$values['id_zona_ubicacion'] = $ConnectionORM->getConn()->lastInsertId('zona_ubicacion_id_zona_ubicacion_seq');
 			return $values;	
 			
 		}
 		function updateZonaUbicacion($values){
 			unset($values['action'],$values['PHPSESSID'],$values['date_created']);
-                        $values['date_updated'] = new NotORM_Literal("NOW()");
 			$id_zona_ubicacion = $values['id_zona_ubicacion'];
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->zona_ubicacion("id_zona_ubicacion", $id_zona_ubicacion)->update($values);
-			return $q;
+			//return $q;
 			
 		}
 		public function getZonaUbicacionListSelect($values){

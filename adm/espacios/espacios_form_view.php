@@ -11,7 +11,7 @@
 
 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
 	<h1 class="text-center">Espacios</h1>
-	<form class="" action="index.php" method="POST">
+	<form class="" action="index.php" method="POST" enctype="multipart/form-data">
 		<input type="hidden" name='action' value='<?php if(isset($values['action']))echo $values['action'];?>'>
 	  <div class="form-group">
 		 <div class="col-sm-4 col-sm-offset-8">
@@ -46,7 +46,7 @@
 		<div class="col-sm-12">
 			<div class="col-sm-4">
 				<label for="">Capacidad <small class="text-danger">(*)</small></label>		
-				<input type="text" autocomplete="off" class="form-control input-sm" id="" placeholder="" name="capacidad" value="<?php if(isset($values['capacidad'])) echo $values['capacidad']?>">
+				<input type="number" autocomplete="off" class="form-control input-sm" id="" placeholder="" name="capacidad" value="<?php if(isset($values['capacidad'])) echo $values['capacidad']?>">
 
 				<?php if(isset($values['errors']['capacidad']) and $values['errors']['capacidad']!=''):?>
 					<label class="alert alert-danger"><?php echo $values['errors']['capacidad']?></label>
@@ -131,6 +131,23 @@
 			<div class="col-sm-6">
 				<label for="">Fecha modificado</label>
 				<input autocomplete="off" readonly="readonly" type="text" class="form-control input-sm" id="" placeholder="" name="date_updated" value="<?php if(isset($values['date_updated'])) echo $values['date_updated']?>">
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<div class="col-sm-12">
+				<label class="">Imagenes</label>
+				<?php //echo $imagenes;die;?>
+				<?php for($i=0; $i<=3; $i++):?>
+				
+				<div class="alert alert-info">
+					<input type="file" name="file_<?php echo $i+1;?>" id="file_<?php echo $i+1;?>" accept="image/*">
+						<?php if(isset($imagenes_list[$i]['imagen'])):?>
+					<a target="_blank" href="<?php echo full_url.'/web/files/espacios/'.$imagenes_list[$i]['imagen'];?>"><i class="fa fa-eye"> Ver imagen cargada</i></a>
+						<?php endif;?>
+				</div>
+				<?php endfor;?>
 			</div>
 		</div>
 	</div>

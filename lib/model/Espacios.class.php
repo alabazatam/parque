@@ -50,7 +50,7 @@
 			//echo $column_order;die;
             $ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->espacios
-			->select("*")
+			->select("*,espacios.status as status")
 			->join("status","LEFT JOIN status on status.id_status = espacios.status")
 			->join("zona_ubicacion","LEFT JOIN zona_ubicacion on zona_ubicacion.id_zona_ubicacion = espacios.id_zona_ubicacion")
 			->join("tipo_espacio","LEFT JOIN tipo_espacio on tipo_espacio.id_tipo_espacio = espacios.id_tipo_espacio")
@@ -95,10 +95,14 @@
 			unset($values['action'],$values['PHPSESSID'],$values['id_espacio']);
                         $values['date_created'] = new NotORM_Literal("NOW()");
                         $values['date_updated'] = new NotORM_Literal("NOW()");
+						
+			
 			$values['precio'] = 0;
+			
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->espacios()->insert($values);
 			$values['id_espacio'] = $ConnectionORM->getConn()->lastInsertId('kioskos_id_espacio_seq');
+			
 			return $values;	
 			
 		}
@@ -115,7 +119,7 @@
 			$id_espacio = $values['id_espacio'];
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->espacios("id_espacio", $id_espacio)->update($values);
-			return $q;
+			//return $q;
 			
 		}
 	}

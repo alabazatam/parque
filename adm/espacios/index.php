@@ -58,7 +58,36 @@ $values = $_REQUEST;
 			$values['errors'] = $errors;
 			require('espacios_form_view.php');die;
 		}else{		
-			$values = $Espacios->saveEspacios($values);			
+			$values = $Espacios->saveEspacios($values);	
+			
+			$id_espacio = $values['id_espacio'];
+			$EspaciosImagenes = new EspaciosImagenes();
+			$array_imagenes = array();
+			$carpeta = "../../web/files/espacios/";
+			$nombrearchivo = '';
+			for($i=1;$i<=4;$i++)
+			{
+				if(isset($_FILES["file_$i"]['tmp_name']) and $_FILES["file_$i"]['tmp_name']!=''){
+						
+						$nombrearchivo = "ESPACIO_".$values['id_espacio']."_".$i.".".strtolower(pathinfo($_FILES['file_'.$i]['name'],PATHINFO_EXTENSION));
+						//echo $nombrearchivo;
+						//echo $_FILES["file_$i"]['tmp_name']."".$i."<br>";
+						if (move_uploaded_file($_FILES['file_'.$i]['tmp_name'], $carpeta."".$nombrearchivo))
+						{
+							
+							
+							//$EspaciosImagenes->deleteEspaciosImagenes($id_espacio, $i);
+							$array_imagenes = array(
+								"id_espacio" => $values['id_espacio'],
+								"imagen" => $nombrearchivo,
+								"orden"=> $i
+
+							);
+							$EspaciosImagenes->saveEspaciosImagenes($array_imagenes);
+						}
+					
+				}
+			}
 			executeEdit($values,message_created);die;
 		}
 	}
@@ -67,6 +96,18 @@ $values = $_REQUEST;
 		
 		$Espacios = new Espacios();
 		$values = $Espacios->getEspaciosById($values);
+		$EspaciosImagenes = new EspaciosImagenes();
+		
+		$imagenes = $EspaciosImagenes ->getImagenesEspaciosById($values);
+		
+		$i = 0;
+		$imagenes_list = array();
+		foreach($imagenes as $img){
+			$imagenes_list[$i]['orden'] = $img['orden'];
+			$imagenes_list[$i]['imagen'] = $img['imagen'];
+		
+			$i++;
+		}
 		$values['action'] = 'update';
         $values['msg'] = $msg;
 		$values['errors'] = array();
@@ -81,8 +122,36 @@ $values = $_REQUEST;
 		{	
 			$values['errors'] = $errors;
 			require('espacios_form_view.php');die;
-		}else{		
-			$values = $Espacios->updateEspacios($values);			
+		}else{	
+
+			$id_espacio = $values['id_espacio'];			
+			$values = $Espacios->updateEspacios($values);
+			$values['id_espacio'] = $id_espacio;
+			$EspaciosImagenes = new EspaciosImagenes();
+			$array_imagenes = array();
+			$carpeta = "../../web/files/espacios/";
+			$nombrearchivo = '';
+			for($i=1;$i<=4;$i++)
+			{
+				if(isset($_FILES["file_$i"]['tmp_name']) and $_FILES["file_$i"]['tmp_name']!=''){
+						
+						$nombrearchivo = "ESPACIO_".$values['id_espacio']."_".$i.".".strtolower(pathinfo($_FILES['file_'.$i]['name'],PATHINFO_EXTENSION));
+						//echo $nombrearchivo;
+						//echo $_FILES["file_$i"]['tmp_name']."".$i."<br>";
+						if (move_uploaded_file($_FILES['file_'.$i]['tmp_name'], $carpeta."".$nombrearchivo))
+						{
+							$EspaciosImagenes->deleteEspaciosImagenes($id_espacio, $i);
+							$array_imagenes = array(
+								"id_espacio" => $values['id_espacio'],
+								"imagen" => $nombrearchivo,
+								"orden"=> $i
+
+							);
+							$EspaciosImagenes->saveEspaciosImagenes($array_imagenes);
+						}
+					
+				}
+			}
 			executeEdit($values,message_created);die;
 		}
 	}	
@@ -103,7 +172,7 @@ $values = $_REQUEST;
 				if($status == 0)
 				{
                                        
-                $onclick = "onclick = ".'"'."status_changer('espacios','id_espacio', '$id_espacio','1')".'"'."";
+					$onclick = "onclick = ".'"'."status_changer('espacios','id_espacio', '$id_espacio','1')".'"'."";
  
                                         
 					$message_status = "<label class='label label-danger'><a href='#' $onclick>Desactivado</a></label>";

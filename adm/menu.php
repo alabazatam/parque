@@ -18,6 +18,8 @@
           <ul class="dropdown-menu">
             <li><a href="<?php echo full_url;?>/adm/users/index.php">Usuarios</a></li>
             <li><a href="<?php echo full_url;?>/adm/espacios/index.php">Espacios</a></li>
+			<li><a href="<?php echo full_url;?>/adm/zona_ubicacion/index.php">Zonas/Ubicaciones</a></li>
+
           </ul>
         </li>
       </ul>
