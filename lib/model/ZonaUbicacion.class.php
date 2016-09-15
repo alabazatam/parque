@@ -22,7 +22,7 @@
 			$columns = array();
 			$columns[0] = 'id_zona_ubicacion';
 			$columns[1] = 'des_zona_ubicacion';
-			$columns[2] = 'status';
+			$columns[2] = 'zona_ubicacion.status';
 			$column_order = $columns[0];
 			$where = '1 = 1';
 			$order = 'asc';
@@ -45,7 +45,7 @@
 			//echo $column_order;die;
             $ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->zona_ubicacion
-			->select("*")
+			->select("*,zona_ubicacion.status as status")
 			->join("status","LEFT JOIN status on status.id_status = zona_ubicacion.status")
 			->order("$column_order $order")
 			->where("$where")

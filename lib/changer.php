@@ -5,5 +5,5 @@
     $ConnectionORM = new ConnectionORM();
 	$date_updated = new NotORM_Literal("NOW()");
     $q = $ConnectionORM->getConnect()->$table("$column_primary", $id)->update(array("status" => $value_change, "date_updated" => $date_updated));
-    return true;
+	return true;
     }
