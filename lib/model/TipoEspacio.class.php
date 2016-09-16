@@ -85,23 +85,31 @@
 			
 		}		
 		function saveTipoEspacio($values){
-			unset($values['action'],$values['PHPSESSID'],$values['id_tipo_espacio']);
-			$values['password'] = hash('sha256', $values['password']);
-                        $values['date_created'] = new NotORM_Literal("NOW()");
-                        $values['date_updated'] = new NotORM_Literal("NOW()");
+			unset($values['action'],$values['PHPSESSID'],$values['id_tipo_espacio'],$values['date_created'],$values['date_updated']);
+            $values['date_created'] = new NotORM_Literal("NOW()");
+            $values['date_updated'] = new NotORM_Literal("NOW()");
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->tipo_espacio()->insert($values);
-			$values['id_tipo_espacio'] = $ConnectionORM->getConnect()->tipo_espacio()->insert_id();
+			$values['id_tipo_espacio'] = $ConnectionORM->getConn()->lastInsertId('tipo_espacio_id_tipo_espacio_seq');
+			//echo $values['id_tipo_espacio'];
 			return $values;	
 			
 		}
 		function updateTipoEspacio($values){
 			unset($values['action'],$values['PHPSESSID'],$values['date_created']);
-                        $values['date_updated'] = new NotORM_Literal("NOW()");
+			$values['date_updated'] = new NotORM_Literal("NOW()");
 			$id_tipo_espacio = $values['id_tipo_espacio'];
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->tipo_espacio("id_tipo_espacio", $id_tipo_espacio)->update($values);
-			return $q;
+			//return $q;
+			
+		}
+		public function getZonaUbicacionListSelect($values){
+			$ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->tipo_espacio
+			->select("*")
+			->where("status=?",1);
+			return $q; 				
 			
 		}
 		public function getTipoEspacioListSelect($values){
