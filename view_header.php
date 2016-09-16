@@ -11,6 +11,7 @@
 	<link href="<?php echo full_url;?>/web/font-awesome/css/font-awesome.min.css" rel="stylesheet">         
     <link href="<?php echo full_url;?>/web/css/datatables.css" rel="stylesheet">
 	<link href="<?php echo full_url;?>/web/bootstrap/css/bootstrap-datetimepicker.css" rel="stylesheet">
+	<link href="<?php echo full_url;?>/web/js/gallerly.js-master/css/main.css" rel="stylesheet">
 
 	
 

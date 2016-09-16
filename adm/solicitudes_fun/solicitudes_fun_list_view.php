@@ -1,6 +1,9 @@
 <?php include('../../view_header.php')?>
 <?php include('../menu.php')?>
-<div class="container">
+<div class="container" id="">
+	
+	
+
 	<h1 class="text-center">Generar solicitud</h1>
 	<table id="example" class="table table-striped table-bordered table-responsive" width="100%" cellspacing="0">
 			<thead>
@@ -50,5 +53,20 @@ $(document).ready(function() {
        ]				
     });
 } );
+
+function openImage(image,description){
+			//alert(image);
+			var html = '';
+			
+			html+='<div class="col-sm-12 col-md-12"><img src="<?php echo full_url?>/web/files/espacios/'+image+'">';
+			html+='</img></div>';
+			html+='<div class="col-sm-12 col-md-12">';
+			html+='<div class="col-sm-12 col-md-12">';
+			html+='<p>' + description + '</p>';
+			html+='</div>';			
+			$('.modal-body').html(html);
+			$('.modal-title').html('');
+			$('#myModal').modal('show');	
+}
 
 </script>

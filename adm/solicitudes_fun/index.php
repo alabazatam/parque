@@ -209,7 +209,7 @@ $values = $_REQUEST;
 					"imagen3" => '<div class="row">
 									<div class="col-xs-12 col-md-12">
 									  <a href="#" class="thumbnail">
-										<img src="'.full_url.'/web/files/espacios/ESPACIO_1_4.png" alt="...">
+										<img src="'.full_url.'/web/files/espacios/ESPACIO_1_4.png" alt="..." onclick="openImage('."'ESPACIO_1_4.png'".','."'Descripcion sdkasjdk'".')">
 									  </a>
 									</div>
 								  </div>',
