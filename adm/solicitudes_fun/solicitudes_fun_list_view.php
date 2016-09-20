@@ -58,9 +58,8 @@ function openImage(image,description){
 			//alert(image);
 			var html = '';
 			
-			html+='<div class="col-sm-12 col-md-12"><img src="<?php echo full_url?>/web/files/espacios/'+image+'">';
+			html+='<div class="col-sm-12 col-md-12"><img src="<?php echo full_url?>/web/files/espacios/'+image+'" width="100%">';
 			html+='</img></div>';
-			html+='<div class="col-sm-12 col-md-12">';
 			html+='<div class="col-sm-12 col-md-12">';
 			html+='<p>' + description + '</p>';
 			html+='</div>';			

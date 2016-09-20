@@ -122,5 +122,16 @@
 			//return $q;
 			
 		}
+		public function getEspaciosDescripcionById($values){
+			$ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->espacios
+			->select("espacios.*,zu.des_zona_ubicacion, tp.nom_tipo_espacio,zu.id_zona_ubicacion, tp.id_tipo_espacio")
+			->join('tipo_espacio','LEFT JOIN tipo_espacio tp ON tp.id_tipo_espacio = espacios.id_tipo_espacio')
+			->join('zona_ubicacion','LEFT JOIN zona_ubicacion zu ON zu.id_zona_ubicacion = espacios.id_zona_ubicacion')
+			->where("id_espacio=?",$values['id_espacio'])
+			->fetch();
+			return $q; 				
+			
+		}
 	}
 

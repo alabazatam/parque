@@ -43,10 +43,10 @@ $values = $_REQUEST;
 	}
 	function executeNew($values = null)
 	{       
-                $values['status'] = '1';
+        $values['status'] = '1';
 		$values['action'] = 'add';
 		$values['errors'] = array();
-		require('espacios_form_view.php');
+		require('form_view.php');
 	}
 	function executeSave($values = null)
 	{
@@ -163,11 +163,63 @@ $values = $_REQUEST;
 		$array_json = array();
 		$array_json['recordsTotal'] = $espacios_list_json_cuenta;
 		$array_json['recordsFiltered'] = $espacios_list_json_cuenta;
+		$EspaciosImagenes = new EspaciosImagenes();
 		if(count($espacios_list_json)>0)
 		{
 			foreach ($espacios_list_json as $espacio) 
 			{
 				$id_espacio = $espacio['id_espacio'];
+				$espacios_imagenes_list = $EspaciosImagenes->getImagenesEspaciosById($espacio);
+				$array_imagenes = array();
+				$i = 1;
+				$array_imagenes['imagen1'] = '<div class="row">
+											<div class="col-xs-12 col-md-12">
+											  <a href="#" class="thumbnail">
+												<img src="'.full_url.'/web/files/espacios/no_thumb.png" alt="..." width="100">
+											  </a>
+											</div>
+										</div>';	
+				$array_imagenes['imagen2'] = '<div class="row">
+											<div class="col-xs-12 col-md-12">
+											  <a href="#" class="thumbnail">
+												<img src="'.full_url.'/web/files/espacios/no_thumb.png" alt="..." width="100">
+											  </a>
+											</div>
+										</div>';
+				$array_imagenes['imagen3'] = '<div class="row">
+											<div class="col-xs-12 col-md-12">
+											  <a href="#" class="thumbnail">
+												<img src="'.full_url.'/web/files/espacios/no_thumb.png" alt="..." width="100">
+											  </a>
+											</div>
+										</div>';	
+				$array_imagenes['imagen4'] = '<div class="row">
+											<div class="col-xs-12 col-md-12">
+											  <a href="#" class="thumbnail">
+												<img src="'.full_url.'/web/files/espacios/no_thumb.png" alt="..." width="100">
+											  </a>
+											</div>
+										</div>';
+					foreach($espacios_imagenes_list as $img):
+						
+					
+					if(isset($img['orden']) and $img['orden'] !='')
+					{
+						$imagen = $img['imagen'];
+						$descripcion = $espacio['des_espacio'];
+						$array_imagenes['imagen'.$img['orden']] ='<div class="row">
+											<div class="col-xs-12 col-md-12">
+											  <a href="#" class="thumbnail">
+												<img src="'.full_url.'/web/files/espacios/'.$imagen.'" alt="..." onclick="openImage('."'$imagen'".','."'$descripcion'".')" width="100">
+											  </a>
+											</div>
+										</div>';	
+					}
+					
+
+					$i++;
+					endforeach;	
+				
 				$status = $espacio['status'];
 				if($status == 0)
 				{
@@ -192,46 +244,24 @@ $values = $_REQUEST;
 					"des_espacio" => $espacio['des_espacio'],
 					"capacidad" => $espacio['capacidad'],
 					"ut" => $espacio['ut'],
-					"imagen1" => '<div class="row">
-									<div class="col-xs-12 col-md-12">
-									  <a href="#" class="thumbnail">
-										<img src="'.full_url.'/web/files/espacios/ESPACIO_1_4.png" alt="...">
-									  </a>
-									</div>
-								  </div>',
-					"imagen2" => '<div class="row">
-									<div class="col-xs-12 col-md-12">
-									  <a href="#" class="thumbnail">
-										<img src="'.full_url.'/web/files/espacios/ESPACIO_1_4.png" alt="...">
-									  </a>
-									</div>
-								  </div>',
-					"imagen3" => '<div class="row">
-									<div class="col-xs-12 col-md-12">
-									  <a href="#" class="thumbnail">
-										<img src="'.full_url.'/web/files/espacios/ESPACIO_1_4.png" alt="..." onclick="openImage('."'ESPACIO_1_4.png'".','."'Descripcion sdkasjdk'".')">
-									  </a>
-									</div>
-								  </div>',
-					"imagen4" => '<div class="row">
-									<div class="col-xs-12 col-md-12">
-									  <a href="#" class="thumbnail">
-										<img src="'.full_url.'/web/files/espacios/ESPACIO_1_4.png" alt="...">
-									  </a>
-									</div>
-								  </div>',
-					"nom_tipo_espacio" => $espacio['nom_tipo_espacio'],
+
 					"des_zona_ubicacion" => $espacio['des_zona_ubicacion'],
 					"status" => $message_status,
                                         "date_created" => $espacio['date_created'],
                                         "date_updated" => $espacio['date_updated'],
 					"actions" => 
-                                       '<form method="POST" action = "'.full_url.'/adm/espacios/index.php" >'
-                                       .'<input type="hidden" name="action" value="edit">  '
-                                       .'<input type="hidden" name="id_espacio" value="'.$id_espacio.'">  '
-                                       .'<button class="btn btn-success btn-sm" type="submit"><i class="fa fa-check-circle  fa-pull-left"></i> Reservar</button>'
+                    '<form method="POST" action = "'.full_url.'/adm/solicitudes_fun/index.php" >'
+                    .'<input type="hidden" name="action" value="new">  '
+                    .'<input type="hidden" name="id_espacio" value="'.$id_espacio.'">  '
+                    .'<button class="btn btn-success btn-sm" type="submit"><i class="fa fa-check-circle  fa-pull-left"></i> Reservar</button>',
+					"nom_tipo_espacio" => $espacio['nom_tipo_espacio'],
+					"imagen1" => $array_imagenes['imagen1'], 
+					"imagen2" => $array_imagenes['imagen2'], 
+					"imagen3" => $array_imagenes['imagen3'], 
+					"imagen4" => $array_imagenes['imagen4'] 
+				);
+				
 
-					);	
 			}	
 		}else{
 			$array_json['recordsTotal'] = 0;

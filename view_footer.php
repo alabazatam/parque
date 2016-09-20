@@ -36,7 +36,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
-        $('#datetimepicker1,#datetimepicker2,#datetimepicker3,#datetimepicker4,#datetimepicker5,#datetimepicker6,#desde,#hasta').datetimepicker({
+        $('#datetimepicker1,#fec_reservacion').datetimepicker({
 			 viewMode: 'days',
 			 locale: 'es',
 			 format: 'DD/MM/YYYY',
@@ -62,6 +62,7 @@
 				nextCentury: 'Next Century'
 			}
 			 
-        });		
+        });
+
 	});
 </script>
