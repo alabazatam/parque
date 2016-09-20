@@ -20,6 +20,7 @@
             <li><a href="<?php echo full_url;?>/adm/espacios/index.php">Espacios</a></li>
 			<li><a href="<?php echo full_url;?>/adm/zona_ubicacion/index.php">Zonas/Ubicaciones</a></li>
 			<li><a href="<?php echo full_url;?>/adm/zona_ubicacion/index.php">Tipo espacio</a></li>
+			<li><a href="<?php echo full_url;?>/adm/ut/index.php?action=view">Unidad tributaria</a></li>
 
           </ul>
         </li>
@@ -28,8 +29,8 @@
         <li class="dropdown facebook_font">
 			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i> Solicitudes<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<?php echo full_url;?>/adm/users/index.php">Consultar solicitudes</a></li>
-			 <li><a href="<?php echo full_url;?>/adm/solicitudes_fun/index.php">Generar solicitud</a></li>
+            <li><a href="<?php echo full_url;?>/adm/solicitudes_fun/index.php">Consultar solicitudes</a></li>
+			 <li><a href="<?php echo full_url;?>/adm/reservacion/index.php">Generar solicitud</a></li>
 
           </ul>
         </li>

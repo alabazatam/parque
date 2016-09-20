@@ -18,7 +18,9 @@ unset($values['PHPSESSID']);
 		case "generar_solicitud":
 			executeGenerarSolicitud($values);	
 		break;
-
+		case "cambiar_ut":
+			executeCambiarUt($values);	
+		break;
 	}
 	function executeStatusChanger($values = null)
 	{
@@ -44,6 +46,14 @@ unset($values['PHPSESSID']);
 		$data = $Solicitudes ->saveEspacios($values);
 		$array = array("id_solicitud" => $data['id_solicitud']);
 		
+		echo json_encode($array);
+	}
+	function executeCambiarUt($values)
+	{
+		$UT = new UT();
+		
+		$actualizar = $UT->updateUT($values);
+		$array = array("actualizado" =>$actualizar);
 		echo json_encode($array);
 	}
 

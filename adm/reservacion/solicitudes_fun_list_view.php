@@ -27,7 +27,7 @@
 				</tr>
 			</tfoot>
 		</table>
-	<a class="btn btn-default"  href="<?php echo full_url."/adm/solicitudes_fun/index.php?action=new"?>"><i class="fa fa-file-o fa-pull-left fa-border"></i>Agregar</a>
+	<a class="btn btn-default"  href="<?php echo full_url."/adm/reservacion/index.php?action=new"?>"><i class="fa fa-file-o fa-pull-left fa-border"></i>Agregar</a>
 </div>
 	<?php include('../../view_footer.php')?>
 <script>
@@ -36,7 +36,7 @@ $(document).ready(function() {
         "scrollX": true,
         "processing": true,
         "serverSide": true,
-        "ajax": "<?php echo full_url."/adm/solicitudes_fun/index.php?action=espacios_list_json"?>",
+        "ajax": "<?php echo full_url."/adm/reservacion/index.php?action=espacios_list_json"?>",
 		"language": {
                 "url": "<?php echo full_url."/web/js/"?>datatables.spanish.lang"
         },

@@ -1,5 +1,4 @@
 <?php include("../../autoload.php");?>	
-<?php include("validator.php");?>
 <?php include("../security/security.php");?>
 <?php $action = "";
 
@@ -46,7 +45,8 @@ $values = $_REQUEST;
 	}
 	function executeView($values = null,$msg = null)
 	{
-		
+		$UT = new UT();
+		$values = $UT->getUTData();
 		require('form_view.php');die;
 	}
 	function executeUpdate($values = null)

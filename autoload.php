@@ -72,6 +72,7 @@ include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/TipoEspacio.class.
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/ZonaUbicacion.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/EspaciosImagenes.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Solicitudes.class.php");
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/UT.class.php");
 
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/ConnectionsHistory.class.php");
 
