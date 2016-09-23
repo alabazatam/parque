@@ -103,7 +103,7 @@
 			
 			
 			$fecha_creacion = date(gmdate('Y-m-d H:i:s', time() - (4 * 3600)));
-			$status = 1;
+			$status = 2;
 			$array_solicitud = array(
 				"id_espacio" => $values['id_espacio'],
 				"id_zona_ubicacion" => $data_espacios['id_zona_ubicacion'],
@@ -136,6 +136,18 @@
 
 			
 			return $values;	
+			
+		}
+		public function getSolicitudById($values){
+			$ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->solicitudes
+			->select("*,zona_ubicacion.*,tipo_espacio.*,status.name as status,status.id_status,TO_CHAR(solicitudes.fec_reservacion, 'dd/mm/YY') as fec_reservacion, TO_CHAR(solicitudes.date_created, 'dd/mm/YY') as fec_solicitud ")
+			->join("status","LEFT JOIN status on status.id_status = solicitudes.status")
+			->join("espacios","LEFT JOIN espacios on espacios.id_espacio = solicitudes.id_espacio")
+			->join("zona_ubicacion","LEFT JOIN zona_ubicacion on zona_ubicacion.id_zona_ubicacion = solicitudes.id_zona_ubicacion")
+			->join("tipo_espacio","LEFT JOIN tipo_espacio on tipo_espacio.id_tipo_espacio = solicitudes.id_tipo_espacio")
+			->where("id_solicitud=?",$values['id_solicitud'])->fetch();
+			return $q; 				
 			
 		}
 

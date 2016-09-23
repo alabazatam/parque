@@ -18,8 +18,8 @@ $values = $_REQUEST;
 		case "add":
 			executeSave($values);	
 		break;
-		case "view":
-			executeView($values);	
+		case "edit":
+			executeEdit($values);	
 		break;
 		case "update":
 			executeUpdate($values);	
@@ -37,22 +37,105 @@ $values = $_REQUEST;
 	}
 	function executeNew($values = null)
 	{       
-
+       
+		$values['action'] = 'add';
+		$values['errors'] = array();
+		require('form_view.php');
 	}
 	function executeSave($values = null)
 	{
 		
+		$Espacios = new Espacios();
+		$errors = validate($values);
+		if(count($errors)>0)
+		{	
+			$values['errors'] = $errors;
+			require('espacios_form_view.php');die;
+		}else{		
+			$values = $Espacios->saveEspacios($values);	
+			
+			$id_espacio = $values['id_espacio'];
+			$EspaciosImagenes = new EspaciosImagenes();
+			$array_imagenes = array();
+			$carpeta = "../../web/files/espacios/";
+			$nombrearchivo = '';
+			for($i=1;$i<=4;$i++)
+			{
+				if(isset($_FILES["file_$i"]['tmp_name']) and $_FILES["file_$i"]['tmp_name']!=''){
+						
+						$nombrearchivo = "ESPACIO_".$values['id_espacio']."_".$i.".".strtolower(pathinfo($_FILES['file_'.$i]['name'],PATHINFO_EXTENSION));
+						//echo $nombrearchivo;
+						//echo $_FILES["file_$i"]['tmp_name']."".$i."<br>";
+						if (move_uploaded_file($_FILES['file_'.$i]['tmp_name'], $carpeta."".$nombrearchivo))
+						{
+							
+							
+							//$EspaciosImagenes->deleteEspaciosImagenes($id_espacio, $i);
+							$array_imagenes = array(
+								"id_espacio" => $values['id_espacio'],
+								"imagen" => $nombrearchivo,
+								"orden"=> $i
 
+							);
+							$EspaciosImagenes->saveEspaciosImagenes($array_imagenes);
+						}
+					
+				}
+			}
+			executeEdit($values,message_created);die;
+		}
 	}
-	function executeView($values = null,$msg = null)
+	function executeEdit($values = null,$msg = null)
 	{
 		
-		require('form_view.php');die;
+		$Solicitudes = new Solicitudes();
+		$values = $Solicitudes->getSolicitudById($values);
+		$values['action'] = 'update';
+        $values['msg'] = $msg;
+		$values['errors'] = array();
+		require('form_view.php');
 	}
 	function executeUpdate($values = null)
 	{
 		
+		$Espacios = new Espacios();
+		$errors = validate($values);
+		if(count($errors)>0)
+		{	
+			$values['errors'] = $errors;
+			require('espacios_form_view.php');die;
+		}else{	
 
+			$id_espacio = $values['id_espacio'];			
+			$values = $Espacios->updateEspacios($values);
+			$values['id_espacio'] = $id_espacio;
+			$EspaciosImagenes = new EspaciosImagenes();
+			$array_imagenes = array();
+			$carpeta = "../../web/files/espacios/";
+			$nombrearchivo = '';
+			for($i=1;$i<=4;$i++)
+			{
+				if(isset($_FILES["file_$i"]['tmp_name']) and $_FILES["file_$i"]['tmp_name']!=''){
+						
+						$nombrearchivo = "ESPACIO_".$values['id_espacio']."_".$i.".".strtolower(pathinfo($_FILES['file_'.$i]['name'],PATHINFO_EXTENSION));
+						//echo $nombrearchivo;
+						//echo $_FILES["file_$i"]['tmp_name']."".$i."<br>";
+						if (move_uploaded_file($_FILES['file_'.$i]['tmp_name'], $carpeta."".$nombrearchivo))
+						{
+							$EspaciosImagenes->deleteEspaciosImagenes($id_espacio, $i);
+							$array_imagenes = array(
+								"id_espacio" => $values['id_espacio'],
+								"imagen" => $nombrearchivo,
+								"orden"=> $i
+
+							);
+							$EspaciosImagenes->saveEspaciosImagenes($array_imagenes);
+						}
+					
+				}
+			}
+			executeEdit($values,message_created);die;
+		}
 	}	
 	function executeListJson($values)
 	{
@@ -81,8 +164,8 @@ $values = $_REQUEST;
 					"status" => $solicitud['status'],
 					"actions" => 
                                        '<form method="POST" action = "'.full_url.'/adm/solicitudes_fun/index.php" >'
-                                       .'<input type="hidden" name="action" value="view">  '
-                                       .'<input type="hidden" name="id_espacio" value="'.$id_solicitud.'">  '
+                                       .'<input type="hidden" name="action" value="edit">  '
+                                       .'<input type="hidden" name="id_solicitud" value="'.$id_solicitud.'">  '
 									   .'<input type="hidden" name="id_espacio" value="'.$id_espacio.'">  '
                                        .'<button class="btn btn-default btn-sm" type="submit"><i class="fa fa-edit  fa-pull-left fa-border"></i></button>'
 
