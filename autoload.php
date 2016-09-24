@@ -73,7 +73,7 @@ include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/ZonaUbicacion.clas
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/EspaciosImagenes.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Solicitudes.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/UT.class.php");
-
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Status.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/ConnectionsHistory.class.php");
 
 

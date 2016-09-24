@@ -31,6 +31,8 @@
           <ul class="dropdown-menu">
             <li><a href="<?php echo full_url;?>/adm/solicitudes_fun/index.php">Consultar solicitudes</a></li>
 			 <li><a href="<?php echo full_url;?>/adm/reservacion/index.php">Generar solicitud</a></li>
+			 <li><a href="<?php echo full_url;?>/adm/solicitudes_adm/index.php">Administrar solicitudes</a></li>
+
 
           </ul>
         </li>

@@ -150,6 +150,21 @@
 			return $q; 				
 			
 		}
+		function updateSolicitud($values){
+			
+			$id_solicitud = $values['id_solicitud'];
+			$fecha_update= date(gmdate('Y-m-d H:i:s', time() - (4 * 3600)));
+			$array = array(
+				
+				"status" => $values['status'],
+				"date_updated" =>$fecha_update,
+				
+			);
+			$ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->solicitudes("id_solicitud", $id_solicitud)->update($array);
+			//return $q;
+			
+		}
 
 	}
 

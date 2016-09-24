@@ -21,6 +21,9 @@ unset($values['PHPSESSID']);
 		case "cambiar_ut":
 			executeCambiarUt($values);	
 		break;
+		case "status_name":
+			executeStatusName($values);	
+		break;
 	}
 	function executeStatusChanger($values = null)
 	{
@@ -54,6 +57,14 @@ unset($values['PHPSESSID']);
 		
 		$actualizar = $UT->updateUT($values);
 		$array = array("actualizado" =>$actualizar);
+		echo json_encode($array);
+	}
+	function executeStatusName($values)
+	{
+		$Status = new Status();
+		
+		$status_name = $Status->getStatusName($values['id_status']);
+		$array = array("status_name" =>$status_name);
 		echo json_encode($array);
 	}
 
