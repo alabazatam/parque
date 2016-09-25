@@ -66,8 +66,14 @@ include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/SecurityBase.class.php")
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/Utilitarios.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/Mail.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Users.class.php");
-
-
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/UsersData.class.php");
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Espacios.class.php");
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/TipoEspacio.class.php");
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/ZonaUbicacion.class.php");
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/EspaciosImagenes.class.php");
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Solicitudes.class.php");
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/UT.class.php");
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Status.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/ConnectionsHistory.class.php");
 
 
