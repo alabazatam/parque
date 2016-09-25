@@ -62,6 +62,20 @@ $(document).ready(function(){
 			
 });
 
+function addInvitado(){
 
+    var id_solicitud = $('#id_solicitud').val();
+
+    		$.ajax({
+			type: "GET",
+			url: '<?php echo full_url?>/adm/ajax/index.php',
+			data: { action: "add_invitado",id_solicitud: id_solicitud},
+			success: function(html){
+				$('#result_invitado').append(html);
+			},
+			//dataType: dataType
+		});    
+
+}
 
 </script>

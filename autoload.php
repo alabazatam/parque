@@ -75,6 +75,7 @@ include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Solicitudes.class.
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/UT.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Status.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/ConnectionsHistory.class.php");
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Parentescos.class.php");
 
 
 require($_SERVER["DOCUMENT_ROOT"]."/".main_folder.'/lib/vendors/securimage/securimage.php');

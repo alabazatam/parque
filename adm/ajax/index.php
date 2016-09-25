@@ -24,6 +24,9 @@ unset($values['PHPSESSID']);
 		case "status_name":
 			executeStatusName($values);	
 		break;
+		case "add_invitado":
+			executeAddInvitado($values);	
+		break;
 	}
 	function executeStatusChanger($values = null)
 	{
@@ -66,5 +69,11 @@ unset($values['PHPSESSID']);
 		$status_name = $Status->getStatusName($values['id_status']);
 		$array = array("status_name" =>$status_name);
 		echo json_encode($array);
+	}
+	function executeAddInvitado($values)
+	{
+            $Parentescos = new Parentescos();
+            $data_list = $Parentescos->getParentescosList();
+            require('add_invitado.php');
 	}
 
