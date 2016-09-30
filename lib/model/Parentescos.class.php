@@ -22,8 +22,8 @@
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->parentescos
 			->select("*")
-                        ->where('status=?',1);
-			return $q['valor']; 				
+            ->where('status=?',1);	
+			return $q;
 			
 		}
 

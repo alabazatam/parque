@@ -27,6 +27,14 @@ unset($values['PHPSESSID']);
 		case "add_invitado":
 			executeAddInvitado($values);	
 		break;
+		case "update_solicitudes_invitados":
+			executeUpdateSolicitudesInvitados($values);	
+		break;
+		case "delete_solicitudes_invitados":
+			executeDeleteSolicitudesInvitados($values);	
+		break;
+	
+	
 	}
 	function executeStatusChanger($values = null)
 	{
@@ -73,7 +81,31 @@ unset($values['PHPSESSID']);
 	function executeAddInvitado($values)
 	{
             $Parentescos = new Parentescos();
-            $data_list = $Parentescos->getParentescosList();
+            $parentescos_list = $Parentescos->getParentescosList();
+			$id_solicitud = $values['id_solicitud'];
+			$SolicitudesInvitados = new SolicitudesInvitados();
+			$values = $SolicitudesInvitados ->saveSolicitudesInvitados($values);
+			$values['id_solicitud'] = $id_solicitud;
+			//print_r($values);
             require('add_invitado.php');
 	}
+	function executeUpdateSolicitudesInvitados($values)
+	{
+			$id_solicitud = $values['id_solicitud'];
+			$SolicitudesInvitados = new SolicitudesInvitados();
+			$SolicitudesInvitados ->updateSolicitudesInvitados($values);
+			
+			return json_encode(array('status' => '1'));
+	}
+
+		function executeDeleteSolicitudesInvitados($values)
+	{
+			$id_solinvi = $values['id_solinvi'];
+			$SolicitudesInvitados = new SolicitudesInvitados();
+			$SolicitudesInvitados ->deleteSolicitudesInvitados($id_solinvi);
+			
+			return json_encode(array('status' => '1'));
+	}
+
+
 

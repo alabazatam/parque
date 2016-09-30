@@ -77,5 +77,52 @@ function addInvitado(){
 		});    
 
 }
+function deleteSolicitudesInvitados(id) {
+	
+	if(confirm("¿Está seguro(a) de eliminar el registro?")){
 
+		$.ajax({
+			type: "POST",
+			url: '<?php echo full_url;?>/adm/ajax/index.php',
+			data: { action: "delete_solicitudes_invitados",id_solinvi: id},
+			success: function(){
+				$("#solicitudes_invitados_list_" + id).remove(); 
+			}
+		});
+		  		
+	}else{
+		return false;
+	}
+
+}
+
+	function updateSolicitudesInvitados(id, column_id,column_name)
+	{
+		$('.mess').html('');
+		var value = $("#" + column_id).val();
+		
+				if(column_name == 'cedula')
+				{
+					var z1 = /^[0-9]*$/;
+					if (value != '' && !z1.test(value)) 
+					{ 
+							$('#' + column_id).val('');
+							alert('Por favor ingrese solamente números para el campo cédula');
+							
+							return false;
+					} 	
+				}
+	
+		
+		$.ajax({
+			type: "POST",
+			url: '<?php echo full_url;?>/adm/ajax/index.php',
+			data: { action: "update_solicitudes_invitados",id: id,column_id:column_id,column_name:column_name,value:value,id_solicitud:<?php echo $values['id_solicitud']?>},
+			success: function(){
+				$('#' + 'mensaje_'+ column_name + '_' + id).html('<i class="fa fa-check-circle alert-success"> Actualizado satisfactoriamente</i>');
+				//alert('#' + 'mensaje_'+ column_name + '_' + id);
+			}
+			
+		});		
+	}
 </script>

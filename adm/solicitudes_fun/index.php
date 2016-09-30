@@ -90,6 +90,9 @@ $values = $_REQUEST;
 		
 		$Solicitudes = new Solicitudes();
 		$values = $Solicitudes->getSolicitudById($values);
+		
+		$SolicitudesInvitados = new SolicitudesInvitados();
+		$solicitudes_invitados_list = $SolicitudesInvitados ->getSolicitudesInvitadosList($values);
 		$values['action'] = 'update';
         $values['msg'] = $msg;
 		$values['errors'] = array();
