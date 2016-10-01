@@ -133,5 +133,14 @@
 			return $q; 				
 			
 		}
+		public function getEspacioCapacidadById($values){
+			$ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->espacios
+			->select("capacidad")
+			->where("id_espacio=?",$values['id_espacio'])
+			->fetch();
+			return $q['capacidad']; 				
+			
+		}
 	}
 

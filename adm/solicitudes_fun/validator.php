@@ -49,7 +49,50 @@
 		);		*/
 		$ValidateBase = new ValidateBase();
 		$errors = $ValidateBase->validate_base($validator_values, $values);
-		return $errors;
+		
+                if($values['id_status'] == 3)
+                {
+                    if(!isset($_FILES["recibo"]['tmp_name']) or $_FILES["recibo"]['tmp_name']=="")
+                    {
+
+                       $errors['recibo'] = 'Debe seleccionar el comprobante de pago' ;
+
+                    }  
+                }
+                //carga de lista de invitados
+                if($values['id_status'] == 5)
+                {
+                    if(!isset($values['cedula']))
+                    {
+
+                        $errors['lista'] = 'Debe cargar al menos un invitado';
+                            
+                    }else
+                    {
+                        foreach($values['cedula'] as $id=> $value ):
+
+                            if($value == '')
+                            {
+                               $errors['cedula'] = 'El campo cédula en la lista de invitados no puede estar vacía';
+                            }
+                            if($values['nombre1'][$id] == '')
+                            {
+                               $errors['nombre1'] = 'El campo primer nombre en la lista de invitados no puede estar vacío';
+                            }
+                            if($values['apellido1'][$id] == '')
+                            {
+                               $errors['apellido1'] = 'El campo primer apellido en la lista de invitados no puede estar vacío';
+                            }
+                            if($values['id_parentesco'][$id] == '')
+                            {
+                               $errors['apellido1'] = 'El campo parentesco en la lista de invitados no puede estar vacío';
+                            }
+
+                        endforeach;   
+                    }
+
+                }
+                return $errors;
 		
 		
 	}

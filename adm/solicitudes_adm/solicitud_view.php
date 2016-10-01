@@ -11,26 +11,27 @@ $status_cancelada = false;
 		case 2;
 			$status_proximo = 3;
 			//$status_regresar = 1;
+                        $status_cancelada = true;
 			break;
 		case 3;
-			$status_proximo = 4;
-			$status_regresar = 2;
-			$status_cancelada = true;
+			//$status_proximo = 4;
+			//$status_regresar = 2;
+			//$status_cancelada = true;
 			break;		
 		case 4;
 			$status_proximo = 5;
 			$status_regresar = 3;
-			$status_cancelada = true;
+			//$status_cancelada = true;
 			break;
 		case 5;
-			$status_proximo = 6;
-			$status_regresar = 4;
-			$status_cancelada = true;
+			//$status_proximo = 6;
+			//$status_regresar = 4;
+			//$status_cancelada = true;
 			break;	
 		case 6;
 			$status_proximo = 7;
 			$status_regresar = 5;
-			$status_cancelada = true;
+			//$status_cancelada = true;
 			break;	
 		case 7;
 			//$status_proximo = 8;
@@ -50,11 +51,15 @@ $status_cancelada = false;
 ?>
 
 <div class="col-sm-12 col-md-12">
-	
+
+	<div class="container alert alert-info" id="parcial_espacio"> 
+	</div>	
 		<div class="form-group">
 			<div class="col-sm-4 col-md-4">
+                                
 				<input type="hidden" id="des_status" value="<?php echo $name_status_proximo;?>">	
-			</div>
+                     
+                        </div>
 			<div class="col-sm-4 col-md-4">
 				<label for="">Id.Solicitud:</label>
 				<?php if(isset($values['id_solicitud'])) echo $values['id_solicitud']?>
@@ -66,15 +71,19 @@ $status_cancelada = false;
 		</div>
 		<!--datos pago de la solicitud-->
 		<div class="form-group" <?php if(isset($values['id_status']) and $values['id_status'] == 4) echo ""; else echo "hidden";?>>
-			<div class="col-sm-6 col-md-6">
+			<div class="col-sm-4 col-md-4">
 				<label for="">Referencia bancaria</label>
-				<input type="text" autocomplete="off" readonly="readonly" required class="form-control input-sm" id="referencia_bancaria" placeholder="Referencia bancaria" name="referencia_bancaria" value="<?php if(isset($values['referencia_bancaria'])) echo $values['referencia_bancaria']?>">
+                                <input type="text" autocomplete="off" readonly="readonly" maxlength="80" class="form-control input-sm" id="referencia_bancaria" placeholder="Referencia bancaria" name="referencia_bancaria" value="<?php if(isset($values['referencia_bancaria'])) echo $values['referencia_bancaria']?>">
 			
 			</div>
-			<div class="col-sm-6 col-md-6">
+			<div class="col-sm-4 col-md-4">
 				<label for="">Fecha de pago</label>
-				<input type="text" autocomplete="off" readonly="readonly" required class="form-control input-sm" id="" placeholder="Fecha del pago" name="fec_pago" value="<?php if(isset($values['fec_pago']) and $values['fec_pago']!='') echo $values['fec_pago'];?>">
+				<input type="text" autocomplete="off" readonly="readonly" class="form-control input-sm" id="" placeholder="Fecha del pago" name="fec_pago" value="<?php if(isset($values['fec_pago']) and $values['fec_pago']!='') echo $values['fec_pago'];?>">
 			
+			</div>
+			<div class="col-sm-4 col-md-4">
+				<label for="">Comprobante de pago</label>
+                                <a target="_blank" href="<?php echo full_url."/web/files/recibo/".$values['recibo']?>"><?php if(isset($values['recibo']) and $values['recibo']!='') echo $values['recibo'];?></a>
 			</div>
 		</div>
 		<!--fin datos pago-->

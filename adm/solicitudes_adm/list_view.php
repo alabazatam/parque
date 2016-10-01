@@ -42,7 +42,25 @@ $(document).ready(function() {
         "ajax": "<?php echo full_url."/adm/solicitudes_adm/index.php?action=list_json"?>",
 		"language": {
                 "url": "<?php echo full_url."/web/js/"?>datatables.spanish.lang"
-        },
+        },"rowCallback": function( row, data, index ) {
+            if ( data.id_status == "2" || data.id_status == "4" || data.id_status == "6") 
+            {
+                    $(row).addClass('alert alert-warning');            
+            }else
+            if ( data.id_status == "7") 
+            {
+                $(row).addClass('alert alert-success');
+                    //$(row).css("background-color","#DFF0D8");            
+            }else
+            if ( data.id_status == "8") 
+            {
+                    $(row).addClass('alert alert-danger');            
+            }else
+            {
+                    $(row).addClass('alert alert-info');            
+            }
+
+        },     
         "columns": [
             { "data": "id_solicitud" },
             { "data": "nom_espacio" },

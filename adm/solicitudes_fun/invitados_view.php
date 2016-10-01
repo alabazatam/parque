@@ -33,6 +33,7 @@
 
         <tr>
             <td>
+                <input class="form-control input-sm" placeholder="id_solinvi" type="hidden" maxlength="9"  name="id_solinvi[<?php echo $list['id_solinvi']?>]" id="id_solinvi_<?php echo $list['id_solinvi']?>" size="" onchange="updateSolicitudesInvitados(<?php echo $list['id_solinvi'];?>,'id_solinvi_<?php echo $list['id_solinvi'];?>','id_solinvi')" value="<?php if(isset($list['id_solinvi'])) echo $list['id_solinvi']?>">
                 <select class="form-control input-sm" name="nacion[<?php echo $list['id_solinvi']?>]" id="nacion_<?php echo $list['id_solinvi']?>" onchange="updateSolicitudesInvitados(<?php echo $list['id_solinvi'];?>,'nacion_<?php echo $list['id_solinvi'];?>','nacion')">
                     <option value="V" <?php if(isset($list['nacion']) and $list['nacion'] == 'V') echo 'selected =  "selected"'?>>V</option>
                     <option value="E" <?php if(isset($list['nacion']) and $list['nacion'] == 'E') echo 'selected =  "selected"'?>>E</option>
@@ -46,6 +47,7 @@
             <td>
                 <select class="form-control input-sm" name="id_parentesco[<?php echo $list['id_solinvi']?>]" id="id_parentesco_<?php echo $list['id_solinvi']?>" onchange="updateSolicitudesInvitados(<?php echo $list['id_solinvi'];?>,'id_parentesco_<?php echo $list['id_solinvi'];?>','id_parentesco')">
 					<?php if(isset($parentescos_list)):?>
+                                                                <option value="">Seleccione...</option>
 						<?php foreach($parentescos_list as $list2):?>
 								<option value="<?php echo $list2['id_parentesco']?>" <?php if($list2['id_parentesco'] == $list['id_parentesco']) echo "selected ='selected'";?>><?php echo $list2['nom_parentesco']?></option>
 						<?php endforeach;?>

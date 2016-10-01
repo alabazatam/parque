@@ -1,10 +1,7 @@
 <?php include('../../view_header.php')?>
 <?php include('../menu.php')?>
 <h1 class="text-center"> Solicitudes</h1>
-
-	<div class="container alert alert-info" id="parcial_espacio"> 
-	</div>
-<form action="index.php" id="formSolicitudFun">
+<form action="index.php" method="post" id="formSolicitudFun" enctype="multipart/form-data">
 <input type="hidden" value="<?php echo $values['id_espacio'];?>" id="id_espacio" name="id_espacio" value="<?php if(isset($values['id_espacio']) and $values['id_espacio']!='') echo $values['id_espacio'];?>">
 <input type="hidden" value="<?php echo $values['id_solicitud'];?>" id="id_solicitud" name="id_solicitud" value="<?php if(isset($values['id_solicitud']) and $values['id_solicitud']!='') echo $values['id_solicitud'];?>">
 <input type="hidden" name='action' value='<?php if(isset($values['action']))echo $values['action'];?>'>
@@ -80,13 +77,23 @@ $(document).ready(function(){
 function addInvitado(){
 
     var id_solicitud = $('#id_solicitud').val();
+     var id_espacio = $('#id_espacio').val();
 
     		$.ajax({
 			type: "GET",
+                        
 			url: '<?php echo full_url?>/adm/ajax/index.php',
-			data: { action: "add_invitado",id_solicitud: id_solicitud},
+			data: { action: "add_invitado",id_solicitud: id_solicitud, id_espacio: id_espacio},
 			success: function(html){
-				$('#result_invitado').append(html);
+                            if(html.length < 10)
+                            {
+                                alert('Ha alcanzado la capacidad máxima de invitados para este espacio');
+                            }else
+                            {
+                               $('#result_invitado').append(html); 
+                            }
+                            
+                                
 			},
 			//dataType: dataType
 		});    
@@ -114,8 +121,10 @@ function deleteSolicitudesInvitados(id) {
 	function updateSolicitudesInvitados(id, column_id,column_name)
 	{
 		$('.mess').html('');
+                var id_solicitud = $("#id_solicitud").val();
 		var value = $("#" + column_id).val();
-		
+                var id_solinvi = $("#id_solinvi_" + id).val();
+	
 				if(column_name == 'cedula')
 				{
 					var z1 = /^[0-9]*$/;
@@ -127,18 +136,58 @@ function deleteSolicitudesInvitados(id) {
 							return false;
 					} 	
 				}
-	
+                                if(column_name == 'cedula')
+                                {
+                                    var nacion = $('#nacion_' + id).val();
+                                    var cedula = $('#cedula_' + id).val();
+                                    $.ajax({
+                                            type: "POST",
+                                            dataType: 'json',
+                                            url: '<?php echo full_url;?>/adm/ajax/index.php',
+                                            data: { action: "comprueba_cedula_invitado",id_solicitud: id_solicitud, nacion: nacion, cedula: cedula,id_solinvi: id_solinvi},
+                                            success: function(json){
+                                                    if(json.cuenta > 0)
+                                                    {
+                                                        $('.mess').html('');
+                                                        $('#cedula_' + id).val('');
+                                                        $('#' + 'mensaje_'+ column_name + '_' + id).html('<i class="fa fa-times alert-danger"> Registro no actualizado</i>');
+                                                        alert('La cédula indicada ya se encuentra registrada');
+                                                        return false;
+                                                    }else
+                                                    {
+                                                        $.ajax({
+                                                                type: "POST",
+                                                                url: '<?php echo full_url;?>/adm/ajax/index.php',
+                                                                data: { action: "update_solicitudes_invitados",id: id,column_id:column_id,column_name:column_name,value:value,id_solicitud:id_solicitud},
+                                                                success: function(){
+                                                                        $('#' + 'mensaje_'+ column_name + '_' + id).html('<i class="fa fa-check-circle alert-success"> Actualizado satisfactoriamente</i>');
+                                                                        //alert('#' + 'mensaje_'+ column_name + '_' + id);
+                                                                }
+
+                                                        });
+                                                    }
+                                            }
+
+                                    });
+                                }else
+                                {
+                                    $.ajax({
+                                            type: "POST",
+                                            url: '<?php echo full_url;?>/adm/ajax/index.php',
+                                            data: { action: "update_solicitudes_invitados",id: id,column_id:column_id,column_name:column_name,value:value,id_solicitud:id_solicitud},
+                                            success: function(){
+                                                    $('#' + 'mensaje_'+ column_name + '_' + id).html('<i class="fa fa-check-circle alert-success"> Actualizado satisfactoriamente</i>');
+                                                    //alert('#' + 'mensaje_'+ column_name + '_' + id);
+                                            }
+
+                                    });
+                                }
 		
-		$.ajax({
-			type: "POST",
-			url: '<?php echo full_url;?>/adm/ajax/index.php',
-			data: { action: "update_solicitudes_invitados",id: id,column_id:column_id,column_name:column_name,value:value,id_solicitud:<?php echo $values['id_solicitud']?>},
-			success: function(){
-				$('#' + 'mensaje_'+ column_name + '_' + id).html('<i class="fa fa-check-circle alert-success"> Actualizado satisfactoriamente</i>');
-				//alert('#' + 'mensaje_'+ column_name + '_' + id);
-			}
-			
-		});		
+                
+
+                
+               
+		
 	}
 
 	function submitForm(status)
@@ -167,3 +216,17 @@ function deleteSolicitudesInvitados(id) {
 
 	}
 </script>
+	<?php if(isset($values['errors']) and count($values['errors'])>0):?>
+		<?php $errors_concat = "";foreach($values['errors'] as $errors): ?>
+			<?php $errors_concat.='<i class="fa fa-arrow-circle-right"></i> '.$errors."<br>";?>
+		<?php endforeach;?>
+		<script>
+			$(document).ready(function(){
+			$('.modal-body').html('<div class="alert alert-danger" role="alert"><?php echo $errors_concat;?></div>');
+			$('.modal-title').html('<i class="fa fa-warning alert alert-warning"> Revise la información cargada</i>');
+			$('#myModal').modal('show');	
+			});
+
+		
+		</script> 
+    <?php endif;?>

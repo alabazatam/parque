@@ -86,10 +86,14 @@ $values = $_REQUEST;
 		}
 	}
 	function executeEdit($values = null,$msg = null)
-	{
-		
+	{   
+
+                $SolicitudesInvitados = new SolicitudesInvitados();
+		$solicitudes_invitados_list = $SolicitudesInvitados ->getSolicitudesInvitadosList($values);
 		$Solicitudes = new Solicitudes();
 		$values = $Solicitudes->getSolicitudById($values);
+                $SolicitudesMovimientos = new SolicitudesMovimientos();
+                $observacion = $SolicitudesMovimientos->getObservacion($values);
 		$values['action'] = 'update';
         $values['msg'] = $msg;
 		$values['errors'] = array();
@@ -114,8 +118,8 @@ $values = $_REQUEST;
 	function executeListJson($values)
 	{
 		$Solicitudes= new Solicitudes();
-		$list_json = $Solicitudes->getSolicitudesFunList($values);
-		$list_json_cuenta = $Solicitudes->getCountSolicitudesFunList($values);
+		$list_json = $Solicitudes->getSolicitudesAdmList($values);
+		$list_json_cuenta = $Solicitudes->getCountSolicitudesAdmList($values);
 		$array_json = array();
 		$array_json['recordsTotal'] = $list_json_cuenta;
 		$array_json['recordsFiltered'] = $list_json_cuenta;
@@ -136,6 +140,7 @@ $values = $_REQUEST;
 					"ut" => $solicitud['ut'],
 					"costo" => $solicitud['costo']." Bs",
 					"status" => $solicitud['status'],
+                                        "id_status" => $solicitud['id_status'],
 					"actions" => 
                                        '<form method="POST" action = "'.full_url.'/adm/solicitudes_adm/index.php" >'
                                        .'<input type="hidden" name="action" value="edit">  '
@@ -157,6 +162,7 @@ $values = $_REQUEST;
 					"ut" => null,
 					"costo" => null,
 					"status" => null,
+                                        "id_status" => null,
 					"actions"=> ""
 				);
 		}

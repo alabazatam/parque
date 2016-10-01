@@ -61,5 +61,26 @@
 			$q = $ConnectionORM->getConnect()->solicitudes_invitados("id_solinvi", $id)->delete();
 			
 		}
-
+		public function getCuentaSolicitudesInvitadosList($values){
+			$ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->solicitudes_invitados
+			->select("count(*) as cuenta")
+			->where('id_solicitud=?',$values['id_solicitud'])
+			->fetch();	
+			return $q['cuenta'];
+			
+		}
+		public function compruebaCedulaInvitado($values){
+                    
+			$ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->solicitudes_invitados
+			->select("count(*) as cuenta")
+			->where('id_solicitud=?',$values['id_solicitud'])
+                        ->and('nacion=?',$values['nacion'])
+                        ->and('cedula=?',$values['cedula'])
+                        ->and('id_solinvi<>?',$values['id_solinvi'])
+			->fetch();	
+                        return $q['cuenta'];
+			
+		}
 	}

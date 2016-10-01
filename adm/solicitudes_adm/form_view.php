@@ -2,8 +2,6 @@
 <?php include('../menu.php')?>
 <h1 class="text-center"> Solicitudes</h1>
 
-	<div class="container alert alert-info" id="parcial_espacio"> 
-	</div>
 <form action="index.php" method="post" id="form_solicitud">
 <input type="hidden" value="<?php echo $values['id_espacio'];?>" id="id_espacio" name="id_espacio" value="<?php if(isset($values['id_espacio']) and $values['id_espacio']!='') echo $values['id_espacio'];?>">
 <input type="hidden" value="<?php echo $values['id_solicitud'];?>" id="id_solicitud" name="id_solicitud" value="<?php if(isset($values['id_solicitud']) and $values['id_solicitud']!='') echo $values['id_solicitud'];?>">
@@ -14,12 +12,17 @@
 	  <!-- Nav tabs -->
 	  <ul class="nav nav-tabs" role="tablist">
 		<li role="presentation" class="active"><a href="#detalle" aria-controls="detalle" role="tab" data-toggle="tab">Detalle solicitud</a></li>
-	  </ul>
+		<li role="presentation" class=""><a href="#invitados" aria-controls="invitados" role="tab" data-toggle="tab">Lista de invitados</a></li>
+
+          </ul>
 
 	  <!-- Tab panes -->
 	  <div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="detalle">
 				 <?php include('solicitud_view.php');?>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="invitados">
+				 <?php include('invitados_view.php');?>
 			</div>
 	  </div>
 
@@ -95,3 +98,17 @@ $(document).ready(function(){
 		
 	});
 </script>
+	<?php if(isset($values['errors']) and count($values['errors'])>0):?>
+		<?php $errors_concat = "";foreach($values['errors'] as $errors): ?>
+			<?php $errors_concat.='<i class="fa fa-arrow-circle-right"></i> '.$errors."<br>";?>
+		<?php endforeach;?>
+		<script>
+			$(document).ready(function(){
+			$('.modal-body').html('<div class="alert alert-danger" role="alert"><?php echo $errors_concat;?></div>');
+			$('.modal-title').html('<i class="fa fa-warning alert alert-warning"> Revise la información cargada</i>');
+			$('#myModal').modal('show');	
+			});
+
+		
+		</script> 
+    <?php endif;?>

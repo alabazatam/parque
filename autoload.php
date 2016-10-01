@@ -77,6 +77,8 @@ include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Status.class.php")
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/ConnectionsHistory.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Parentescos.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/SolicitudesInvitados.class.php");
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/SolicitudesMovimientos.class.php");
+
 require($_SERVER["DOCUMENT_ROOT"]."/".main_folder.'/lib/vendors/securimage/securimage.php');
 /*validation class*/
 //include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/vendor/GUMP/gump.class.php");

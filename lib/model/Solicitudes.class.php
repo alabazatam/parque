@@ -82,6 +82,73 @@
 			//echo $q['cuenta']."aaa";die;
 			return $q['cuenta']; 			
 		}
+                
+/**/
+		public function getSolicitudesAdmList($values)
+		{	
+			$columns = array();
+			$columns[0] = 'id_solicitud';
+			$columns[1] = 'nom_espacio';
+			$columns[2] = 'des_espacio';
+			$columns[3] = 'capacidad';
+            $columns[4] = 'ut';
+            $columns[5] = 'tipo_espacio.nom_tipo_espacio';
+			$columns[6] = 'zona_ubicacion.des_zona_ubicacion';
+			$columns[7] = 'espacios.status';
+			$column_order = $columns[0];
+			$where = 'status.id_status not in(7,8)';
+			$order = 'asc';
+			$limit = $values['length'];
+			$offset = $values['start'];
+			if(isset($values['search']['value']) and $values['search']['value'] !='')
+			{	
+				$str = $values['search']['value'];
+				$where = "upper(login) like upper('%$str%')"
+					. "or upper(status.name) like upper('%$str%') ";
+			}
+			if(isset($values['order'][0]['column']) and $values['order'][0]['column']!='0')
+			{
+				$column_order = $columns[$values['order'][0]['column']];
+			}
+			if(isset($values['order'][0]['dir']) and $values['order'][0]['dir']!='0')
+			{
+				$order = $values['order'][0]['dir'];//asc o desc
+			}
+			//echo $column_order;die;
+            $ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->solicitudes
+			->select("*,zona_ubicacion.*,tipo_espacio.*,status.name as status,TO_CHAR(solicitudes.fec_reservacion, 'dd/mm/YY') as fec_reservacion, TO_CHAR(solicitudes.date_created, 'dd/mm/YY') as fec_solicitud ")
+			->join("espacios","LEFT JOIN espacios on espacios.id_espacio = solicitudes.id_espacio")
+			->join("status","LEFT JOIN status on status.id_status = solicitudes.status")
+			->join("zona_ubicacion","LEFT JOIN zona_ubicacion on zona_ubicacion.id_zona_ubicacion = solicitudes.id_zona_ubicacion")
+			->join("tipo_espacio","LEFT JOIN tipo_espacio on tipo_espacio.id_tipo_espacio = solicitudes.id_tipo_espacio")
+			->order("$column_order $order")
+			->where("$where")
+			->limit($limit,$offset);
+			return $q; 			
+		}
+		public function getCountSolicitudesAdmList($values)
+		{	
+			$where = 'status.id_status not in(7,8)';
+			if(isset($values['search']['value']) and $values['search']['value'] !='')
+			{	
+				$str = $values['search']['value'];
+				$where = "upper(login) like upper('%$str%') "
+					. "or upper(status.name) like upper('%$str%') ";
+			}
+            $ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->solicitudes
+			->select("count(*) as cuenta")
+			->join("espacios","LEFT JOIN espacios on espacios.id_espacio = solicitudes.id_espacio")
+			->join("status","LEFT JOIN status on status.id_status = solicitudes.status")
+			->join("zona_ubicacion","LEFT JOIN zona_ubicacion on zona_ubicacion.id_zona_ubicacion = solicitudes.id_zona_ubicacion")
+			->join("tipo_espacio","LEFT JOIN tipo_espacio on tipo_espacio.id_tipo_espacio = solicitudes.id_tipo_espacio")
+			->join("status","LEFT JOIN status on status.id_status = espacios.status")
+			->where("$where")
+			->fetch();
+			//echo $q['cuenta']."aaa";die;
+			return $q['cuenta']; 			
+		}
 		public function getDisponibilidadEspacioById($id_espacio,$fec_reservacion){
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->solicitudes
@@ -168,9 +235,18 @@
 			{
 				$array['fec_pago'] =  $values['fec_pago'];
 			}
+			if(isset($values['recibo']) and $values['recibo']!='')
+			{
+				$array['recibo'] =  $values['recibo'];
+			}
+                        
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->solicitudes("id_solicitud", $id_solicitud)->update($array);
-			//return $q;
+			
+                        $SolicitudesMovimientos = new SolicitudesMovimientos();
+                        $SolicitudesMovimientos->saveSolicitudesMovimientos($values);
+
+                        //return $q;
 			
 		}
 

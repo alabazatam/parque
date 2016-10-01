@@ -33,6 +33,10 @@ unset($values['PHPSESSID']);
 		case "delete_solicitudes_invitados":
 			executeDeleteSolicitudesInvitados($values);	
 		break;
+ 		case "comprueba_cedula_invitado":
+			executeCompruebaCedulaInvitado($values);	
+		break;           
+            
 	
 	
 	}
@@ -80,14 +84,26 @@ unset($values['PHPSESSID']);
 	}
 	function executeAddInvitado($values)
 	{
+            $Espacios = new Espacios();
+            $SolicitudesInvitados = new SolicitudesInvitados();
+            $capacidad_espacio = $Espacios->getEspacioCapacidadById($values);
+            $invitados_lista_cuenta = $SolicitudesInvitados->getCuentaSolicitudesInvitadosList($values);
+            $status = null;
+            if($invitados_lista_cuenta >= $capacidad_espacio)
+            {
+              $status = 0; 
+            }else
+            {
             $Parentescos = new Parentescos();
             $parentescos_list = $Parentescos->getParentescosList();
-			$id_solicitud = $values['id_solicitud'];
-			$SolicitudesInvitados = new SolicitudesInvitados();
-			$values = $SolicitudesInvitados ->saveSolicitudesInvitados($values);
-			$values['id_solicitud'] = $id_solicitud;
-			//print_r($values);
-            require('add_invitado.php');
+            $id_solicitud = $values['id_solicitud'];
+            $SolicitudesInvitados = new SolicitudesInvitados();
+            $values = $SolicitudesInvitados ->saveSolicitudesInvitados($values);
+            $values['id_solicitud'] = $id_solicitud;
+            $status = 1;
+            require('add_invitado.php');   
+            }
+            
 	}
 	function executeUpdateSolicitudesInvitados($values)
 	{
@@ -105,6 +121,14 @@ unset($values['PHPSESSID']);
 			$SolicitudesInvitados ->deleteSolicitudesInvitados($id_solinvi);
 			
 			return json_encode(array('status' => '1'));
+	}
+		function executeCompruebaCedulaInvitado($values)
+	{
+			$id_solicitud = $values['id_solicitud'];
+			$SolicitudesInvitados = new SolicitudesInvitados();
+			$cuenta = $SolicitudesInvitados ->compruebaCedulaInvitado($values);
+			
+			echo json_encode(array('cuenta' => $cuenta));
 	}
 
 

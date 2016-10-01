@@ -6,7 +6,6 @@
 if(isset($_REQUEST["action"]) and $_REQUEST["action"]!=""){
 	$action = $_REQUEST["action"];
 }
-
 $values = $_REQUEST;
 	switch ($action) {
 		case "index":
@@ -45,69 +44,36 @@ $values = $_REQUEST;
 	function executeSave($values = null)
 	{
 		
-		$Espacios = new Espacios();
-		$errors = validate($values);
-		if(count($errors)>0)
-		{	
-			$values['errors'] = $errors;
-			require('espacios_form_view.php');die;
-		}else{		
-			$values = $Espacios->saveEspacios($values);	
-			
-			$id_espacio = $values['id_espacio'];
-			$EspaciosImagenes = new EspaciosImagenes();
-			$array_imagenes = array();
-			$carpeta = "../../web/files/espacios/";
-			$nombrearchivo = '';
-			for($i=1;$i<=4;$i++)
-			{
-				if(isset($_FILES["file_$i"]['tmp_name']) and $_FILES["file_$i"]['tmp_name']!=''){
-						
-						$nombrearchivo = "ESPACIO_".$values['id_espacio']."_".$i.".".strtolower(pathinfo($_FILES['file_'.$i]['name'],PATHINFO_EXTENSION));
-						//echo $nombrearchivo;
-						//echo $_FILES["file_$i"]['tmp_name']."".$i."<br>";
-						if (move_uploaded_file($_FILES['file_'.$i]['tmp_name'], $carpeta."".$nombrearchivo))
-						{
-							
-							
-							//$EspaciosImagenes->deleteEspaciosImagenes($id_espacio, $i);
-							$array_imagenes = array(
-								"id_espacio" => $values['id_espacio'],
-								"imagen" => $nombrearchivo,
-								"orden"=> $i
-
-							);
-							$EspaciosImagenes->saveEspaciosImagenes($array_imagenes);
-						}
-					
-				}
-			}
-			executeEdit($values,message_created);die;
-		}
 	}
 	function executeEdit($values = null,$msg = null)
 	{
 		
+                $errors = @$values['errors'];
+                        
 		$Solicitudes = new Solicitudes();
 		$values = $Solicitudes->getSolicitudById($values);
-		
 		$SolicitudesInvitados = new SolicitudesInvitados();
 		$solicitudes_invitados_list = $SolicitudesInvitados ->getSolicitudesInvitadosList($values);
-		$values['action'] = 'update';
-        $values['msg'] = $msg;
-		$values['errors'] = array();
+                $SolicitudesMovimientos = new SolicitudesMovimientos();
+                $observacion = $SolicitudesMovimientos->getObservacion($values);
+                $values['action'] = 'update';
+                $values['msg'] = $msg;
+                $values['errors'] = $errors;
+                        
 		require('form_view.php');
 	}
 	function executeUpdate($values = null)
 	{
 		$Solicitudes = new Solicitudes();
 		$errors = validate($values);
+                //echo $values['id_status'];die;
+                        
 		if(count($errors)>0)
 		{	
 			$values['errors'] = $errors;
-			require('form_view.php');die;
+                        executeEdit($values);die;
 		}else{	
-			
+                    
 			$id_solicitud= $values['id_solicitud'];	
 			if(isset($values['id_status']) and  $values['id_status']== 5)
 			{
@@ -117,6 +83,20 @@ $values = $_REQUEST;
 			{
 				$values['status'] = 4;//status a cambiar
 			}
+			$carpeta = "../../web/files/recibo/";
+			$nombrearchivo = '';
+                        if(isset($_FILES["recibo"]['tmp_name']) and $_FILES["recibo"]['tmp_name']!=''){
+						
+                                $nombrearchivo = "recibo_".$values['id_solicitud'].".".strtolower(pathinfo($_FILES['recibo']['name'],PATHINFO_EXTENSION));
+                                //echo $nombrearchivo;
+				//echo $_FILES["file_$i"]['tmp_name']."".$i."<br>";
+				if (move_uploaded_file($_FILES['recibo']['tmp_name'], $carpeta."".$nombrearchivo))
+				{
+
+				
+				}
+			$values['recibo'] = $nombrearchivo; 		
+			}  
 			$values = $Solicitudes->updateSolicitud($values);
 			$values['id_solicitud'] = $id_solicitud;
 			executeEdit($values,message_created);die;
@@ -147,6 +127,7 @@ $values = $_REQUEST;
 					"ut" => $solicitud['ut'],
 					"costo" => $solicitud['costo']." Bs",
 					"status" => $solicitud['status'],
+                                        "id_status" => $solicitud['id_status'],
 					"actions" => 
                                        '<form method="POST" action = "'.full_url.'/adm/solicitudes_fun/index.php" >'
                                        .'<input type="hidden" name="action" value="edit">  '
@@ -168,6 +149,7 @@ $values = $_REQUEST;
 					"ut" => null,
 					"costo" => null,
 					"status" => null,
+                                        "id_status" => null,
 					"actions"=> ""
 				);
 		}

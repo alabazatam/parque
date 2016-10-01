@@ -1,14 +1,16 @@
     <table class="table table-responsive table-bordered table-striped bg-success" id="solicitudes_invitados_list_<?php echo $values['id_solinvi']?>">
         <tr>
-            <th>Nacionalidad</th>
-            <th>Cédula</th>
-            <th>Parentesco</th>
+            <th>Nacionalidad <small class="text-danger">(*)</small></th>
+            <th>Cédula <small class="text-danger">(*)</small></th>
+            <th>Parentesco <small class="text-danger">(*)</small></th>
             <th>Acciones</th>
         </tr>
 
 
         <tr>
             <td>
+                <input class="form-control input-sm" value="<?php echo $values['id_solinvi']?>" placeholder="id_solinvi" type="hidden" maxlength="9"  name="id_solinvi[<?php echo $values['id_solinvi']?>]" id="id_solinvi_<?php echo $values['id_solinvi']?>" size="" onchange="updateSolicitudesInvitados(<?php echo $values['id_solinvi'];?>,'id_solinvi_<?php echo $values['id_solinvi'];?>','id_solinvi')">
+
                 <select class="form-control input-sm" name="nacion[<?php echo $values['id_solinvi']?>]" id="nacion_<?php echo $values['id_solinvi']?>" onchange="updateSolicitudesInvitados(<?php echo $values['id_solinvi'];?>,'nacion_<?php echo $values['id_solinvi'];?>','nacion')">
                     <option value="V">V</option>
                     <option value="E">E</option>
@@ -20,8 +22,10 @@
 				<div id="mensaje_cedula_<?php echo $values['id_solinvi']?>" class="mess text-right"></div>
 			</td>
             <td>
+
                 <select class="form-control input-sm" name="id_parentesco[<?php echo $values['id_solinvi']?>]" id="id_parentesco_<?php echo $values['id_solinvi']?>" onchange="updateSolicitudesInvitados(<?php echo $values['id_solinvi'];?>,'id_parentesco_<?php echo $values['id_solinvi'];?>','id_parentesco')">
 					<?php if(isset($parentescos_list)):?>
+                                                                <option value="">Seleccione...</option>
 						<?php foreach($parentescos_list as $list):?>
 								<option value="<?php echo $list['id_parentesco']?>"><?php echo $list['nom_parentesco']?></option>
 						<?php endforeach;?>
@@ -32,10 +36,10 @@
             <td><a onclick="deleteSolicitudesInvitados(<?php echo $values['id_solinvi']?>)"  class="btn btn-danger desactivar">Eliminar</a></td>
         </tr>
         <tr>
-            <th>Primer nombre</th>
-            <th>Segundo nombre</th>
-            <th>Primer apellido</th>
-            <th>Segundo apellido</th>
+            <th>Primer nombre <small class="text-danger">(*)</small></th>
+            <th>Segundo nombre <small class="text-danger">(*)</small></th>
+            <th>Primer apellido <small class="text-danger">(*)</small></th>
+            <th>Segundo apellido <small class="text-danger">(*)</small></th>
             
         </tr>
         <tr>
