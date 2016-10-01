@@ -22,7 +22,7 @@
 			</div>
 			<div class="col-sm-6 col-md-6">
 				<label for="">Fecha de pago</label>
-				<input type="text" autocomplete="off" required class="form-control input-sm" id="fec_pago" placeholder="Fecha del pago" name="fec_pago" value="<?php if(isset($values['fec_pago'])) echo $values['fec_pago']?>">
+				<input type="text" autocomplete="off" required class="form-control input-sm" id="fec_pago"  placeholder="DD/MM/AAAA" name="fec_pago" value="<?php if(isset($values['fec_pago'])) echo $values['fec_pago']?>">
 			
 			</div>
 		</div>

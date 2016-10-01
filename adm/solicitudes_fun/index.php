@@ -100,43 +100,25 @@ $values = $_REQUEST;
 	}
 	function executeUpdate($values = null)
 	{
-		
-		$Espacios = new Espacios();
+		$Solicitudes = new Solicitudes();
 		$errors = validate($values);
 		if(count($errors)>0)
 		{	
 			$values['errors'] = $errors;
-			require('espacios_form_view.php');die;
+			require('form_view.php');die;
 		}else{	
-
-			$id_espacio = $values['id_espacio'];			
-			$values = $Espacios->updateEspacios($values);
-			$values['id_espacio'] = $id_espacio;
-			$EspaciosImagenes = new EspaciosImagenes();
-			$array_imagenes = array();
-			$carpeta = "../../web/files/espacios/";
-			$nombrearchivo = '';
-			for($i=1;$i<=4;$i++)
+			
+			$id_solicitud= $values['id_solicitud'];	
+			if(isset($values['id_status']) and  $values['id_status']== 5)
 			{
-				if(isset($_FILES["file_$i"]['tmp_name']) and $_FILES["file_$i"]['tmp_name']!=''){
-						
-						$nombrearchivo = "ESPACIO_".$values['id_espacio']."_".$i.".".strtolower(pathinfo($_FILES['file_'.$i]['name'],PATHINFO_EXTENSION));
-						//echo $nombrearchivo;
-						//echo $_FILES["file_$i"]['tmp_name']."".$i."<br>";
-						if (move_uploaded_file($_FILES['file_'.$i]['tmp_name'], $carpeta."".$nombrearchivo))
-						{
-							$EspaciosImagenes->deleteEspaciosImagenes($id_espacio, $i);
-							$array_imagenes = array(
-								"id_espacio" => $values['id_espacio'],
-								"imagen" => $nombrearchivo,
-								"orden"=> $i
-
-							);
-							$EspaciosImagenes->saveEspaciosImagenes($array_imagenes);
-						}
-					
-				}
+				$values['status'] = 6;//status a cambiar
 			}
+			if(isset($values['id_status']) and  $values['id_status']== 3)
+			{
+				$values['status'] = 4;//status a cambiar
+			}
+			$values = $Solicitudes->updateSolicitud($values);
+			$values['id_solicitud'] = $id_solicitud;
 			executeEdit($values,message_created);die;
 		}
 	}	

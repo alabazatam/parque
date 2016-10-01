@@ -7,7 +7,7 @@
 		$errors = array();
 		$validator_values = array();
 		
-		$validator_values['nom_espacio'] = array(
+		/*$validator_values['nom_espacio'] = array(
 			
 			"minlength" => 3,
 			"maxlength" => 100,
@@ -15,14 +15,6 @@
 			"label" => "Nombre",
 			"required" => true
 		);
-//		$validator_values['abr'] = array(
-//			
-//			"minlength" => 1,
-//			"maxlength" => 10,
-//			"type" => "text",
-//			"label" => "Abreviatura",
-//			"required" => false
-//		);
 		$validator_values['des_espacio'] = array(
 			
 			"minlength" => 3,
@@ -54,7 +46,7 @@
 			"type" => "number",
 			"label" => "Zona/Ubicación",
 			"required" => true
-		);		
+		);		*/
 		$ValidateBase = new ValidateBase();
 		$errors = $ValidateBase->validate_base($validator_values, $values);
 		return $errors;

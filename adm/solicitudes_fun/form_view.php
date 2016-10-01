@@ -1,13 +1,15 @@
 <?php include('../../view_header.php')?>
 <?php include('../menu.php')?>
 <h1 class="text-center"> Solicitudes</h1>
-<input type="text" value="<?php echo $values['id_espacio'];?>" id="id_espacio" name="id_espacio" value="<?php if(isset($values['id_espacio']) and $values['id_espacio']!='') echo $values['id_espacio'];?>">
-<input type="text" value="<?php echo $values['id_solicitud'];?>" id="id_solicitud" name="id_solicitud" value="<?php if(isset($values['id_solicitud']) and $values['id_solicitud']!='') echo $values['id_solicitud'];?>">
-<input type="hidden" name='action' value='<?php if(isset($values['action']))echo $values['action'];?>'>
-	
+
 	<div class="container alert alert-info" id="parcial_espacio"> 
 	</div>
-<form>
+<form action="index.php" id="formSolicitudFun">
+<input type="hidden" value="<?php echo $values['id_espacio'];?>" id="id_espacio" name="id_espacio" value="<?php if(isset($values['id_espacio']) and $values['id_espacio']!='') echo $values['id_espacio'];?>">
+<input type="hidden" value="<?php echo $values['id_solicitud'];?>" id="id_solicitud" name="id_solicitud" value="<?php if(isset($values['id_solicitud']) and $values['id_solicitud']!='') echo $values['id_solicitud'];?>">
+<input type="hidden" name='action' value='<?php if(isset($values['action']))echo $values['action'];?>'>
+<input type="hidden" name='id_status' value='<?php if(isset($values['id_status']))echo $values['id_status'];?>'>
+	
 <div class="container">
 	<div>
 	  <!-- Nav tabs -->
@@ -28,9 +30,22 @@
 			  <?php include('invitados_view.php');?>
 		  </div>
 		  <?php endif;?>
+		  
 	  </div>
 
 	</div>
+	<?php if(isset($values['id_status']) and $values['id_status'] == 5):?>
+			<div class="col-sm-12 col-md-12">
+				<button type="button" class="btn btn-success" onclick="submitForm(<?php echo $values['id_status'];?>)">Actualizar solicitud</button>
+			
+			</div>
+	<?php endif;?>
+	<?php if(isset($values['id_status']) and $values['id_status'] == 3):?>
+			<div class="col-sm-12 col-md-12">
+				<button type="button" class="btn btn-success" onclick="submitForm(<?php echo $values['id_status'];?>)">Actualizar solicitud</button>
+			
+			</div>
+	<?php endif;?>
 </div>
 
 <div class="container">
@@ -124,5 +139,31 @@ function deleteSolicitudesInvitados(id) {
 			}
 			
 		});		
+	}
+
+	function submitForm(status)
+	{
+		if(status==5)
+		{
+			if(confirm("¿Está seguro(a) de haber completado su lista de invitados y enviar la información a RRHH?"))
+			{
+				$('#formSolicitudFun').submit();
+			}else
+			{
+				return false;
+			}
+		}
+		if(status==3)
+		{
+			if(confirm("¿Está seguro(a) de enviar los datos de pago para la validación por parte de RRHH?"))
+			{
+				$('#formSolicitudFun').submit();
+			}else
+			{
+				return false;
+			}
+		}
+		
+
 	}
 </script>

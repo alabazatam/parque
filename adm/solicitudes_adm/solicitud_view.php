@@ -33,10 +33,8 @@ $status_cancelada = false;
 			$status_cancelada = true;
 			break;	
 		case 7;
-			$status_proximo = 8;
-			$status_regresar = 6;
-			$status_cancelada = true;
-			break;	
+			//$status_proximo = 8;
+			break;
 		
 	}
 			if($status_proximo !='')
@@ -48,8 +46,7 @@ $status_cancelada = false;
 			{
 				$name_status_regresar= $Status ->getStatusName($status_regresar);	
 	
-			}
-			
+			}	
 ?>
 
 <div class="col-sm-12 col-md-12">
@@ -76,7 +73,7 @@ $status_cancelada = false;
 			</div>
 			<div class="col-sm-6 col-md-6">
 				<label for="">Fecha de pago</label>
-				<input type="text" autocomplete="off" readonly="readonly" required class="form-control input-sm" id="fec_pago" placeholder="Fecha del pago" name="fec_pago" value="<?php if(isset($values['fec_pago'])) echo $values['fec_pago']?>">
+				<input type="text" autocomplete="off" readonly="readonly" required class="form-control input-sm" id="" placeholder="Fecha del pago" name="fec_pago" value="<?php if(isset($values['fec_pago']) and $values['fec_pago']!='') echo $values['fec_pago'];?>">
 			
 			</div>
 		</div>

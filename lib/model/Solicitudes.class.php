@@ -141,7 +141,7 @@
 		public function getSolicitudById($values){
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->solicitudes
-			->select("*,zona_ubicacion.*,tipo_espacio.*,status.name as status,status.id_status,TO_CHAR(solicitudes.fec_reservacion, 'dd/mm/YY') as fec_reservacion, TO_CHAR(solicitudes.date_created, 'dd/mm/YY') as fec_solicitud ")
+			->select("*,zona_ubicacion.*,tipo_espacio.*,status.name as status,status.id_status,TO_CHAR(solicitudes.fec_reservacion, 'dd/mm/YY') as fec_reservacion, TO_CHAR(solicitudes.date_created, 'dd/mm/YY') as fec_solicitud,TO_CHAR(solicitudes.fec_pago, 'dd/mm/YY') as fec_pago ")
 			->join("status","LEFT JOIN status on status.id_status = solicitudes.status")
 			->join("espacios","LEFT JOIN espacios on espacios.id_espacio = solicitudes.id_espacio")
 			->join("zona_ubicacion","LEFT JOIN zona_ubicacion on zona_ubicacion.id_zona_ubicacion = solicitudes.id_zona_ubicacion")
@@ -160,6 +160,14 @@
 				"date_updated" =>$fecha_update,
 				
 			);
+			if(isset($values['referencia_bancaria']) and $values['referencia_bancaria']!='')
+			{
+				$array['referencia_bancaria'] =  $values['referencia_bancaria'];
+			}
+			if(isset($values['fec_pago']) and $values['fec_pago']!='')
+			{
+				$array['fec_pago'] =  $values['fec_pago'];
+			}
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->solicitudes("id_solicitud", $id_solicitud)->update($array);
 			//return $q;
