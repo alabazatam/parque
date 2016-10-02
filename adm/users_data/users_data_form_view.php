@@ -1,5 +1,9 @@
 <?php include('../../view_header.php')?>
 <?php include('../menu.php')?>
+<?php 
+	$Ubicaciones = new Ubicaciones();
+	$Ubicaciones_list = $Ubicaciones->getUbicacionesList();
+?>
 <div class="container">
 	<h1 class="text-center big_title">Datos personales</h1>
 
@@ -82,7 +86,24 @@
 					</div>
 				</div>
 			</div>
-
+			<div class="form-group">
+				<div class="col-sm-12">
+				<label for="">Ubicación administrativa</label>	
+					<div class="input-group">
+						<select class="form-control input-sm" id="id_ubi" name="id_ubi" required>
+								<option value="">Seleccione...</option>
+							<?php if(isset($Ubicaciones_list) and count($Ubicaciones_list)>0):?>
+								<?php foreach($Ubicaciones_list as $list):?>
+								<option value="<?php echo $list['id_ubi']?>" <?php if(isset($values['id_ubi']) and $values['id_ubi'] == $list['id_ubi'] ) echo "selected='selected'";?>><?php echo $list['nom_ubi'];?></option>
+								<?php endforeach;?>
+							<?php endif;?>
+							
+							
+						</select>
+					<span class="input-group-addon" id="basic-addon2">(*)</span>
+					</div>
+				</div>
+			</div>
 			<!--<a class="btn btn-default"  href="<?php echo full_url."/adm/index.php?action=bienvenida"?>"><i class="fa fa-arrow-left  fa-pull-left fa-border"></i> Cancelar</a>-->
 			 <button type="submit" class="btn btn-default"><i class="fa fa-save fa-pull-left fa-border"></i> Guardar</button>
 			<?php if(isset($values['msg']) and $values['msg']!=''):?>

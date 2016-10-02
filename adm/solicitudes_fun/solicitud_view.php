@@ -1,6 +1,6 @@
 <div class="col-sm-12 col-md-12">
-	<div class="container alert alert-info" id="parcial_espacio"> 
-	</div>	
+	<div class="alert" id="parcial_espacio"></div>
+	<div class="alert" id="parcial_solicitud"></div>		
 		<div class="form-group">
 			<div class="col-sm-4 col-md-4">
                                 
@@ -14,12 +14,10 @@
                             
 			</div>
 			<div class="col-sm-4 col-md-4">
-				<label for="">Id.Solicitud:</label>
-				<?php if(isset($values['id_solicitud'])) echo $values['id_solicitud']?>
+				<label for="">Id.Solicitud: <?php if(isset($values['id_solicitud'])) echo $values['id_solicitud']?></label>
 			</div>
 			<div class="col-sm-4 col-md-4">
-				<label for="">Estatus:</label>
-				<div class="alert alert-success"><?php if(isset($values['status'])) echo $values['status']?></div>
+				<label for="">Estatus: <?php if(isset($values['status'])) echo $values['status']?></label>
 			</div>
 		</div>
 		<!--datos pago de la solicitud-->

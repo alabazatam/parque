@@ -16,7 +16,10 @@ $values = array_merge($values,$_FILES);
 		break;
 		case "parcial_espacio":
 			executeParcialEspacio($values);	
-		break;	
+		break;
+		case "parcial_solicitud":
+			executeParcialSolicitud($values);	
+		break;		
 		default:
 			executeIndex($values);
 		break;
@@ -32,4 +35,12 @@ $values = array_merge($values,$_FILES);
 		
 		$data = $Espacios->getEspaciosDescripcionById($values);
 		require('espacio_view.php');
+	}
+	function executeParcialSolicitud($values = null)
+	{
+		
+		$Solicitudes = new Solicitudes();
+		
+		$data = $Solicitudes->getSolicitudById($values);
+		require('solicitud_view.php');
 	}

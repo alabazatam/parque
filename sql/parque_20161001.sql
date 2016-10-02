@@ -2,10 +2,9 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.4
--- Dumped by pg_dump version 9.5.4
-
--- Started on 2016-10-01 14:35:55 VET
+-- Dumped from database version 9.3.13
+-- Dumped by pg_dump version 9.3.13
+-- Started on 2016-10-01 23:44:50 VET
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -13,10 +12,9 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-SET row_security = off;
 
 --
--- TOC entry 1 (class 3079 OID 12435)
+-- TOC entry 1 (class 3079 OID 11829)
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
 --
 
@@ -24,7 +22,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2364 (class 0 OID 0)
+-- TOC entry 2214 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -39,8 +37,8 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 181 (class 1259 OID 24688)
--- Name: caracteristicas; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 171 (class 1259 OID 56337)
+-- Name: caracteristicas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE caracteristicas (
@@ -50,10 +48,10 @@ CREATE TABLE caracteristicas (
 );
 
 
-ALTER TABLE caracteristicas OWNER TO postgres;
+ALTER TABLE public.caracteristicas OWNER TO postgres;
 
 --
--- TOC entry 182 (class 1259 OID 24692)
+-- TOC entry 172 (class 1259 OID 56341)
 -- Name: caracteristicas_id_caracteristica_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -65,11 +63,11 @@ CREATE SEQUENCE caracteristicas_id_caracteristica_seq
     CACHE 1;
 
 
-ALTER TABLE caracteristicas_id_caracteristica_seq OWNER TO postgres;
+ALTER TABLE public.caracteristicas_id_caracteristica_seq OWNER TO postgres;
 
 --
--- TOC entry 2365 (class 0 OID 0)
--- Dependencies: 182
+-- TOC entry 2215 (class 0 OID 0)
+-- Dependencies: 172
 -- Name: caracteristicas_id_caracteristica_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -77,8 +75,8 @@ ALTER SEQUENCE caracteristicas_id_caracteristica_seq OWNED BY caracteristicas.id
 
 
 --
--- TOC entry 183 (class 1259 OID 24694)
--- Name: connections_history; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 173 (class 1259 OID 56343)
+-- Name: connections_history; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE connections_history (
@@ -90,10 +88,10 @@ CREATE TABLE connections_history (
 );
 
 
-ALTER TABLE connections_history OWNER TO postgres;
+ALTER TABLE public.connections_history OWNER TO postgres;
 
 --
--- TOC entry 184 (class 1259 OID 24698)
+-- TOC entry 174 (class 1259 OID 56347)
 -- Name: connections_history_id_connection_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -105,11 +103,11 @@ CREATE SEQUENCE connections_history_id_connection_seq
     CACHE 1;
 
 
-ALTER TABLE connections_history_id_connection_seq OWNER TO postgres;
+ALTER TABLE public.connections_history_id_connection_seq OWNER TO postgres;
 
 --
--- TOC entry 2366 (class 0 OID 0)
--- Dependencies: 184
+-- TOC entry 2216 (class 0 OID 0)
+-- Dependencies: 174
 -- Name: connections_history_id_connection_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -117,8 +115,8 @@ ALTER SEQUENCE connections_history_id_connection_seq OWNED BY connections_histor
 
 
 --
--- TOC entry 185 (class 1259 OID 24700)
--- Name: espacios_imagenes; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 175 (class 1259 OID 56349)
+-- Name: espacios_imagenes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE espacios_imagenes (
@@ -129,10 +127,10 @@ CREATE TABLE espacios_imagenes (
 );
 
 
-ALTER TABLE espacios_imagenes OWNER TO postgres;
+ALTER TABLE public.espacios_imagenes OWNER TO postgres;
 
 --
--- TOC entry 186 (class 1259 OID 24703)
+-- TOC entry 176 (class 1259 OID 56352)
 -- Name: espacio_imagenes_id_espacios_imagenes_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -144,11 +142,11 @@ CREATE SEQUENCE espacio_imagenes_id_espacios_imagenes_seq
     CACHE 1;
 
 
-ALTER TABLE espacio_imagenes_id_espacios_imagenes_seq OWNER TO postgres;
+ALTER TABLE public.espacio_imagenes_id_espacios_imagenes_seq OWNER TO postgres;
 
 --
--- TOC entry 2367 (class 0 OID 0)
--- Dependencies: 186
+-- TOC entry 2217 (class 0 OID 0)
+-- Dependencies: 176
 -- Name: espacio_imagenes_id_espacios_imagenes_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -156,8 +154,8 @@ ALTER SEQUENCE espacio_imagenes_id_espacios_imagenes_seq OWNED BY espacios_image
 
 
 --
--- TOC entry 187 (class 1259 OID 24705)
--- Name: espacios; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 177 (class 1259 OID 56354)
+-- Name: espacios; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE espacios (
@@ -174,11 +172,11 @@ CREATE TABLE espacios (
 );
 
 
-ALTER TABLE espacios OWNER TO postgres;
+ALTER TABLE public.espacios OWNER TO postgres;
 
 --
--- TOC entry 188 (class 1259 OID 24711)
--- Name: espacios_caracteristicas; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 178 (class 1259 OID 56360)
+-- Name: espacios_caracteristicas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE espacios_caracteristicas (
@@ -187,10 +185,10 @@ CREATE TABLE espacios_caracteristicas (
 );
 
 
-ALTER TABLE espacios_caracteristicas OWNER TO postgres;
+ALTER TABLE public.espacios_caracteristicas OWNER TO postgres;
 
 --
--- TOC entry 189 (class 1259 OID 24714)
+-- TOC entry 179 (class 1259 OID 56363)
 -- Name: kioskos_id_espacio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -202,11 +200,11 @@ CREATE SEQUENCE kioskos_id_espacio_seq
     CACHE 1;
 
 
-ALTER TABLE kioskos_id_espacio_seq OWNER TO postgres;
+ALTER TABLE public.kioskos_id_espacio_seq OWNER TO postgres;
 
 --
--- TOC entry 2368 (class 0 OID 0)
--- Dependencies: 189
+-- TOC entry 2218 (class 0 OID 0)
+-- Dependencies: 179
 -- Name: kioskos_id_espacio_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -214,8 +212,8 @@ ALTER SEQUENCE kioskos_id_espacio_seq OWNED BY espacios.id_espacio;
 
 
 --
--- TOC entry 190 (class 1259 OID 24716)
--- Name: parentescos; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 180 (class 1259 OID 56365)
+-- Name: parentescos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE parentescos (
@@ -227,10 +225,10 @@ CREATE TABLE parentescos (
 );
 
 
-ALTER TABLE parentescos OWNER TO postgres;
+ALTER TABLE public.parentescos OWNER TO postgres;
 
 --
--- TOC entry 191 (class 1259 OID 24722)
+-- TOC entry 181 (class 1259 OID 56371)
 -- Name: parentescos_id_parentesco_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -242,11 +240,11 @@ CREATE SEQUENCE parentescos_id_parentesco_seq
     CACHE 1;
 
 
-ALTER TABLE parentescos_id_parentesco_seq OWNER TO postgres;
+ALTER TABLE public.parentescos_id_parentesco_seq OWNER TO postgres;
 
 --
--- TOC entry 2369 (class 0 OID 0)
--- Dependencies: 191
+-- TOC entry 2219 (class 0 OID 0)
+-- Dependencies: 181
 -- Name: parentescos_id_parentesco_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -254,8 +252,8 @@ ALTER SEQUENCE parentescos_id_parentesco_seq OWNED BY parentescos.id_parentesco;
 
 
 --
--- TOC entry 192 (class 1259 OID 24724)
--- Name: solicitudes; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 182 (class 1259 OID 56373)
+-- Name: solicitudes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE solicitudes (
@@ -277,10 +275,10 @@ CREATE TABLE solicitudes (
 );
 
 
-ALTER TABLE solicitudes OWNER TO postgres;
+ALTER TABLE public.solicitudes OWNER TO postgres;
 
 --
--- TOC entry 193 (class 1259 OID 24730)
+-- TOC entry 183 (class 1259 OID 56379)
 -- Name: solicitudes_id_solicitud_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -292,11 +290,11 @@ CREATE SEQUENCE solicitudes_id_solicitud_seq
     CACHE 1;
 
 
-ALTER TABLE solicitudes_id_solicitud_seq OWNER TO postgres;
+ALTER TABLE public.solicitudes_id_solicitud_seq OWNER TO postgres;
 
 --
--- TOC entry 2370 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 2220 (class 0 OID 0)
+-- Dependencies: 183
 -- Name: solicitudes_id_solicitud_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -304,8 +302,8 @@ ALTER SEQUENCE solicitudes_id_solicitud_seq OWNED BY solicitudes.id_solicitud;
 
 
 --
--- TOC entry 194 (class 1259 OID 24732)
--- Name: solicitudes_invitados; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 184 (class 1259 OID 56381)
+-- Name: solicitudes_invitados; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE solicitudes_invitados (
@@ -323,10 +321,10 @@ CREATE TABLE solicitudes_invitados (
 );
 
 
-ALTER TABLE solicitudes_invitados OWNER TO postgres;
+ALTER TABLE public.solicitudes_invitados OWNER TO postgres;
 
 --
--- TOC entry 195 (class 1259 OID 24738)
+-- TOC entry 185 (class 1259 OID 56387)
 -- Name: solicitudes_invitados_id_solinvi_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -338,11 +336,11 @@ CREATE SEQUENCE solicitudes_invitados_id_solinvi_seq
     CACHE 1;
 
 
-ALTER TABLE solicitudes_invitados_id_solinvi_seq OWNER TO postgres;
+ALTER TABLE public.solicitudes_invitados_id_solinvi_seq OWNER TO postgres;
 
 --
--- TOC entry 2371 (class 0 OID 0)
--- Dependencies: 195
+-- TOC entry 2221 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: solicitudes_invitados_id_solinvi_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -350,8 +348,8 @@ ALTER SEQUENCE solicitudes_invitados_id_solinvi_seq OWNED BY solicitudes_invitad
 
 
 --
--- TOC entry 196 (class 1259 OID 24740)
--- Name: solicitudes_movimientos; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 186 (class 1259 OID 56389)
+-- Name: solicitudes_movimientos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE solicitudes_movimientos (
@@ -364,10 +362,10 @@ CREATE TABLE solicitudes_movimientos (
 );
 
 
-ALTER TABLE solicitudes_movimientos OWNER TO postgres;
+ALTER TABLE public.solicitudes_movimientos OWNER TO postgres;
 
 --
--- TOC entry 197 (class 1259 OID 24747)
+-- TOC entry 187 (class 1259 OID 56396)
 -- Name: solicitudes_movimientos_id_mov_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -379,11 +377,11 @@ CREATE SEQUENCE solicitudes_movimientos_id_mov_seq
     CACHE 1;
 
 
-ALTER TABLE solicitudes_movimientos_id_mov_seq OWNER TO postgres;
+ALTER TABLE public.solicitudes_movimientos_id_mov_seq OWNER TO postgres;
 
 --
--- TOC entry 2372 (class 0 OID 0)
--- Dependencies: 197
+-- TOC entry 2222 (class 0 OID 0)
+-- Dependencies: 187
 -- Name: solicitudes_movimientos_id_mov_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -391,8 +389,8 @@ ALTER SEQUENCE solicitudes_movimientos_id_mov_seq OWNED BY solicitudes_movimient
 
 
 --
--- TOC entry 198 (class 1259 OID 24749)
--- Name: status; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 188 (class 1259 OID 56398)
+-- Name: status; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE status (
@@ -403,11 +401,11 @@ CREATE TABLE status (
 );
 
 
-ALTER TABLE status OWNER TO postgres;
+ALTER TABLE public.status OWNER TO postgres;
 
 --
--- TOC entry 199 (class 1259 OID 24752)
--- Name: tipo_espacio; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 189 (class 1259 OID 56401)
+-- Name: tipo_espacio; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE tipo_espacio (
@@ -419,10 +417,10 @@ CREATE TABLE tipo_espacio (
 );
 
 
-ALTER TABLE tipo_espacio OWNER TO postgres;
+ALTER TABLE public.tipo_espacio OWNER TO postgres;
 
 --
--- TOC entry 200 (class 1259 OID 24758)
+-- TOC entry 190 (class 1259 OID 56407)
 -- Name: tipo_espacio_id_tipo_espacio_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -434,11 +432,11 @@ CREATE SEQUENCE tipo_espacio_id_tipo_espacio_seq
     CACHE 1;
 
 
-ALTER TABLE tipo_espacio_id_tipo_espacio_seq OWNER TO postgres;
+ALTER TABLE public.tipo_espacio_id_tipo_espacio_seq OWNER TO postgres;
 
 --
--- TOC entry 2373 (class 0 OID 0)
--- Dependencies: 200
+-- TOC entry 2223 (class 0 OID 0)
+-- Dependencies: 190
 -- Name: tipo_espacio_id_tipo_espacio_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -446,8 +444,48 @@ ALTER SEQUENCE tipo_espacio_id_tipo_espacio_seq OWNED BY tipo_espacio.id_tipo_es
 
 
 --
--- TOC entry 201 (class 1259 OID 24760)
--- Name: users; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 199 (class 1259 OID 56515)
+-- Name: ubicaciones; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE ubicaciones (
+    id_ubi integer NOT NULL,
+    nom_ubi character varying(100) NOT NULL,
+    status integer DEFAULT 1 NOT NULL,
+    date_created timestamp without time zone DEFAULT now() NOT NULL,
+    date_updated timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.ubicaciones OWNER TO postgres;
+
+--
+-- TOC entry 198 (class 1259 OID 56513)
+-- Name: ubicacion_id_ubi_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE ubicacion_id_ubi_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.ubicacion_id_ubi_seq OWNER TO postgres;
+
+--
+-- TOC entry 2224 (class 0 OID 0)
+-- Dependencies: 198
+-- Name: ubicacion_id_ubi_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE ubicacion_id_ubi_seq OWNED BY ubicaciones.id_ubi;
+
+
+--
+-- TOC entry 191 (class 1259 OID 56409)
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE users (
@@ -463,11 +501,11 @@ CREATE TABLE users (
 );
 
 
-ALTER TABLE users OWNER TO postgres;
+ALTER TABLE public.users OWNER TO postgres;
 
 --
--- TOC entry 202 (class 1259 OID 24767)
--- Name: users_data; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 192 (class 1259 OID 56416)
+-- Name: users_data; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE users_data (
@@ -484,14 +522,15 @@ CREATE TABLE users_data (
     phone1 character varying(45) DEFAULT NULL::character varying,
     date_created timestamp without time zone NOT NULL,
     date_updated timestamp without time zone NOT NULL,
-    image character varying(100)
+    image character varying(100),
+    id_ubi integer
 );
 
 
-ALTER TABLE users_data OWNER TO postgres;
+ALTER TABLE public.users_data OWNER TO postgres;
 
 --
--- TOC entry 203 (class 1259 OID 24776)
+-- TOC entry 193 (class 1259 OID 56425)
 -- Name: users_id_user_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -503,11 +542,11 @@ CREATE SEQUENCE users_id_user_seq
     CACHE 1;
 
 
-ALTER TABLE users_id_user_seq OWNER TO postgres;
+ALTER TABLE public.users_id_user_seq OWNER TO postgres;
 
 --
--- TOC entry 2374 (class 0 OID 0)
--- Dependencies: 203
+-- TOC entry 2225 (class 0 OID 0)
+-- Dependencies: 193
 -- Name: users_id_user_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -515,8 +554,8 @@ ALTER SEQUENCE users_id_user_seq OWNED BY users.id_user;
 
 
 --
--- TOC entry 204 (class 1259 OID 24778)
--- Name: ut; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 194 (class 1259 OID 56427)
+-- Name: ut; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE ut (
@@ -527,10 +566,10 @@ CREATE TABLE ut (
 );
 
 
-ALTER TABLE ut OWNER TO postgres;
+ALTER TABLE public.ut OWNER TO postgres;
 
 --
--- TOC entry 205 (class 1259 OID 24783)
+-- TOC entry 195 (class 1259 OID 56432)
 -- Name: ut_id_ut_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -542,11 +581,11 @@ CREATE SEQUENCE ut_id_ut_seq
     CACHE 1;
 
 
-ALTER TABLE ut_id_ut_seq OWNER TO postgres;
+ALTER TABLE public.ut_id_ut_seq OWNER TO postgres;
 
 --
--- TOC entry 2375 (class 0 OID 0)
--- Dependencies: 205
+-- TOC entry 2226 (class 0 OID 0)
+-- Dependencies: 195
 -- Name: ut_id_ut_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -554,8 +593,8 @@ ALTER SEQUENCE ut_id_ut_seq OWNED BY ut.id_ut;
 
 
 --
--- TOC entry 206 (class 1259 OID 24785)
--- Name: zona_ubicacion; Type: TABLE; Schema: public; Owner: postgres
+-- TOC entry 196 (class 1259 OID 56434)
+-- Name: zona_ubicacion; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
 CREATE TABLE zona_ubicacion (
@@ -567,10 +606,10 @@ CREATE TABLE zona_ubicacion (
 );
 
 
-ALTER TABLE zona_ubicacion OWNER TO postgres;
+ALTER TABLE public.zona_ubicacion OWNER TO postgres;
 
 --
--- TOC entry 207 (class 1259 OID 24794)
+-- TOC entry 197 (class 1259 OID 56443)
 -- Name: zona_ubicacion_id_zona_ubicacion_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -582,11 +621,11 @@ CREATE SEQUENCE zona_ubicacion_id_zona_ubicacion_seq
     CACHE 1;
 
 
-ALTER TABLE zona_ubicacion_id_zona_ubicacion_seq OWNER TO postgres;
+ALTER TABLE public.zona_ubicacion_id_zona_ubicacion_seq OWNER TO postgres;
 
 --
--- TOC entry 2376 (class 0 OID 0)
--- Dependencies: 207
+-- TOC entry 2227 (class 0 OID 0)
+-- Dependencies: 197
 -- Name: zona_ubicacion_id_zona_ubicacion_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -594,7 +633,7 @@ ALTER SEQUENCE zona_ubicacion_id_zona_ubicacion_seq OWNED BY zona_ubicacion.id_z
 
 
 --
--- TOC entry 2141 (class 2604 OID 24796)
+-- TOC entry 1989 (class 2604 OID 56445)
 -- Name: id_caracteristica; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -602,7 +641,7 @@ ALTER TABLE ONLY caracteristicas ALTER COLUMN id_caracteristica SET DEFAULT next
 
 
 --
--- TOC entry 2143 (class 2604 OID 24797)
+-- TOC entry 1991 (class 2604 OID 56446)
 -- Name: id_connection; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -610,7 +649,7 @@ ALTER TABLE ONLY connections_history ALTER COLUMN id_connection SET DEFAULT next
 
 
 --
--- TOC entry 2148 (class 2604 OID 24798)
+-- TOC entry 1996 (class 2604 OID 56447)
 -- Name: id_espacio; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -618,7 +657,7 @@ ALTER TABLE ONLY espacios ALTER COLUMN id_espacio SET DEFAULT nextval('kioskos_i
 
 
 --
--- TOC entry 2144 (class 2604 OID 24799)
+-- TOC entry 1992 (class 2604 OID 56448)
 -- Name: id_espacios_imagenes; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -626,7 +665,7 @@ ALTER TABLE ONLY espacios_imagenes ALTER COLUMN id_espacios_imagenes SET DEFAULT
 
 
 --
--- TOC entry 2152 (class 2604 OID 24800)
+-- TOC entry 2000 (class 2604 OID 56449)
 -- Name: id_parentesco; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -634,7 +673,7 @@ ALTER TABLE ONLY parentescos ALTER COLUMN id_parentesco SET DEFAULT nextval('par
 
 
 --
--- TOC entry 2156 (class 2604 OID 24801)
+-- TOC entry 2004 (class 2604 OID 56450)
 -- Name: id_solicitud; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -642,7 +681,7 @@ ALTER TABLE ONLY solicitudes ALTER COLUMN id_solicitud SET DEFAULT nextval('soli
 
 
 --
--- TOC entry 2160 (class 2604 OID 24802)
+-- TOC entry 2008 (class 2604 OID 56451)
 -- Name: id_solinvi; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -650,7 +689,7 @@ ALTER TABLE ONLY solicitudes_invitados ALTER COLUMN id_solinvi SET DEFAULT nextv
 
 
 --
--- TOC entry 2162 (class 2604 OID 24803)
+-- TOC entry 2010 (class 2604 OID 56452)
 -- Name: id_mov; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -658,7 +697,7 @@ ALTER TABLE ONLY solicitudes_movimientos ALTER COLUMN id_mov SET DEFAULT nextval
 
 
 --
--- TOC entry 2166 (class 2604 OID 24804)
+-- TOC entry 2014 (class 2604 OID 56453)
 -- Name: id_tipo_espacio; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -666,7 +705,15 @@ ALTER TABLE ONLY tipo_espacio ALTER COLUMN id_tipo_espacio SET DEFAULT nextval('
 
 
 --
--- TOC entry 2171 (class 2604 OID 24805)
+-- TOC entry 2030 (class 2604 OID 56518)
+-- Name: id_ubi; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY ubicaciones ALTER COLUMN id_ubi SET DEFAULT nextval('ubicacion_id_ubi_seq'::regclass);
+
+
+--
+-- TOC entry 2019 (class 2604 OID 56454)
 -- Name: id_user; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -674,7 +721,7 @@ ALTER TABLE ONLY users ALTER COLUMN id_user SET DEFAULT nextval('users_id_user_s
 
 
 --
--- TOC entry 2177 (class 2604 OID 24806)
+-- TOC entry 2025 (class 2604 OID 56455)
 -- Name: id_ut; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -682,7 +729,7 @@ ALTER TABLE ONLY ut ALTER COLUMN id_ut SET DEFAULT nextval('ut_id_ut_seq'::regcl
 
 
 --
--- TOC entry 2181 (class 2604 OID 24807)
+-- TOC entry 2029 (class 2604 OID 56456)
 -- Name: id_zona_ubicacion; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -690,16 +737,16 @@ ALTER TABLE ONLY zona_ubicacion ALTER COLUMN id_zona_ubicacion SET DEFAULT nextv
 
 
 --
--- TOC entry 2331 (class 0 OID 24688)
--- Dependencies: 181
+-- TOC entry 2179 (class 0 OID 56337)
+-- Dependencies: 171
 -- Data for Name: caracteristicas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2377 (class 0 OID 0)
--- Dependencies: 182
+-- TOC entry 2228 (class 0 OID 0)
+-- Dependencies: 172
 -- Name: caracteristicas_id_caracteristica_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -707,8 +754,8 @@ SELECT pg_catalog.setval('caracteristicas_id_caracteristica_seq', 1, false);
 
 
 --
--- TOC entry 2333 (class 0 OID 24694)
--- Dependencies: 183
+-- TOC entry 2181 (class 0 OID 56343)
+-- Dependencies: 173
 -- Data for Name: connections_history; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -745,20 +792,21 @@ INSERT INTO connections_history VALUES (30, 7, 'admin', '127.0.0.1', '2016-09-29
 INSERT INTO connections_history VALUES (31, 7, 'admin', '127.0.0.1', '2016-09-30 20:33:01.799887');
 INSERT INTO connections_history VALUES (32, 7, 'admin', '127.0.0.1', '2016-09-30 21:11:31.755154');
 INSERT INTO connections_history VALUES (33, 7, 'admin', '127.0.0.1', '2016-10-01 09:34:38.980724');
+INSERT INTO connections_history VALUES (34, 7, 'admin', '127.0.0.1', '2016-10-01 22:44:17.001785');
 
 
 --
--- TOC entry 2378 (class 0 OID 0)
--- Dependencies: 184
+-- TOC entry 2229 (class 0 OID 0)
+-- Dependencies: 174
 -- Name: connections_history_id_connection_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('connections_history_id_connection_seq', 33, true);
+SELECT pg_catalog.setval('connections_history_id_connection_seq', 34, true);
 
 
 --
--- TOC entry 2379 (class 0 OID 0)
--- Dependencies: 186
+-- TOC entry 2230 (class 0 OID 0)
+-- Dependencies: 176
 -- Name: espacio_imagenes_id_espacios_imagenes_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -766,8 +814,8 @@ SELECT pg_catalog.setval('espacio_imagenes_id_espacios_imagenes_seq', 136, true)
 
 
 --
--- TOC entry 2337 (class 0 OID 24705)
--- Dependencies: 187
+-- TOC entry 2185 (class 0 OID 56354)
+-- Dependencies: 177
 -- Data for Name: espacios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -786,16 +834,16 @@ INSERT INTO espacios VALUES (2, 'KIOSCO 2', 'KIOSCO 2', 1, 2, 10, 1, 1, '2016-09
 
 
 --
--- TOC entry 2338 (class 0 OID 24711)
--- Dependencies: 188
+-- TOC entry 2186 (class 0 OID 56360)
+-- Dependencies: 178
 -- Data for Name: espacios_caracteristicas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 
 
 --
--- TOC entry 2335 (class 0 OID 24700)
--- Dependencies: 185
+-- TOC entry 2183 (class 0 OID 56349)
+-- Dependencies: 175
 -- Data for Name: espacios_imagenes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -809,8 +857,8 @@ INSERT INTO espacios_imagenes VALUES (1, 'ESPACIO_1_3.png', 131, 3);
 
 
 --
--- TOC entry 2380 (class 0 OID 0)
--- Dependencies: 189
+-- TOC entry 2231 (class 0 OID 0)
+-- Dependencies: 179
 -- Name: kioskos_id_espacio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -818,8 +866,8 @@ SELECT pg_catalog.setval('kioskos_id_espacio_seq', 12, true);
 
 
 --
--- TOC entry 2340 (class 0 OID 24716)
--- Dependencies: 190
+-- TOC entry 2188 (class 0 OID 56365)
+-- Dependencies: 180
 -- Data for Name: parentescos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -828,8 +876,8 @@ INSERT INTO parentescos VALUES (2, 'Familiar', 1, '2016-09-29 20:52:30.392811', 
 
 
 --
--- TOC entry 2381 (class 0 OID 0)
--- Dependencies: 191
+-- TOC entry 2232 (class 0 OID 0)
+-- Dependencies: 181
 -- Name: parentescos_id_parentesco_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -837,8 +885,8 @@ SELECT pg_catalog.setval('parentescos_id_parentesco_seq', 2, true);
 
 
 --
--- TOC entry 2342 (class 0 OID 24724)
--- Dependencies: 192
+-- TOC entry 2190 (class 0 OID 56373)
+-- Dependencies: 182
 -- Data for Name: solicitudes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -848,12 +896,12 @@ INSERT INTO solicitudes VALUES (19, 1, 1, 1, 7, '2016-10-01', 7, '2016-09-30 21:
 INSERT INTO solicitudes VALUES (20, 9, 1, 1, 7, '2016-10-08', 7, '2016-10-01 09:36:26', '2016-10-01 09:41:02', 1770.00, 177.00, 10, 'gdfgdfgdf', '2016-10-27', NULL);
 INSERT INTO solicitudes VALUES (21, 1, 1, 1, 7, '2016-10-30', 7, '2016-10-01 09:42:45', '2016-10-01 09:57:29', 1770.00, 177.00, 10, 'asdasdas', '2016-10-27', NULL);
 INSERT INTO solicitudes VALUES (22, 2, 1, 1, 7, '2016-10-02', 7, '2016-10-01 10:03:59', '2016-10-01 10:09:43', 1770.00, 177.00, 10, '564564564564564565', '2016-10-27', NULL);
-INSERT INTO solicitudes VALUES (23, 2, 1, 1, 7, '2016-10-01', 6, '2016-10-01 10:17:38', '2016-10-01 14:31:35', 1770.00, 177.00, 10, 'sadasdasdasdasdas', '2016-10-21', 'recibo_23.jpg');
+INSERT INTO solicitudes VALUES (23, 2, 1, 1, 7, '2016-10-01', 6, '2016-10-01 10:17:38', '2016-10-01 23:42:36', 1770.00, 177.00, 10, 'sadasdasdasdasdas', '2016-10-21', 'recibo_23.jpg');
 
 
 --
--- TOC entry 2382 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 2233 (class 0 OID 0)
+-- Dependencies: 183
 -- Name: solicitudes_id_solicitud_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -861,8 +909,8 @@ SELECT pg_catalog.setval('solicitudes_id_solicitud_seq', 23, true);
 
 
 --
--- TOC entry 2344 (class 0 OID 24732)
--- Dependencies: 194
+-- TOC entry 2192 (class 0 OID 56381)
+-- Dependencies: 184
 -- Data for Name: solicitudes_invitados; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -888,20 +936,21 @@ INSERT INTO solicitudes_invitados VALUES (18, 'V', NULL, NULL, NULL, NULL, NULL,
 INSERT INTO solicitudes_invitados VALUES (18, 'V', NULL, NULL, NULL, NULL, NULL, NULL, 54, '2016-09-29 22:57:49.332223', '2016-09-29 22:57:49.332223');
 INSERT INTO solicitudes_invitados VALUES (21, 'V', '18020594', 'Marcos', 'Arlindo', 'De Andrade', 'Carrera', NULL, 57, '2016-10-01 09:56:39.761644', '2016-10-01 09:56:39.761644');
 INSERT INTO solicitudes_invitados VALUES (23, 'V', '18020594', 'MArcos', NULL, 'De Andrade', NULL, 1, 88, '2016-10-01 14:05:00.515017', '2016-10-01 14:05:00.515017');
+INSERT INTO solicitudes_invitados VALUES (23, 'V', '123456', 'Hello', 'Hello', 'Hello', 'Hello', 2, 89, '2016-10-01 23:42:32.933813', '2016-10-01 23:42:32.933813');
 
 
 --
--- TOC entry 2383 (class 0 OID 0)
--- Dependencies: 195
+-- TOC entry 2234 (class 0 OID 0)
+-- Dependencies: 185
 -- Name: solicitudes_invitados_id_solinvi_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('solicitudes_invitados_id_solinvi_seq', 88, true);
+SELECT pg_catalog.setval('solicitudes_invitados_id_solinvi_seq', 89, true);
 
 
 --
--- TOC entry 2346 (class 0 OID 24740)
--- Dependencies: 196
+-- TOC entry 2194 (class 0 OID 56389)
+-- Dependencies: 186
 -- Data for Name: solicitudes_movimientos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -918,20 +967,22 @@ INSERT INTO solicitudes_movimientos VALUES (19, 23, 6, '2016-10-01 14:26:10', 7,
 INSERT INTO solicitudes_movimientos VALUES (20, 23, 6, '2016-10-01 14:27:09', 7, NULL);
 INSERT INTO solicitudes_movimientos VALUES (21, 23, 5, '2016-10-01 14:27:34', 7, 'Debe cargar todos los invitados');
 INSERT INTO solicitudes_movimientos VALUES (22, 23, 6, '2016-10-01 14:31:35', 7, NULL);
+INSERT INTO solicitudes_movimientos VALUES (23, 23, 5, '2016-10-01 23:41:58', 7, '');
+INSERT INTO solicitudes_movimientos VALUES (24, 23, 6, '2016-10-01 23:42:36', 7, NULL);
 
 
 --
--- TOC entry 2384 (class 0 OID 0)
--- Dependencies: 197
+-- TOC entry 2235 (class 0 OID 0)
+-- Dependencies: 187
 -- Name: solicitudes_movimientos_id_mov_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('solicitudes_movimientos_id_mov_seq', 22, true);
+SELECT pg_catalog.setval('solicitudes_movimientos_id_mov_seq', 24, true);
 
 
 --
--- TOC entry 2348 (class 0 OID 24749)
--- Dependencies: 198
+-- TOC entry 2196 (class 0 OID 56398)
+-- Dependencies: 188
 -- Data for Name: status; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -947,8 +998,8 @@ INSERT INTO status VALUES (5, 'Pago procesado, Cargar lista de invitados', '2016
 
 
 --
--- TOC entry 2349 (class 0 OID 24752)
--- Dependencies: 199
+-- TOC entry 2197 (class 0 OID 56401)
+-- Dependencies: 189
 -- Data for Name: tipo_espacio; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -957,8 +1008,8 @@ INSERT INTO tipo_espacio VALUES (1, 'tipo de prueba', 1, '2016-09-15 18:53:00.51
 
 
 --
--- TOC entry 2385 (class 0 OID 0)
--- Dependencies: 200
+-- TOC entry 2236 (class 0 OID 0)
+-- Dependencies: 190
 -- Name: tipo_espacio_id_tipo_espacio_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -966,8 +1017,26 @@ SELECT pg_catalog.setval('tipo_espacio_id_tipo_espacio_seq', 2, true);
 
 
 --
--- TOC entry 2351 (class 0 OID 24760)
--- Dependencies: 201
+-- TOC entry 2237 (class 0 OID 0)
+-- Dependencies: 198
+-- Name: ubicacion_id_ubi_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('ubicacion_id_ubi_seq', 1, true);
+
+
+--
+-- TOC entry 2207 (class 0 OID 56515)
+-- Dependencies: 199
+-- Data for Name: ubicaciones; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO ubicaciones VALUES (1, 'DIRECCION DE TECNOLOGÍA', 1, '2016-10-01 22:48:42.576608', '2016-10-01 22:48:42.576608');
+
+
+--
+-- TOC entry 2199 (class 0 OID 56409)
+-- Dependencies: 191
 -- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -979,21 +1048,21 @@ INSERT INTO users VALUES (8, 'tamara', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a
 
 
 --
--- TOC entry 2352 (class 0 OID 24767)
--- Dependencies: 202
+-- TOC entry 2200 (class 0 OID 56416)
+-- Dependencies: 192
 -- Data for Name: users_data; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO users_data VALUES (7, 'Marcos ', 'arlindo', 'DE ANDRADE', 'CARRERA', 'V', '18020594', NULL, 'M', '04268141850', NULL, '2016-04-03 17:41:26', '2016-04-03 17:41:26', NULL);
-INSERT INTO users_data VALUES (8, 'Marcos', 'arlindo', 'DE ANDRADE', 'CARRERA', 'V', '18020594', NULL, 'M', '04142695880', NULL, '2016-04-03 17:44:48', '2016-04-03 17:44:48', NULL);
-INSERT INTO users_data VALUES (9, 'jean', 'maiker', 'de andrade', 'carrera ', 'V', '20303709', NULL, 'M', '04163030894', NULL, '2016-04-03 20:38:36', '2016-04-03 20:38:36', NULL);
-INSERT INTO users_data VALUES (10, 'jean', 'maiker', 'de andrade', 'carrera', 'V', '20303709', NULL, 'M', '04163030894', NULL, '2016-04-03 20:50:13', '2016-04-03 20:50:22', NULL);
-INSERT INTO users_data VALUES (1, 'MARCOS', 'ARLINDO', 'DE ANDRADE', 'CARRERA', 'V', '18020594', NULL, 'M', '04268141850', '04268141850', '2016-04-02 21:28:41', '2016-09-15 21:57:54.968835', 'mdeandrade.jpg');
+INSERT INTO users_data VALUES (8, 'Marcos', 'arlindo', 'DE ANDRADE', 'CARRERA', 'V', '18020594', NULL, 'M', '04142695880', NULL, '2016-04-03 17:44:48', '2016-04-03 17:44:48', NULL, NULL);
+INSERT INTO users_data VALUES (9, 'jean', 'maiker', 'de andrade', 'carrera ', 'V', '20303709', NULL, 'M', '04163030894', NULL, '2016-04-03 20:38:36', '2016-04-03 20:38:36', NULL, NULL);
+INSERT INTO users_data VALUES (10, 'jean', 'maiker', 'de andrade', 'carrera', 'V', '20303709', NULL, 'M', '04163030894', NULL, '2016-04-03 20:50:13', '2016-04-03 20:50:22', NULL, NULL);
+INSERT INTO users_data VALUES (1, 'MARCOS', 'ARLINDO', 'DE ANDRADE', 'CARRERA', 'V', '18020594', NULL, 'M', '04268141850', '04268141850', '2016-04-02 21:28:41', '2016-09-15 21:57:54.968835', 'mdeandrade.jpg', NULL);
+INSERT INTO users_data VALUES (7, 'Marcos ', 'arlindo', 'DE ANDRADE', 'CARRERA', 'V', '18020594', NULL, 'M', '04268141850', '', '2016-04-03 17:41:26', '2016-10-01 23:07:01.636779', NULL, 1);
 
 
 --
--- TOC entry 2386 (class 0 OID 0)
--- Dependencies: 203
+-- TOC entry 2238 (class 0 OID 0)
+-- Dependencies: 193
 -- Name: users_id_user_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1001,8 +1070,8 @@ SELECT pg_catalog.setval('users_id_user_seq', 1, false);
 
 
 --
--- TOC entry 2354 (class 0 OID 24778)
--- Dependencies: 204
+-- TOC entry 2202 (class 0 OID 56427)
+-- Dependencies: 194
 -- Data for Name: ut; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1010,8 +1079,8 @@ INSERT INTO ut VALUES (1, '2016-09-15 19:08:44.83429', '2016-09-15 19:08:44.8342
 
 
 --
--- TOC entry 2387 (class 0 OID 0)
--- Dependencies: 205
+-- TOC entry 2239 (class 0 OID 0)
+-- Dependencies: 195
 -- Name: ut_id_ut_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1019,8 +1088,8 @@ SELECT pg_catalog.setval('ut_id_ut_seq', 1, true);
 
 
 --
--- TOC entry 2356 (class 0 OID 24785)
--- Dependencies: 206
+-- TOC entry 2204 (class 0 OID 56434)
+-- Dependencies: 196
 -- Data for Name: zona_ubicacion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1034,8 +1103,8 @@ INSERT INTO zona_ubicacion VALUES (1, 'zona de pruebassssssssss', 1, '2016-09-15
 
 
 --
--- TOC entry 2388 (class 0 OID 0)
--- Dependencies: 207
+-- TOC entry 2240 (class 0 OID 0)
+-- Dependencies: 197
 -- Name: zona_ubicacion_id_zona_ubicacion_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -1043,8 +1112,8 @@ SELECT pg_catalog.setval('zona_ubicacion_id_zona_ubicacion_seq', 7, true);
 
 
 --
--- TOC entry 2183 (class 2606 OID 24809)
--- Name: caracteristicas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2035 (class 2606 OID 56458)
+-- Name: caracteristicas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY caracteristicas
@@ -1052,8 +1121,8 @@ ALTER TABLE ONLY caracteristicas
 
 
 --
--- TOC entry 2185 (class 2606 OID 24811)
--- Name: connections_history_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2037 (class 2606 OID 56460)
+-- Name: connections_history_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY connections_history
@@ -1061,8 +1130,8 @@ ALTER TABLE ONLY connections_history
 
 
 --
--- TOC entry 2187 (class 2606 OID 24813)
--- Name: espacio_imagenes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2039 (class 2606 OID 56462)
+-- Name: espacio_imagenes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY espacios_imagenes
@@ -1070,8 +1139,8 @@ ALTER TABLE ONLY espacios_imagenes
 
 
 --
--- TOC entry 2191 (class 2606 OID 24815)
--- Name: espacios_caracteristicas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2043 (class 2606 OID 56464)
+-- Name: espacios_caracteristicas_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY espacios_caracteristicas
@@ -1079,8 +1148,8 @@ ALTER TABLE ONLY espacios_caracteristicas
 
 
 --
--- TOC entry 2189 (class 2606 OID 24817)
--- Name: kioskos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2041 (class 2606 OID 56466)
+-- Name: kioskos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY espacios
@@ -1088,8 +1157,8 @@ ALTER TABLE ONLY espacios
 
 
 --
--- TOC entry 2193 (class 2606 OID 24819)
--- Name: parentescos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2045 (class 2606 OID 56468)
+-- Name: parentescos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY parentescos
@@ -1097,8 +1166,8 @@ ALTER TABLE ONLY parentescos
 
 
 --
--- TOC entry 2197 (class 2606 OID 24821)
--- Name: solicitudes_invitados_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2049 (class 2606 OID 56470)
+-- Name: solicitudes_invitados_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY solicitudes_invitados
@@ -1106,8 +1175,8 @@ ALTER TABLE ONLY solicitudes_invitados
 
 
 --
--- TOC entry 2199 (class 2606 OID 24823)
--- Name: solicitudes_movimientos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2051 (class 2606 OID 56472)
+-- Name: solicitudes_movimientos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY solicitudes_movimientos
@@ -1115,8 +1184,8 @@ ALTER TABLE ONLY solicitudes_movimientos
 
 
 --
--- TOC entry 2195 (class 2606 OID 24825)
--- Name: solicitudes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2047 (class 2606 OID 56474)
+-- Name: solicitudes_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY solicitudes
@@ -1124,8 +1193,8 @@ ALTER TABLE ONLY solicitudes
 
 
 --
--- TOC entry 2201 (class 2606 OID 24827)
--- Name: status_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2053 (class 2606 OID 56476)
+-- Name: status_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY status
@@ -1133,8 +1202,8 @@ ALTER TABLE ONLY status
 
 
 --
--- TOC entry 2203 (class 2606 OID 24829)
--- Name: tipo_espacio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2055 (class 2606 OID 56478)
+-- Name: tipo_espacio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY tipo_espacio
@@ -1142,8 +1211,17 @@ ALTER TABLE ONLY tipo_espacio
 
 
 --
--- TOC entry 2207 (class 2606 OID 24831)
--- Name: users_data_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2065 (class 2606 OID 56523)
+-- Name: ubicacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY ubicaciones
+    ADD CONSTRAINT ubicacion_pkey PRIMARY KEY (id_ubi);
+
+
+--
+-- TOC entry 2059 (class 2606 OID 56480)
+-- Name: users_data_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY users_data
@@ -1151,8 +1229,8 @@ ALTER TABLE ONLY users_data
 
 
 --
--- TOC entry 2205 (class 2606 OID 24833)
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2057 (class 2606 OID 56482)
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY users
@@ -1160,8 +1238,8 @@ ALTER TABLE ONLY users
 
 
 --
--- TOC entry 2209 (class 2606 OID 24835)
--- Name: ut_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2061 (class 2606 OID 56484)
+-- Name: ut_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY ut
@@ -1169,8 +1247,8 @@ ALTER TABLE ONLY ut
 
 
 --
--- TOC entry 2211 (class 2606 OID 24837)
--- Name: zona_ubicacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 2063 (class 2606 OID 56486)
+-- Name: zona_ubicacion_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
 ALTER TABLE ONLY zona_ubicacion
@@ -1178,7 +1256,7 @@ ALTER TABLE ONLY zona_ubicacion
 
 
 --
--- TOC entry 2212 (class 2606 OID 24838)
+-- TOC entry 2066 (class 2606 OID 56487)
 -- Name: connections_history_id_user_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1187,7 +1265,7 @@ ALTER TABLE ONLY connections_history
 
 
 --
--- TOC entry 2213 (class 2606 OID 24843)
+-- TOC entry 2067 (class 2606 OID 56492)
 -- Name: kioskos_id_tipo_espacio_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1196,7 +1274,7 @@ ALTER TABLE ONLY espacios
 
 
 --
--- TOC entry 2214 (class 2606 OID 24848)
+-- TOC entry 2068 (class 2606 OID 56497)
 -- Name: solicitudes_invitados_id_parentesco_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1205,7 +1283,7 @@ ALTER TABLE ONLY solicitudes_invitados
 
 
 --
--- TOC entry 2215 (class 2606 OID 24853)
+-- TOC entry 2069 (class 2606 OID 56502)
 -- Name: solicitudes_invitados_id_solicitud_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1214,7 +1292,16 @@ ALTER TABLE ONLY solicitudes_invitados
 
 
 --
--- TOC entry 2216 (class 2606 OID 24858)
+-- TOC entry 2071 (class 2606 OID 56524)
+-- Name: users_data_id_ubi_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY users_data
+    ADD CONSTRAINT users_data_id_ubi_fkey FOREIGN KEY (id_ubi) REFERENCES ubicaciones(id_ubi);
+
+
+--
+-- TOC entry 2070 (class 2606 OID 56507)
 -- Name: users_data_id_user_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -1223,7 +1310,7 @@ ALTER TABLE ONLY users_data
 
 
 --
--- TOC entry 2363 (class 0 OID 0)
+-- TOC entry 2213 (class 0 OID 0)
 -- Dependencies: 7
 -- Name: public; Type: ACL; Schema: -; Owner: postgres
 --
@@ -1234,7 +1321,7 @@ GRANT ALL ON SCHEMA public TO postgres;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2016-10-01 14:35:55 VET
+-- Completed on 2016-10-01 23:44:50 VET
 
 --
 -- PostgreSQL database dump complete

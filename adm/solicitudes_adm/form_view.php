@@ -7,7 +7,7 @@
 <input type="hidden" value="<?php echo $values['id_solicitud'];?>" id="id_solicitud" name="id_solicitud" value="<?php if(isset($values['id_solicitud']) and $values['id_solicitud']!='') echo $values['id_solicitud'];?>">
 <input type="hidden" name='action' value='<?php if(isset($values['action']))echo $values['action'];?>'>
 
-<div class="container">
+<div class="">
 	<div>
 	  <!-- Nav tabs -->
 	  <ul class="nav nav-tabs" role="tablist">
@@ -29,7 +29,7 @@
 	</div>
 </div>
 
-<div class="container">
+<div class="">
 	<a href="<?php echo full_url?>/adm/solicitudes_adm/index.php" class=" btn btn-default"><i class="fa fa-arrow-left  fa-pull-left fa-border"></i> Regresar</a>
 	<button type="button" class="btn btn-default" id="aceptar_form"><i class="fa fa-save fa-pull-left fa-border"></i> Aceptar</button>
 
@@ -45,13 +45,22 @@
 $(document).ready(function(){
 	
 		var id_espacio = $('#id_espacio').val();	
-		
+		var id_solicitud = $('#id_solicitud').val();	
 		$.ajax({
 			type: "GET",
 			url: '<?php echo full_url?>/adm/Parciales/index.php',
 			data: { action: "parcial_espacio",id_espacio: id_espacio},
 			success: function(html){
 				$('#parcial_espacio').html(html);
+			},
+			//dataType: dataType
+		});	
+		$.ajax({
+			type: "GET",
+			url: '<?php echo full_url?>/adm/Parciales/index.php',
+			data: { action: "parcial_solicitud",id_solicitud: id_solicitud},
+			success: function(html){
+				$('#parcial_solicitud').html(html);
 			},
 			//dataType: dataType
 		});	

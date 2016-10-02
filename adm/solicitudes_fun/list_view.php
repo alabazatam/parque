@@ -1,8 +1,16 @@
 <?php include('../../view_header.php')?>
 <?php include('../menu.php')?>
 <div class="container">
+	<div class="col-sm-12 col-md-12">
+		<div class="col-sm-3 col-md-3 alert alert-success" role="alert">Aceptada o Completada</div>
+		<div class="col-sm-3 col-md-3 alert alert-warning" role="alert">Esperando por su respuesta</div>
+		<div class="col-sm-3 col-md-3 alert alert-info" role="alert">En espera de respuesta de un tercero</div>
+		<div class="col-sm-3 col-md-3 alert alert-danger" role="alert">Cancelada</div>
+
+
+	</div>
 	<h1 class="text-center">Solicitudes</h1>
-	<table id="example" class="table table-striped table-bordered table-responsive" width="100%" cellspacing="0">
+	<table id="example" class="table table-bordered table-responsive" width="100%" cellspacing="0">
 			<thead>
 				<tr>
 					<th>Id.Solicitud</th>

@@ -213,6 +213,9 @@
 			->join("espacios","LEFT JOIN espacios on espacios.id_espacio = solicitudes.id_espacio")
 			->join("zona_ubicacion","LEFT JOIN zona_ubicacion on zona_ubicacion.id_zona_ubicacion = solicitudes.id_zona_ubicacion")
 			->join("tipo_espacio","LEFT JOIN tipo_espacio on tipo_espacio.id_tipo_espacio = solicitudes.id_tipo_espacio")
+			->join("users_data","LEFT JOIN users_data on users_data.id_user = solicitudes.id_user")
+			->join("ubicaciones","LEFT JOIN ubicaciones on ubicaciones.id_ubi = users_data.id_ubi")
+
 			->where("id_solicitud=?",$values['id_solicitud'])->fetch();
 			return $q; 				
 			

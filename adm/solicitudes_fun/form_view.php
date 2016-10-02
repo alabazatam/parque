@@ -7,7 +7,7 @@
 <input type="hidden" name='action' value='<?php if(isset($values['action']))echo $values['action'];?>'>
 <input type="hidden" name='id_status' value='<?php if(isset($values['id_status']))echo $values['id_status'];?>'>
 	
-<div class="container">
+<div class="">
 	<div>
 	  <!-- Nav tabs -->
 	  <ul class="nav nav-tabs" role="tablist">
@@ -45,7 +45,7 @@
 	<?php endif;?>
 </div>
 
-<div class="container">
+<div class="">
 	<a href="<?php echo full_url?>/adm/solicitudes_fun/index.php" class=" btn btn-default"><i class="fa fa-arrow-left  fa-pull-left fa-border"></i> Regresar</a>
 </div>
 </form>
@@ -59,7 +59,7 @@
 $(document).ready(function(){
 	
 		var id_espacio = $('#id_espacio').val();	
-		
+		var id_solicitud = $('#id_solicitud').val();
 		$.ajax({
 			type: "GET",
 			url: '<?php echo full_url?>/adm/Parciales/index.php',
@@ -70,7 +70,15 @@ $(document).ready(function(){
 			//dataType: dataType
 		});	
 		
-		
+		$.ajax({
+			type: "GET",
+			url: '<?php echo full_url?>/adm/Parciales/index.php',
+			data: { action: "parcial_solicitud",id_solicitud: id_solicitud},
+			success: function(html){
+				$('#parcial_solicitud').html(html);
+			},
+			//dataType: dataType
+		});		
 			
 });
 
