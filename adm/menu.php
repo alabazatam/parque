@@ -21,7 +21,9 @@
 			<li><a href="<?php echo full_url;?>/adm/zona_ubicacion/index.php">Zonas/Ubicaciones</a></li>
 			<li><a href="<?php echo full_url;?>/adm/zona_ubicacion/index.php">Tipo espacio</a></li>
 			<li><a href="<?php echo full_url;?>/adm/ut/index.php?action=view">Unidad tributaria</a></li>
-
+			<li><a href="<?php echo full_url;?>/adm/ut/index.php?action=view">Motivos</a></li>
+			<li><a href="<?php echo full_url;?>/adm/ut/index.php?action=view">Parentescos</a></li>
+			<li><a href="<?php echo full_url;?>/adm/ut/index.php?action=view">Características</a></li>
           </ul>
         </li>
       </ul>

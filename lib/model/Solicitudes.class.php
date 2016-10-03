@@ -183,6 +183,7 @@
 				"cant_ut" => $data_espacios['ut'],
 				"date_created" => $fecha_creacion,
 				"date_updated" => $fecha_creacion,
+				"motivo" => $values['motivo']
 				
 			);
 			

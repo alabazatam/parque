@@ -69,7 +69,7 @@ define ('K_PATH_IMAGES', doc_root."/web/img/");
  * Deafult image logo used be the default Header() method.
  * Please set here your own logo or an empty string to disable it.
  */
-define ('PDF_HEADER_LOGO', 'Coseinca_pdf.png');
+define ('PDF_HEADER_LOGO', '');
 
 /**
  * Header logo image width in user units.

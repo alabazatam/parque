@@ -39,4 +39,14 @@
 			</div>
 		</div>
 		<!--fin datos pago-->
+		<!--solicitud completada -->
+		<?php if(isset($values['id_status']) and $values['id_status']==7):?>
+			<div class="col-sm-7 col-md-7 col-sm-offset-5 col-lg-offset-5">
+				<br>
+				<a class="btn btn-success btn-lg" href="<?php echo full_url?>/adm/planillas/index.php?action=reservacion&id_solicitud=<?php echo $values['id_solicitud']?>" target="_blank"><i class="fa fa-download fa-4x fa-border"></i> Descargar solicitud</a>
+			</div>
+		<?php endif;?>
+		
+		
+		<!-- Fin solicitud completada-->
 </div>

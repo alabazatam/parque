@@ -27,12 +27,6 @@ $values = $_REQUEST;
 		case "espacios_list_json":
 			executeUserListJson($values);	
 		break;
-		case "change_pass_view":
-			executeChangePassView($values);	
-		break;
-		case "change_pass":
-			executeChangePass($values);	
-		break;
 		default:
 			executeIndex($values);
 		break;
@@ -42,7 +36,9 @@ $values = $_REQUEST;
 	require('solicitudes_fun_list_view.php');
 	}
 	function executeNew($values = null)
-	{       
+	{ 
+		$Motivos = new Motivos();
+		$motivos_list = $Motivos->getMotivosList();
         $values['status'] = '1';
 		$values['action'] = 'add';
 		$values['errors'] = array();

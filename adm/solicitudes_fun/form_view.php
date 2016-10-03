@@ -32,13 +32,15 @@
 
 	</div>
 	<?php if(isset($values['id_status']) and $values['id_status'] == 5):?>
-			<div class="col-sm-12 col-md-12">
+			<div class="col-sm-7 col-sm-offset-5 col-md-7 col-md-offset-5">
+				<br>
 				<button type="button" class="btn btn-success" onclick="submitForm(<?php echo $values['id_status'];?>)">Actualizar solicitud</button>
 			
 			</div>
 	<?php endif;?>
 	<?php if(isset($values['id_status']) and $values['id_status'] == 3):?>
-			<div class="col-sm-12 col-md-12">
+			<div class="col-sm-7 col-sm-offset-5 col-md-7 col-md-offset-5">
+				<br>
 				<button type="button" class="btn btn-success" onclick="submitForm(<?php echo $values['id_status'];?>)">Actualizar solicitud</button>
 			
 			</div>
