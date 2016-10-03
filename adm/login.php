@@ -13,7 +13,7 @@
 				  </div>
 				  <div class="panel-body">
                                       <div align='center' class="visible-lg visible-md">
-                                         <img src="<?php echo full_url;?>/web/img/Coseinca.png" class="img-responsive" width="150"> 
+                                        <!-- <img src="<?php echo full_url;?>/web/img/Coseinca.png" class="img-responsive" width="150"> -->
                                       </div>
                                       <div align='center' class="visible-sm visible-xs">
                                          <img src="<?php echo full_url;?>/web/img/Coseinca.png" class="img-responsive" width="100"> 
