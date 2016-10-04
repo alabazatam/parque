@@ -90,11 +90,11 @@
 				<div class="col-sm-12">
 				<label for="">Ubicación administrativa</label>	
 					<div class="input-group">
-						<select class="form-control input-sm" id="id_ubi" name="id_ubi" required>
+						<select class="form-control input-sm" id="id_ubicacion" name="id_ubicacion" required>
 								<option value="">Seleccione...</option>
 							<?php if(isset($Ubicaciones_list) and count($Ubicaciones_list)>0):?>
 								<?php foreach($Ubicaciones_list as $list):?>
-								<option value="<?php echo $list['id_ubi']?>" <?php if(isset($values['id_ubi']) and $values['id_ubi'] == $list['id_ubi'] ) echo "selected='selected'";?>><?php echo $list['nom_ubi'];?></option>
+								<option value="<?php echo $list['id_ubicacion']?>" <?php if(isset($values['id_ubicacion']) and $values['id_ubicacion'] == $list['id_ubicacion'] ) echo "selected='selected'";?>><?php echo $list['nom_ubicacion'];?></option>
 								<?php endforeach;?>
 							<?php endif;?>
 							

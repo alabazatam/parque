@@ -81,7 +81,11 @@ include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/SolicitudesMovimie
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Ubicaciones.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Planillas.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Motivos.class.php");
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Caracteristicas.class.php");
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/EspaciosCaracteristicas.class.php");
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/TipoPersonal.class.php");
 require($_SERVER["DOCUMENT_ROOT"]."/".main_folder.'/lib/vendors/securimage/securimage.php');
+
 /*validation class*/
 //include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/vendor/GUMP/gump.class.php");
 

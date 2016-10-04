@@ -92,15 +92,26 @@
 			
 		}		
 		function saveEspacios($values){
-			unset($values['action'],$values['PHPSESSID'],$values['id_espacio']);
-                        $values['date_created'] = new NotORM_Literal("NOW()");
-                        $values['date_updated'] = new NotORM_Literal("NOW()");
-						
+			unset($values['action'],$values['PHPSESSID'],$values['id_espacio'],$values['id_caracteristica']);
+            $values['date_created'] = new NotORM_Literal("NOW()");
+            $values['date_updated'] = new NotORM_Literal("NOW()");
 			
-			$values['precio'] = 0;
-			
+			$array = array(
+				
+				"nom_espacio" => $values['nom_espacio'],
+				"des_espacio" => $values['des_espacio'],
+				"status" => $values['status'],
+				"capacidad" => $values['capacidad'],
+				"ut" => $values['ut'],
+				"id_tipo_espacio" => $values['id_tipo_espacio'],
+				"id_zona_ubicacion" => $values['id_zona_ubicacion'],
+				"date_created" => $values['date_created'],
+				"date_updated" => $values['date_updated']
+				
+				
+			);
 			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->espacios()->insert($values);
+			$q = $ConnectionORM->getConnect()->espacios()->insert($array);
 			$values['id_espacio'] = $ConnectionORM->getConn()->lastInsertId('kioskos_id_espacio_seq');
 			
 			return $values;	

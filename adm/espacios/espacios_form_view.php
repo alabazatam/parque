@@ -5,7 +5,13 @@
 	$zonas_list = $ZonaUbicacion->getZonaUbicacionListSelect($values);
 	
 	$TipoEspacio = new TipoEspacio();
-	$tipo_espacio_list = $TipoEspacio->getTipoEspacioListSelect($values);	
+	$tipo_espacio_list = $TipoEspacio->getTipoEspacioListSelect($values);
+
+	$Caracteristicas = new Caracteristicas();
+	$caracteristicas_list = $Caracteristicas->getCaracteristicasListSelect($values);
+	
+	$EspaciosCaracteristicas = new EspaciosCaracteristicas();
+	
 ?>
 
 
@@ -102,8 +108,32 @@
 					<?php endif;?>
 			</div>
 			<div class="col-sm-4">
+				<label for="">Características</label>
+				<?php if(isset($caracteristicas_list) and count($caracteristicas_list)>0):?>
+				<?php foreach($caracteristicas_list as $list):?>
+				<?php 
+					$select = 0;
+					if(isset($values['id_espacio']) and $values['id_espacio']!='')
+					{
+						$select = $EspaciosCaracteristicas->getCountEspacioCaracteristicaByIds($values['id_espacio'],$list['id_caracteristica']);
+
+					}
 					
+				?>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" <?php if($select >0) echo "checked='checked'";?> name="id_caracteristica[]" value="<?php echo $list['id_caracteristica'];?>"> <?php echo $list['nom_caracteristica'];?>
+					</label>
+				</div>
+				<?php endforeach;?>
+				<?php endif;?>
 			</div>
+		</div>
+
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12 col-md-12">		
+
 		</div>
 	</div>
 	<div class="form-group">

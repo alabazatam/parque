@@ -19,11 +19,13 @@
             <li><a href="<?php echo full_url;?>/adm/users/index.php">Usuarios</a></li>
             <li><a href="<?php echo full_url;?>/adm/espacios/index.php">Espacios</a></li>
 			<li><a href="<?php echo full_url;?>/adm/zona_ubicacion/index.php">Zonas/Ubicaciones</a></li>
-			<li><a href="<?php echo full_url;?>/adm/zona_ubicacion/index.php">Tipo espacio</a></li>
+			<li><a href="<?php echo full_url;?>/adm/tipo_espacio/index.php">Tipo espacio</a></li>
 			<li><a href="<?php echo full_url;?>/adm/ut/index.php?action=view">Unidad tributaria</a></li>
 			<li><a href="<?php echo full_url;?>/adm/ut/index.php?action=view">Motivos</a></li>
-			<li><a href="<?php echo full_url;?>/adm/ut/index.php?action=view">Parentescos</a></li>
-			<li><a href="<?php echo full_url;?>/adm/ut/index.php?action=view">Características</a></li>
+			<li><a href="<?php echo full_url;?>/adm/parentescos/index.php?action=view">Parentescos</a></li>
+			<li><a href="<?php echo full_url;?>/adm/caracteristicas/index.php?action=view">Características</a></li>
+			<li><a href="<?php echo full_url;?>/adm/ubicaciones/index.php?action=view">Ubicaciones</a></li>
+
           </ul>
         </li>
       </ul>

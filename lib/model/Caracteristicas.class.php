@@ -7,29 +7,20 @@
 	 */
 
 	/**
-	 * Description of Espacios
+	 * Description of Caracteristicas
 	 *
 	 * @author marcos
 	 */
-	class Parentescos {
+	class Caracteristicas {
 		
 		public function __construct() 
 		{
 			
 		}
-
-		public function getParentescosList(){
-			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->parentescos
-			->select("*")
-            ->where('status=?',1);	
-			return $q;
-			
-		}
-		public function getParentescosList2($values)
+		public function getCaracteristicasList($values)
 		{	
 			$columns = array();
-			$columns[0] = 'id_parentesco';
+			$columns[0] = 'id_caracteristica';
 			$columns[1] = 'nom_espacio';
 			$columns[2] = 'status';
 			$column_order = $columns[0];
@@ -53,15 +44,15 @@
 			}
 			//echo $column_order;die;
             $ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->parentescos
+			$q = $ConnectionORM->getConnect()->caracteristicas
 			->select("*")
-			->join("status","LEFT JOIN status on status.id_status = parentescos.status")
+			->join("status","LEFT JOIN status on status.id_status = caracteristicas.status")
 			->order("$column_order $order")
 			->where("$where")
 			->limit($limit,$offset);
 			return $q; 			
 		}
-		public function getCountParentescosList($values)
+		public function getCountCaracteristicasList($values)
 		{	
 			$where = '1 = 1';
 			if(isset($values['search']['value']) and $values['search']['value'] !='')
@@ -71,56 +62,56 @@
 					. "or upper(status.name) like upper('%$str%') ";
 			}
             $ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->parentescos
+			$q = $ConnectionORM->getConnect()->caracteristicas
 			->select("count(*) as cuenta")
-			->join("status","LEFT JOIN status on status.id_status = parentescos.status")
+			->join("status","LEFT JOIN status on status.id_status = caracteristicas.status")
 			->where("$where")
 			->fetch();
 			return $q['cuenta']; 			
 		}
-		public function getParentescosById($values){
+		public function getCaracteristicasById($values){
 			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->parentescos
+			$q = $ConnectionORM->getConnect()->caracteristicas
 			->select("*")
-			->where("id_parentesco=?",$values['id_parentesco'])->fetch();
+			->where("id_caracteristica=?",$values['id_caracteristica'])->fetch();
 			return $q; 				
 			
 		}
-		function deleteParentescos($id_parentesco){
+		function deleteCaracteristicas($id_caracteristica){
 			unset($values['action'],$values['PHPSESSID']);
 			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->parentescos("id_parentesco", $id_parentesco)->delete();
+			$q = $ConnectionORM->getConnect()->caracteristicas("id_caracteristica", $id_caracteristica)->delete();
 			
 			
 		}		
-		function saveParentescos($values){
-			unset($values['action'],$values['PHPSESSID'],$values['id_parentesco'],$values['date_created'],$values['date_updated']);
+		function saveCaracteristicas($values){
+			unset($values['action'],$values['PHPSESSID'],$values['id_caracteristica'],$values['date_created'],$values['date_updated']);
             $values['date_created'] = new NotORM_Literal("NOW()");
             $values['date_updated'] = new NotORM_Literal("NOW()");
 			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->parentescos()->insert($values);
-			$values['id_parentesco'] = $ConnectionORM->getConn()->lastInsertId('parentescos_id_parentesco_seq');
-			//echo $values['id_parentesco'];
+			$q = $ConnectionORM->getConnect()->caracteristicas()->insert($values);
+			$values['id_caracteristica'] = $ConnectionORM->getConn()->lastInsertId('caracteristicas_id_caracteristica_seq');
+			//echo $values['id_caracteristica'];
 			return $values;	
 			
 		}
-		function updateParentescos($values){
+		function updateCaracteristicas($values){
 			unset($values['action'],$values['PHPSESSID'],$values['date_created']);
 			$values['date_updated'] = new NotORM_Literal("NOW()");
-			$id_parentesco = $values['id_parentesco'];
+			$id_caracteristica = $values['id_caracteristica'];
 			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->parentescos("id_parentesco", $id_parentesco)->update($values);
+			$q = $ConnectionORM->getConnect()->caracteristicas("id_caracteristica", $id_caracteristica)->update($values);
 			//return $q;
 			
 		}
-		public function getParentescosListSelect($values){
+		public function getCaracteristicasListSelect($values){
 			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->parentescos
+			$q = $ConnectionORM->getConnect()->caracteristicas
 			->select("*")
-			->where("status=?",1);
+			->where("status=?",1)
+				->order('nom_caracteristica');
 			return $q; 				
 			
 		}
-
 	}
 

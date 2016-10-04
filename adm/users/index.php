@@ -49,10 +49,18 @@ $values = $_REQUEST;
 	}
 	function executeSave($values = null)
 	{
+		$errors = validate($values);
+		if(count($errors)>0)
+		{	
+			$values['errors'] = $errors;
+			require('users_form_view.php');die;
+		}else{		
+			$Users = new Users();
+			$values = $Users->saveUser($values);
+			executeEdit($values,message_created);die;
+		}
 		
-		$Users = new Users();
-		$values = $Users->saveUser($values);
-		executeEdit($values,message_created);die;
+
 	}
 	function executeEdit($values = null,$msg = null)
 	{
@@ -66,9 +74,19 @@ $values = $_REQUEST;
 	function executeUpdate($values = null)
 	{
 		
-		$Users = new Users();
-		$Users->updateUser($values);		
-		executeEdit($values,message_updated);die;
+		$errors = validate($values);
+		if(count($errors)>0)
+		{	
+			$values['errors'] = $errors;
+			require('users_form_view.php');die;
+		}else{
+			$Users = new Users();
+			$id_user = $values['id_user'];
+			$values = $Users->updateUser($values);	
+			$values['id_user'] = $id_user;
+			executeEdit($values,message_updated);die;
+		}
+
 	}	
 	function executeUserListJson($values)
 	{

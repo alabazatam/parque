@@ -51,10 +51,19 @@ $values = $_REQUEST;
 		{	
 			$values['errors'] = $errors;
 			require('espacios_form_view.php');die;
-		}else{		
+		}else{
+			
+			
+
+			if(isset($values['id_caracteristica']) and count($values['id_caracteristica']))
+			{
+				$id_caracterisca = $values['id_caracteristica'];
+			}
 			$values = $Espacios->saveEspacios($values);	
 			
 			$id_espacio = $values['id_espacio'];
+			$EspaciosCaracteristicas = new EspaciosCaracteristicas();
+			$EspaciosCaracteristicas->deleteEspaciosCaracteristicas($id_espacio);
 			$EspaciosImagenes = new EspaciosImagenes();
 			$array_imagenes = array();
 			$carpeta = "../../web/files/espacios/";
@@ -80,6 +89,17 @@ $values = $_REQUEST;
 							$EspaciosImagenes->saveEspaciosImagenes($array_imagenes);
 						}
 					
+				}
+			}
+			
+			if(isset($id_caracterisca) and count($id_caracterisca))
+			{
+				
+				foreach($id_caracterisca as $key => $valor)
+				{
+					
+					$values['id_caracteristica'] = $valor;
+					$EspaciosCaracteristicas->saveEspaciosCaracteristicas($values);
 				}
 			}
 			executeEdit($values,message_created);die;
@@ -118,7 +138,15 @@ $values = $_REQUEST;
 			require('espacios_form_view.php');die;
 		}else{	
 
-			$id_espacio = $values['id_espacio'];			
+			$id_espacio = $values['id_espacio'];
+			//elimino las caracteristicas para volver a crear las que seleccione
+			
+			$EspaciosCaracteristicas = new EspaciosCaracteristicas();
+			$EspaciosCaracteristicas->deleteEspaciosCaracteristicas($id_espacio);
+			if(isset($values['id_caracteristica']) and count($values['id_caracteristica']))
+			{
+				$id_caracterisca = $values['id_caracteristica'];
+			}
 			$values = $Espacios->updateEspacios($values);
 			$values['id_espacio'] = $id_espacio;
 			$EspaciosImagenes = new EspaciosImagenes();
@@ -144,6 +172,16 @@ $values = $_REQUEST;
 							$EspaciosImagenes->saveEspaciosImagenes($array_imagenes);
 						}
 					
+				}
+			}
+			
+			//print_r($values);die;
+			if(isset($id_caracterisca) and count($id_caracterisca))
+			{
+				foreach($id_caracterisca as $key => $valor)
+				{
+					$values['id_caracteristica'] = $valor;;
+					$EspaciosCaracteristicas->saveEspaciosCaracteristicas($values);
 				}
 			}
 			executeEdit($values,message_created);die;

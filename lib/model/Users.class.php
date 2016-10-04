@@ -76,7 +76,9 @@
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->users
 			->select("*")
-			->where("id_user=?",$values['id_user'])->fetch();
+			->where("users.id_user=?",$values['id_user'])
+			->join("users_data","LEFT JOIN users_data on users_data.id_user = users.id_user")
+			->fetch();
 			return $q; 				
 			
 		}
@@ -90,28 +92,92 @@
 		function saveUser($values){
 			unset($values['action'],$values['PHPSESSID'],$values['id_user']);
 			$values['password'] = hash('sha256', $values['password']);
-                        $values['date_created'] = new NotORM_Literal("NOW()");
-                        $values['date_updated'] = new NotORM_Literal("NOW()");
+            $values['date_created'] = new NotORM_Literal("NOW()");
+            $values['date_updated'] = new NotORM_Literal("NOW()");
+			$array_users = array(
+				
+				"login" => $values['login'],
+				"password" => $values['password'],
+				"rol" => $values['rol'],
+				"status" => $values['status'],
+				"date_created" => $values['date_created'],
+				"date_updated" => $values['date_updated'],
+				"mail" => $values['mail'],
+				
+			);
+			//print_r($array_users);die;
 			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->users()->insert($values);
-			$values['id_user'] = $ConnectionORM->getConnect()->users()->insert_id();
+			$q = $ConnectionORM->getConnect()->users()->insert($array_users);
+			$values['id_user'] = $ConnectionORM->getConn()->lastInsertId('users_id_user_seq');
+			
+			$array_users_data = array(
+				"id_user" => $values['id_user'],
+				"first_name" => $values['first_name'],
+				"second_name" => $values['second_name'],
+				"first_last_name" => $values['first_last_name'],
+				"second_last_name" => $values['second_last_name'],
+				"document" => $values['document'],
+				"nationality" => $values['nationality'],
+				"phone" => $values['phone'],
+				"phone1" => $values['phone1'],
+				"ext" => $values['phone1'],
+				"id_ubicacion" => $values['id_ubicacion'],
+				"email" => $values['mail'],
+				"tipo_personal" => $values['tipo_personal'],
+				
+				
+			);
+			//print_r($array_users_data);die;
+			
+			$ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->users_data()->insert($array_users_data);	
+	
+			
+			
 			return $values;	
 			
 		}
 		function updateUser($values){
 			unset($values['action'],$values['PHPSESSID'],$values['date_created']);
-                        $values['date_updated'] = new NotORM_Literal("NOW()");
+            $values['date_updated'] = new NotORM_Literal("NOW()");
+
+			$array_users = array(
+				
+				"login" => $values['login'],
+				"rol" => $values['rol'],
+				"status" => $values['status'],
+				"date_updated" => $values['date_updated'],
+				"mail" => $values['mail'],
+				
+			);
 			if(isset($values['password']) and $values['password']!='')
 			{
-				$values['password'] = hash('sha256', $values['password']);
-			}else
-			{
-				unset($values['password']);
+				$array_users['password'] = hash('sha256', $values['password']);
 			}
 			$id_user = $values['id_user'];
 			$ConnectionORM = new ConnectionORM();
-			$q = $ConnectionORM->getConnect()->users("id_user", $id_user)->update($values);
-			return $q;
+			$q = $ConnectionORM->getConnect()->users("id_user", $id_user)->update($array_users);
+			
+			$array_users_data = array(
+				"first_name" => $values['first_name'],
+				"second_name" => $values['second_name'],
+				"first_last_name" => $values['first_last_name'],
+				"second_last_name" => $values['second_last_name'],
+				"document" => $values['document'],
+				"nationality" => $values['nationality'],
+				"phone" => $values['phone'],
+				"phone1" => $values['phone1'],
+				"ext" => $values['phone1'],
+				"id_ubicacion" => $values['id_ubicacion'],
+				"email" => $values['mail'],
+				"tipo_personal" => $values['tipo_personal'],
+				
+				
+			);
+			$ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->users_data("id_user", $id_user)->update($array_users_data);
+			
+			//return $q;
 			
 		}
 		function activeUserMasterCompany($id_company){		
@@ -353,6 +419,52 @@
 			->and('status=?',1)
 			->fetch();
 			return $q;
+		}
+		function getLoginExist($id_user = null,$login){
+			
+            $ConnectionORM = new ConnectionORM();
+			
+			if($id_user!=null)
+			{
+				$q = $ConnectionORM->getConnect()->users
+				->select("count(*) as cuenta")
+				->where("UPPER(login)=?",strtoupper($login))
+				->and("id_user<>?",$id_user)
+				->fetch();	
+			}else
+			{
+				$q = $ConnectionORM->getConnect()->users
+				->select("count(*) as cuenta")
+				->where("UPPER(login)=?",strtoupper($login))
+				->fetch();
+			}
+
+			return $q['cuenta'];
+		}
+		function getDocumentExist($id_user = null,$nationality, $document){
+			
+
+            $ConnectionORM = new ConnectionORM();
+			
+			if($id_user!=null)
+			{
+
+				$q = $ConnectionORM->getConnect()->users_data
+				->select("count(*) as cuenta")
+				->where("document=?",$document)
+				->and("nationality=?",$nationality)
+				->and("id_user<>?",$id_user)
+				->fetch();	
+			}else
+			{
+				$q = $ConnectionORM->getConnect()->users_data
+				->select("count(*) as cuenta")
+				->where("UPPER(document)=?",$document)
+				->and("nationality=?",$nationality)
+				->fetch();
+			}
+
+			return $q['cuenta'];
 		}
 	}
 
