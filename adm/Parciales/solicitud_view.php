@@ -15,7 +15,7 @@
 	</div>
 	<div class="col-sm-12 col-md-12" >
 		<div class="col-sm-3 col-md-4">
-			<pre><label>Motivo:</label> <?php echo $data['motivo'];?> <?php echo $data['motivo'];?></pre>
+			<pre><label>Motivo:</label> <?php echo $data['motivo'];?></pre>
 		</div>
 	</div>
 <?php //print_r($data);?>
