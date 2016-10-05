@@ -30,7 +30,7 @@
 		{	
 			$columns = array();
 			$columns[0] = 'id_parentesco';
-			$columns[1] = 'nom_espacio';
+			$columns[1] = 'nom_parentesco';
 			$columns[2] = 'status';
 			$column_order = $columns[0];
 			$where = '1 = 1';
@@ -40,8 +40,9 @@
 			if(isset($values['search']['value']) and $values['search']['value'] !='')
 			{	
 				$str = $values['search']['value'];
-				$where = "upper(login) like upper('%$str%')"
-					. "or upper(status.name) like upper('%$str%') ";
+				$where = "upper(nom_parentesco) like upper('%$str%')"
+					. "or upper(status.name) like upper('%$str%') "
+					. "or cast(parentescos.id_parentesco as char(100)) =  '$str' ";;
 			}
 			if(isset($values['order'][0]['column']) and $values['order'][0]['column']!='0')
 			{
@@ -67,8 +68,9 @@
 			if(isset($values['search']['value']) and $values['search']['value'] !='')
 			{	
 				$str = $values['search']['value'];
-				$where = "upper(login) like upper('%$str%') "
-					. "or upper(status.name) like upper('%$str%') ";
+				$where = "upper(nom_parentesco) like upper('%$str%')"
+					. "or upper(status.name) like upper('%$str%') "
+					. "or cast(parentescos.id_parentesco as char(100)) =  '$str' ";;
 			}
             $ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->parentescos

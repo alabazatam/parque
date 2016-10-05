@@ -3,7 +3,7 @@
 
 
 <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
-	<h1 class="text-center">Parentescos</h1>
+	<h1 class="text-center">Ubicaciones administrativas</h1>
 	<form class="" action="index.php" method="POST" enctype="multipart/form-data">
 		<input type="hidden" name='action' value='<?php if(isset($values['action']))echo $values['action'];?>'>
 	  <div class="form-group">

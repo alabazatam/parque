@@ -31,8 +31,9 @@
 			if(isset($values['search']['value']) and $values['search']['value'] !='')
 			{	
 				$str = $values['search']['value'];
-				$where = "upper(login) like upper('%$str%')"
-					. "or upper(status.name) like upper('%$str%') ";
+				$where = "upper(des_zona_ubicacion) like upper('%$str%')"
+					. "or upper(status.name) like upper('%$str%') "
+					. "or cast(zona_ubicacion.id_zona_ubicacion as char(100)) =  '$str' ";;
 			}
 			if(isset($values['order'][0]['column']) and $values['order'][0]['column']!='0')
 			{
@@ -58,8 +59,9 @@
 			if(isset($values['search']['value']) and $values['search']['value'] !='')
 			{	
 				$str = $values['search']['value'];
-				$where = "upper(login) like upper('%$str%') "
-					. "or upper(status.name) like upper('%$str%') ";
+				$where = "upper(des_zona_ubicacion) like upper('%$str%')"
+					. "or upper(status.name) like upper('%$str%') "
+					. "or cast(zona_ubicacion.id_zona_ubicacion as char(100)) =  '$str' ";;
 			}
             $ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->zona_ubicacion

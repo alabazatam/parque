@@ -36,8 +36,14 @@
 			if(isset($values['search']['value']) and $values['search']['value'] !='')
 			{	
 				$str = $values['search']['value'];
-				$where = "upper(login) like upper('%$str%')"
-					. "or upper(status.name) like upper('%$str%') ";
+				$where = "upper(nom_espacio) like upper('%$str%')"
+					. "or upper(espacios.des_espacio) like upper('%$str%') "
+					. "or upper(status.name) like upper('%$str%') "
+					. "or cast(espacios.capacidad as char(100)) =  '$str' "
+					. "or upper(tipo_espacio.nom_tipo_espacio) like upper('%$str%') "
+					. "or upper(zona_ubicacion.des_zona_ubicacion) like upper('%$str%') "
+					. "or cast(espacios.id_espacio as char(100)) =  '$str' ";
+					;
 			}
 			if(isset($values['order'][0]['column']) and $values['order'][0]['column']!='0')
 			{
@@ -57,6 +63,7 @@
 			->order("$column_order $order")
 			->where("$where")
 			->limit($limit,$offset);
+			//echo $q;die;
 			return $q; 			
 		}
 		public function getCountEspaciosList($values)
@@ -65,8 +72,14 @@
 			if(isset($values['search']['value']) and $values['search']['value'] !='')
 			{	
 				$str = $values['search']['value'];
-				$where = "upper(login) like upper('%$str%') "
-					. "or upper(status.name) like upper('%$str%') ";
+				$where = "upper(nom_espacio) like upper('%$str%')"
+					. "or upper(espacios.des_espacio) like upper('%$str%') "
+					. "or upper(status.name) like upper('%$str%') "
+					. "or cast(espacios.capacidad as char(100)) =  '$str' "
+					. "or upper(tipo_espacio.nom_tipo_espacio) like upper('%$str%') "
+					. "or upper(zona_ubicacion.des_zona_ubicacion) like upper('%$str%') "
+					. "or cast(espacios.id_espacio as char(100)) =  '$str' ";
+					;
 			}
             $ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->espacios

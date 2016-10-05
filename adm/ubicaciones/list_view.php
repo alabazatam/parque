@@ -1,7 +1,7 @@
 <?php include('../../view_header.php')?>
 <?php include('../menu.php')?>
 <div class="container">
-	<h1 class="text-center">Parentescos</h1>
+	<h1 class="text-center">Ubicaciones administrativas</h1>
 	<table id="example" class="table table-striped table-bordered table-responsive" width="100%" cellspacing="0">
 			<thead>
 				<tr>
