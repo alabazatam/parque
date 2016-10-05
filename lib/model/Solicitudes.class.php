@@ -22,12 +22,12 @@
 			$columns = array();
 			$columns[0] = 'id_solicitud';
 			$columns[1] = 'nom_espacio';
-			$columns[2] = 'des_espacio';
-			$columns[3] = 'capacidad';
-            $columns[4] = 'ut';
-            $columns[5] = 'tipo_espacio.nom_tipo_espacio';
+			$columns[2] = 'solicitudes.fec_reservacion';
+			$columns[3] = 'solicitudes.date_created';
+            $columns[4] = 'capacidad';
+            $columns[5] = 'solicitudes.costo';
 			$columns[6] = 'zona_ubicacion.des_zona_ubicacion';
-			$columns[7] = 'espacios.status';
+			$columns[7] = 'status.name';
 			$column_order = $columns[0];
 			$where = '1 = 1';
 			$order = 'asc';
@@ -36,8 +36,11 @@
 			if(isset($values['search']['value']) and $values['search']['value'] !='')
 			{	
 				$str = $values['search']['value'];
-				$where = "upper(login) like upper('%$str%')"
-					. "or upper(status.name) like upper('%$str%') ";
+				$where = "upper(nom_espacio) like upper('%$str%')"
+					. "or upper(status.name) like upper('%$str%') "
+					. "or upper(des_zona_ubicacion) like upper('%$str%') "
+					. "or upper(nom_espacio) like upper('%$str%') "
+					. "or cast(solicitudes.id_solicitud as char(100)) =  '$str' ";
 			}
 			if(isset($values['order'][0]['column']) and $values['order'][0]['column']!='0')
 			{
@@ -66,8 +69,11 @@
 			if(isset($values['search']['value']) and $values['search']['value'] !='')
 			{	
 				$str = $values['search']['value'];
-				$where = "upper(login) like upper('%$str%') "
-					. "or upper(status.name) like upper('%$str%') ";
+				$where = "upper(nom_espacio) like upper('%$str%')"
+					. "or upper(status.name) like upper('%$str%') "
+					. "or upper(des_zona_ubicacion) like upper('%$str%') "
+					. "or upper(nom_espacio) like upper('%$str%') "
+					. "or cast(solicitudes.id_solicitud as char(100)) =  '$str' ";
 			}
             $ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->solicitudes
