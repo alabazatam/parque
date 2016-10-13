@@ -1,12 +1,13 @@
 <?php include('../../view_header.php')?>
 <?php include('../menu.php')?>
 <div class="container">
-	<h1 class="text-center">Características</h1>
+	<h1 class="text-center">Usuarios</h1>
 	<table id="example" class="table table-striped table-bordered table-responsive" width="100%" cellspacing="0">
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>Nombre</th>
+					<th>Login</th>
+					<th>Password</th>
 					<th>Status</th>
 					<th>Acciones</th>
 				</tr>
@@ -14,13 +15,14 @@
 			<tfoot>
 				<tr>
 					<th>Id</th>
-					<th>Nombre</th>
+					<th>Login</th>
+					<th>Password</th>
 					<th>Status</th>
 					<th>Acciones</th>
 				</tr>
 			</tfoot>
 		</table>
-	<a class="btn btn-default"  href="<?php echo full_url."/adm/caracteristicas/index.php?action=new"?>"><i class="fa fa-file-o fa-pull-left fa-border"></i>Agregar</a>
+	<a class="btn btn-default"  href="<?php echo full_url."/adm/users/index.php?action=new"?>"><i class="fa fa-file-o fa-pull-left fa-border"></i>Agregar</a>
 </div>
 	<?php include('../../view_footer.php')?>
 <script>
@@ -29,18 +31,19 @@ $(document).ready(function() {
         "scrollX": true,
         "processing": true,
         "serverSide": true,
-        "ajax": "<?php echo full_url."/adm/caracteristicas/index.php?action=caracteristicas_list_json"?>",
+        "ajax": "<?php echo full_url."/adm/users/index.php?action=users_list_json"?>",
 		"language": {
                 "url": "<?php echo full_url."/web/js/"?>datatables.spanish.lang"
         },
         "columns": [
-            { "data": "id_caracteristica" },
-			{ "data": "nom_caracteristica" },
+            { "data": "id_user" },
+            { "data": "login" },
+            { "data": "password" },
             { "data": "status" },
             { "data": "actions" }
         ],
       "aoColumnDefs": [
-          { 'bSortable': false, 'aTargets': [ 3 ] }
+          { 'bSortable': false, 'aTargets': [ 4 ] }
        ]				
     });
 } );

@@ -1,5 +1,58 @@
 <?php include('../../view_header.php')?>
 <?php include('../menu.php')?>
+
+<?php
+$Status = new Status();	
+$status_proximo = '';
+$status_regresar = '';
+$name_status_proximo = '';
+$name_status_regresar = '';
+$status_cancelada = false;
+	switch($values['id_status'])
+	{
+		
+		case 2;
+			$status_proximo = 3;
+			//$status_regresar = 1;
+                        $status_cancelada = true;
+			break;
+		case 3;
+			//$status_proximo = 4;
+			//$status_regresar = 2;
+			//$status_cancelada = true;
+			break;		
+		case 4;
+			$status_proximo = 5;
+			$status_regresar = 3;
+			//$status_cancelada = true;
+			break;
+		case 5;
+			//$status_proximo = 6;
+			//$status_regresar = 4;
+			//$status_cancelada = true;
+			break;	
+		case 6;
+			$status_proximo = 7;
+			$status_regresar = 5;
+			//$status_cancelada = true;
+			break;	
+		case 7;
+			//$status_proximo = 8;
+			break;
+		
+	}
+			if($status_proximo !='')
+			{
+				$name_status_proximo = $Status ->getStatusName($status_proximo);
+			}
+			
+			if($status_regresar!='')
+			{
+				$name_status_regresar= $Status ->getStatusName($status_regresar);	
+	
+			}	
+?>
+
 <h1 class="text-center"> Solicitudes</h1>
 
 <form action="index.php" method="post" id="form_solicitud">
@@ -31,8 +84,10 @@
 
 <div class="">
 	<a href="<?php echo full_url?>/adm/solicitudes_adm/index.php" class=" btn btn-default"><i class="fa fa-arrow-left  fa-pull-left fa-border"></i> Regresar</a>
+	
+	<?php if($status_proximo!='' or $name_status_regresar !='' or $status_cancelada == true):?>
 	<button type="button" class="btn btn-default" id="aceptar_form"><i class="fa fa-save fa-pull-left fa-border"></i> Aceptar</button>
-
+	<?php endif;?>
 </div>
 </form>
 

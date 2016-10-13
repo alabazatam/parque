@@ -84,6 +84,7 @@ include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Motivos.class.php"
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/Caracteristicas.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/EspaciosCaracteristicas.class.php");
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/TipoPersonal.class.php");
+include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/model/StatusMail.class.php");
 require($_SERVER["DOCUMENT_ROOT"]."/".main_folder.'/lib/vendors/securimage/securimage.php');
 
 /*validation class*/

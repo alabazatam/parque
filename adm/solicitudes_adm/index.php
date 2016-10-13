@@ -109,7 +109,9 @@ $values = $_REQUEST;
 			require('form_view.php');die;
 		}else{	
 
-			$id_solicitud = $values['id_solicitud'];			
+			$id_solicitud = $values['id_solicitud'];
+			$StatusMail = new StatusMail();
+			$StatusMail->notificaStatusMail($values);
 			$values = $Solicitudes->updateSolicitud($values);
 			$values['id_solicitud'] = $id_solicitud;
 			executeEdit($values,message_created);die;
