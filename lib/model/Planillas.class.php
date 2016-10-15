@@ -6,6 +6,8 @@
         {
 			$Solicitudes = new Solicitudes();
 			$data = $Solicitudes->getSolicitudById($values);
+                        $SolicitudesInvitados = new SolicitudesInvitados();
+                        $data_invitados = $SolicitudesInvitados->getSolicitudesInvitadosList($values);
 			setlocale(LC_NUMERIC,"es_ES.UTF8");
             ob_start();
 			//echo $company_billing;die;
@@ -41,7 +43,7 @@
             // ---------------------------------------------------------
 
             // set font
-            $pdf->SetFont('freeserif', '', 10);
+            $pdf->SetFont('freeserif', '', 12);
 
             // add a page
             $pdf->AddPage();
@@ -59,22 +61,22 @@
 		
 	</tr>	
 	<tr>
-		<td colspan="3" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Tipo de personal:</td>
+		<td colspan="3" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Tipo de personal:</b></td>
 		
 	</tr>
 	<tr>
-		<td width="60%" colspan="" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Apellidos y nombres: '.strtoupper($data['first_last_name']." ".$data['second_last_name']." ".$data['first_name']." ".$data['second_name']).'</td>
-		<td width="40%" colspan="2" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Cédula de identidad: '.$data['nationality']."-".$data['document'].'</td>
+		<td width="60%" colspan="" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Apellidos y nombres: </b>'.strtoupper($data['first_last_name']." ".$data['second_last_name']." ".$data['first_name']." ".$data['second_name']).'</td>
+		<td width="40%" colspan="2" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Cédula de identidad: </b>'.$data['nationality']."-".$data['document'].'</td>
 		
 	</tr>
 	<tr>
-		<td colspan="" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Correo electrónico:</td>
-		<td colspan="" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Extensión:</td>
-		<td colspan="" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Teléfono:</td>
+		<td colspan="" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Correo electrónico: </b>'.strtoupper($data['email']).'</td>
+		<td colspan="" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Ext: </b>'.strtoupper($data['ext']).'</td>
+		<td colspan="" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Teléfono: </b>'.strtoupper($data['phone']).'</td>
 		
 	</tr>
 	<tr>
-		<td colspan="3" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Dependencia de adscripción: '.strtoupper($data['nom_ubi']).'</td>
+		<td colspan="3" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Dependencia de adscripción: </b>'.strtoupper($data['nom_ubicacion']).'</td>
 		
 	</tr>
 	<tr>
@@ -82,15 +84,15 @@
 		
 	</tr>
 	<tr>
-		<td colspan="" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Zona: '.strtoupper($data['des_zona_ubicacion']).'</td>
-		<td colspan="2" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Espacio: '.strtoupper($data['nom_espacio']).'</td>
+		<td colspan="" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Zona: </b>'.strtoupper($data['des_zona_ubicacion']).'</td>
+		<td colspan="2" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Espacio: </b>'.strtoupper($data['nom_espacio']).'</td>
 	</tr>
 	<tr>
-		<td colspan="3" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Fecha del evento: '.$data['fec_reservacion'].'</td>
+		<td colspan="3" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Fecha del evento: </b>'.$data['fec_reservacion'].'</td>
 		
 	</tr>
 	<tr>
-		<td colspan="3" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Motivo a celebrar:</td>
+		<td colspan="3" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Motivo a celebrar: </b>'.$data['des_motivo'].'</td>
 		
 	</tr>	
 </table>';
@@ -104,13 +106,13 @@ $html = '
 		<td width="35%" valign="top">
 			<table width="100%">
 				<tr>
-					<td colspan="2" style=" border-top-width: 0px; border-right-width: 0px; border-left-width: 0px">Solicitado por</td>
+					<td colspan="2" align="center" style=" border-top-width: 0px; border-right-width: 0px; border-left-width: 0px"><b>Solicitado por</b></td>
 				</tr>
 				<tr>
 					<td colspan="2" style=" border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"></td>
 				</tr>
 				<tr>
-					<td colspan="2" style=" border-right-width: 0px; border-left-width: 0px">Apellidos y nombres:</td>
+					<td colspan="2" style=" border-right-width: 0px; border-left-width: 0px"><b>Apellidos y nombres: </b><br> '.strtoupper($data['first_last_name']." ".$data['first_name']).'</td>
 				</tr>
 				<tr>
 					<td colspan="2" style=" border-right-width: 0px;  border-left-width: 0px"></td>
@@ -137,11 +139,8 @@ $html = '
 					<td colspan="2" style=" border-right-width: 0px;  border-left-width: 0px"></td>
 				</tr>
 				<tr>
-					<td colspan="2" style=" border-right-width: 0px;  border-left-width: 0px"></td>
-				</tr>
-				<tr>
-					<td style=" border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Firma:</td>
-					<td style=" border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Fecha: </td>
+					<td style=" border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Firma:</b></td>
+					<td style=" border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Fecha: </b></td>
 				</tr>
 
 			</table>
@@ -149,17 +148,17 @@ $html = '
 		<td>
 			<table width="100%">
 				<tr>
-					<td colspan="2" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Sersacon</td>
+					<td colspan="2" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px" align="center"><b>Sersacon</b></td>
 				</tr>
 				<tr>
-					<td width="50%" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Recibido por</td>
-					<td style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Autorizado por</td>
+					<td width="50%" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Recibido por</b></td>
+					<td style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Autorizado por</b></td>
 				</tr>
 				<tr>
 					<td style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">
 						<table width="100%">
 							<tr>
-								<td colspan="2" style=" border-right-width: 0px; border-left-width: 0px">Apellidos y nombres:</td>
+								<td colspan="2" style=" border-right-width: 0px; border-left-width: 0px"><b>Apellidos y nombres:</b></td>
 							</tr>
 							<tr>
 								<td colspan="2" style=" border-right-width: 0px; border-left-width: 0px"></td>
@@ -189,8 +188,8 @@ $html = '
 								<td colspan="2" style=" border-right-width: 0px; border-left-width: 0px"></td>
 							</tr>
 							<tr>
-								<td style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Firma:</td>
-								<td style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px">Fecha:</td>
+								<td style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Firma:</b></td>
+								<td style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Fecha:</b></td>
 							</tr>
 						</table>
 					</td>
@@ -218,18 +217,56 @@ $html = '
             $pdf->lastPage();
             
             // ---------------------------------------------------------
-			$pdf->AddPage();
+	$pdf->SetFont('freeserif', '', 16);		
+                        $pdf->AddPage();
 			$pdf->ln();
 			
 			$html = '<p align="center" class="font-size:16px;text-decoration: underline;"><strong>CARTA COMPROMISO</strong></p>'
-				. '<p align="justify" class="font-size:14px;">Yo,  cédula de identidad número, en mi condición de beneficiario del uso y disfrute de las instalaciones 
+				. '<p align="justify" class="font-size:14px;">Yo, '.strtoupper($data['first_last_name']." ".$data['second_last_name']." ".$data['first_name']." ".$data['second_name']).',  cédula de identidad número '.$data['nationality']."-".$data['document'].', en mi condición de beneficiario del uso y disfrute de las instalaciones 
 					del Parque “Jesús David Garmendia Leáñez” de la Contraloría General de la República, por medio de la presente me comprometo a 
 					cumplir y hacer cumplir por parte de mis familiares y amigos, la normativa legal y mantener el orden en el uso de su instalaciones 
 										y garantizar la observancia de la moral y las buenas costumbres.  
 					De igual manera, reportaré ante el personal de seguridad, cualquier eventualidad que se me presente, 
 					a fin de que se tomen las acciones pertinentes. </p>';
 			
-			$pdf->writeHTML($html, true, false, true, false, '');			
+			$pdf->writeHTML($html, true, false, true, false, '');	
+        $pdf->lastPage();
+            
+            // ---------------------------------------------------------
+                        $pdf->SetFont('freeserif', '', 12);		
+                        $pdf->AddPage();
+
+$html = '<table width="100%" border="1">
+    <tr>
+        <th>#</th>
+        <th>Nacionalidad</th>
+        <th>Cédula</th>
+        <th>Parentesco</th>
+        <th>Primer nombre</th>
+        <th>Segundo nombre</th>
+        <th>Primer apellido</th>
+        <th>Segundo apellido</th>
+    </tr>';
+
+    foreach($data_invitados as $data)
+    {
+     $html.='
+    <tr>
+        <th>#</th>
+        <th>Nacionalidad</th>
+        <th>Cédula</th>
+        <th>Parentesco</th>
+        <th>Primer nombre</th>
+        <th>Segundo nombre</th>
+        <th>Primer apellido</th>
+        <th>Segundo apellido</th>
+    </tr>';   
+        
+    }
+    $html.='</table>';
+
+                        $pdf->writeHTML($html, true, false, true, false, '');
+			//$pdf->ln();
 			//fin otros datos	
             // output the HTML content
             //$pdf->writeHTML($html, true, false, true, false, '');

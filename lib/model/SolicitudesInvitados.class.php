@@ -23,6 +23,7 @@
 			$q = $ConnectionORM->getConnect()->solicitudes_invitados
 			->select("*")
 			->where('id_solicitud=?',$values['id_solicitud'])
+                        ->join("parentescos","LEFT JOIN parentescos on parentescos.id_parentesco = solicitudes_invitados.id_parentesco")
 			->order('id_solinvi');	
 			return $q;
 			

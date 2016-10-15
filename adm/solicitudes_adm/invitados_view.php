@@ -1,6 +1,6 @@
 <div class="col-sm-12 col-md-12">
 
-<?php $i = 1;?>
+<?php $i = 0;?>
 <?php if(isset($solicitudes_invitados_list)):?>
       <table class="table table-responsive table-bordered table-striped" id="solicitudes_invitados_list_<?php echo $list['id_solinvi']?>">
         <tr>
@@ -15,10 +15,10 @@
         </tr>  
 	<?php foreach($solicitudes_invitados_list as $list):?>
         <tr>
-            <td><?php echo $i;?></td>
+            <td><?php echo ($i+1);?></td>
             <td><?php echo $list['nacion']?></td>
             <td><?php echo $list['cedula']?></td>
-            <td><?php echo $list['id_parentesco']?></td>
+            <td><?php echo $list['nom_parentesco']?></td>
             <td><?php echo $list['nombre1']?></td>
             <td><?php echo $list['nombre2']?></td>
             <td><?php echo $list['apellido1']?></td>
