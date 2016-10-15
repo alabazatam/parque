@@ -23,7 +23,13 @@
 	<div class="col-xs-1 col-sm-1 col-md-4 col-lg-4">
 	</div>
 </div>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
+<div class="col-xs-2">
+	
+</div>
+<div class="col-xs-8">
+	<img src="<?php echo full_url;?>/web/img/croquispjdg.jpg" class="img-responsive"> 
+</div>
+<div class="col-xs-2">
+	
 </div>
 <?php include("../view_footer.php");?>
