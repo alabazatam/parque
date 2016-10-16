@@ -95,10 +95,8 @@ $(document).ready(function() {
         "processing": true,
         "serverSide": true,
 		"bFilter": false,
-        "ajax": "<?php echo full_url."/adm/reporte_solicitudes/index.php?action=list_json"?>",
-		"language": {
-                "url": "<?php echo full_url."/web/js/"?>datatables.spanish.lang"
-        },
+        "ajax": {
+			"url":"<?php echo full_url."/adm/reporte_solicitudes/index.php?action=list_json"?>",
 			"data": function(d) {
                     d.desde = $('#desde').val();
                     d.hasta =  $('#hasta').val();
@@ -106,7 +104,10 @@ $(document).ready(function() {
 					d.id_espacio = $('#id_espacio').val();
 					d.id_ubicacion = $('#id_ubicacion').val();
 					}
-			},
+			},	
+		"language": {
+                "url": "<?php echo full_url."/web/js/"?>datatables.spanish.lang"
+        },
         buttons: [
             'excelHtml5',
             'csvHtml5',
