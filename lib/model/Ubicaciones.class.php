@@ -115,7 +115,7 @@
 			//return $q;
 			
 		}
-		public function getUbicacionesListSelect($values){
+		public function getUbicacionesListSelect($values = null){
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->ubicaciones
 			->select("*")

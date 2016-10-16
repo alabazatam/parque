@@ -5,7 +5,11 @@
 	$TipoPersonal = new TipoPersonal();
 	$tipo_personal_list = $TipoPersonal->getTipoPersonalList();
 	$Espacios = new Espacios();
-	$espacios_list = $Espacios->getEspaciosListSelect($values);
+	$espacios_list = $Espacios->getEspaciosListSelect();
+	$Ubicaciones = new Ubicaciones();
+	$ubicaciones_list = $Ubicaciones->getUbicacionesList();
+	
+	
 ?>
 	<div class="col-sm-12 col-md-12">
 		<div class="col-sm-3 col-md-3 alert alert-success" role="alert">Aceptada o Completada</div>
@@ -44,8 +48,13 @@
 			</select>
 		</div>
 		<div class="col-sm-2 col-md-2">
-			<label>Espacio: </label>
-			<input id="desde" name="desde" type="text">
+			<label>Ubicacion administrativa: </label>
+			<select id="id_ubicacion" name='id_ubicacion' class="form-control input-sm">
+				<option value="">Seleccione...</option>
+				<?php foreach($ubicaciones_list as $list):?>
+					<option value="<?php echo $list['id_ubicacion'];?>"><?php echo $list['nom_ubicacion'];?></option>
+				<?php endforeach;?>
+			</select>
 		</div>
 		<div class="col-sm-2 col-md-2">
 			<label>Espacio: </label>

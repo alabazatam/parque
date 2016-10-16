@@ -166,7 +166,7 @@
 			return $q['capacidad']; 				
 			
 		}
-		public function getEspaciosListSelect($values)
+		public function getEspaciosListSelect($values = null)
 		{	
 			//echo $column_order;die;
             $ConnectionORM = new ConnectionORM();
