@@ -99,6 +99,14 @@ $(document).ready(function() {
 		"language": {
                 "url": "<?php echo full_url."/web/js/"?>datatables.spanish.lang"
         },
+			"data": function(d) {
+                    d.desde = $('#desde').val();
+                    d.hasta =  $('#hasta').val();
+					d.id_tipo_personal = $('#id_tipo_personal').val();
+					d.id_espacio = $('#id_espacio').val();
+					d.id_ubicacion = $('#id_ubicacion').val();
+					}
+			},
         buttons: [
             'excelHtml5',
             'csvHtml5',
