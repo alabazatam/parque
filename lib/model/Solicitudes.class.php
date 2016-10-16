@@ -158,13 +158,16 @@
 /****************************************************************************************************************************/
 		
 		public function getSolicitudesReporteList($values)
-		{	
+		{
+                        $Utilitarios = new Utilitarios();
 			$columns = array();
 			$columns[0] = 'id_solicitud';
-			$columns[1] = 'nom_espacio';
-            $columns[2] = 'solicitudes.fec_reservacion';
-			$columns[3] = 'solicitudes.costo';
-			$columns[4] = 'status.name';
+                        $columns[1] = 'users_data.document';
+                        $columns[2] = 'users_data.first_last_name';
+			$columns[3] = 'nom_espacio';
+                        $columns[4] = 'solicitudes.fec_reservacion';
+			$columns[5] = 'solicitudes.costo';
+			$columns[6] = 'status.name';
 			$column_order = $columns[0];
 			$where = '1 = 1 ';
 			$order = 'asc';
@@ -184,6 +187,50 @@
 			{
 				$order = $values['order'][0]['dir'];//asc o desc
 			}
+                        
+			if($values['desde']!='')
+			{					
+                            $values['desde'] = $Utilitarios->formatFechaInput($values['desde']);
+			}
+			if($values['hasta']!='')
+			{
+                            $values['hasta'] = $Utilitarios->formatFechaInput($values['hasta']);	
+			}
+			//echo $values['desde'].$values['hasta'];die;
+			
+			if($values['desde']!='')
+			{
+				$where.=" AND solicitudes.fec_reservacion >= '".$values['desde']."' ";
+			}
+			if($values['hasta']!='')
+			{
+				$where.=" AND solicitudes.fec_reservacion <= '".$values['hasta']."'";
+			}
+ 			if($values['cedula']!='')
+			{
+				$where.="  AND upper(users_data.nationality) || '-' || users_data.document ilike(upper('%".$values['cedula']."%'))";
+			} 
+                	if($values['id_espacio']!='')
+			{
+				$where.="  AND espacios.id_espacio = ".$values['id_espacio']."";
+			}
+ 			if($values['des_tipo_personal']!='')
+			{
+				$where.="  AND upper(users_data.tipo_personal) ilike(upper('%".$values['des_tipo_personal']."%'))";
+			} 
+ 			if($values['id_ubicacion']!='')
+			{
+				$where.="  AND users_data.id_ubicacion = ".$values['id_ubicacion']."";
+			}
+ 			if($values['id_status']!='')
+			{
+				$where.="  AND status.id_status = ".$values['id_status']."";
+			}    
+                        
+                        
+                        
+                        
+                        
 			//echo $column_order;die;
             $ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->solicitudes
@@ -192,14 +239,56 @@
 			->join("status","LEFT JOIN status on status.id_status = solicitudes.status")
 			->join("zona_ubicacion","LEFT JOIN zona_ubicacion on zona_ubicacion.id_zona_ubicacion = solicitudes.id_zona_ubicacion")
 			->join("tipo_espacio","LEFT JOIN tipo_espacio on tipo_espacio.id_tipo_espacio = solicitudes.id_tipo_espacio")
-			->order("$column_order $order")
+			->join("users_data","LEFT JOIN users_data on users_data.id_user = solicitudes.id_user")
+			->join("ubicaciones","LEFT JOIN ubicaciones on ubicaciones.id_ubicacion = users_data.id_ubicacion")
+
+                        ->order("$column_order $order")
 			->where("$where")
 			->limit($limit,$offset);
+                        //echo $q;die;
 			return $q; 			
 		}
 		public function getCountSolicitudesReporteList($values)
 		{	
 			$where = '1 = 1 ';
+		if($values['desde']!='')
+			{					
+                            $values['desde'] = $Utilitarios->formatFechaInput($values['desde']);
+			}
+			if($values['hasta']!='')
+			{
+                            $values['hasta'] = $Utilitarios->formatFechaInput($values['hasta']);	
+			}
+			//echo $values['desde'].$values['hasta'];die;
+			
+			if($values['desde']!='')
+			{
+				$where.=" AND solicitudes.fec_reservacion >= '".$values['desde']."' ";
+			}
+			if($values['hasta']!='')
+			{
+				$where.=" AND solicitudes.fec_reservacion <= '".$values['hasta']."'";
+			}
+ 			if($values['cedula']!='')
+			{
+				$where.="  AND upper(users_data.nationality) || '-' || users_data.document ilike(upper('%".$values['cedula']."%'))";
+			} 
+                	if($values['id_espacio']!='')
+			{
+				$where.="  AND espacios.id_espacio = ".$values['id_espacio']."";
+			}
+ 			if($values['des_tipo_personal']!='')
+			{
+				$where.="  AND upper(users_data.tipo_personal) ilike(upper('%".$values['des_tipo_personal']."%'))";
+			} 
+ 			if($values['id_ubicacion']!='')
+			{
+				$where.="  AND users_data.id_ubicacion = ".$values['id_ubicacion']."";
+			}
+ 			if($values['id_status']!='')
+			{
+				$where.="  AND status.id_status = ".$values['id_status']."";
+			}    
 			if(isset($values['search']['value']) and $values['search']['value'] !='')
 			{	
 				$str = $values['search']['value'];
@@ -213,8 +302,8 @@
 			->join("status","LEFT JOIN status on status.id_status = solicitudes.status")
 			->join("zona_ubicacion","LEFT JOIN zona_ubicacion on zona_ubicacion.id_zona_ubicacion = solicitudes.id_zona_ubicacion")
 			->join("tipo_espacio","LEFT JOIN tipo_espacio on tipo_espacio.id_tipo_espacio = solicitudes.id_tipo_espacio")
-			->join("status","LEFT JOIN status on status.id_status = espacios.status")
-			->where("$where")
+			->join("users_data","LEFT JOIN users_data on users_data.id_user = solicitudes.id_user")			
+                        ->where("$where")
 			->fetch();
 			//echo $q['cuenta']."aaa";die;
 			return $q['cuenta']; 			

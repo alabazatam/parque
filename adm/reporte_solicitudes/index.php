@@ -143,11 +143,15 @@ $values = $_REQUEST;
 					"costo" => $solicitud['costo']." Bs",
 					"status" => $solicitud['status'],
                                         "id_status" => $solicitud['id_status'],
-					"actions" => 
-                                       '<form method="POST" action = "'.full_url.'/adm/solicitudes_adm/index.php" >'
+                                        "cedula" => $solicitud['nationality']."-".$solicitud['document'],
+                                        "solicitante" => strtoupper($solicitud['first_last_name']." ".$solicitud['first_name']),
+                                        "tipo_personal" => $solicitud['tipo_personal'],
+                                         "nom_ubicacion" => $solicitud['nom_ubicacion'],
+                                        "actions" => 
+                                       '<form method="POST" action = "'.full_url.'/adm/reporte_solicitudes/index.php" >'
                                        .'<input type="hidden" name="action" value="edit">  '
                                        .'<input type="hidden" name="id_solicitud" value="'.$id_solicitud.'">  '
-									   .'<input type="hidden" name="id_espacio" value="'.$id_espacio.'">  '
+                                        .'<input type="hidden" name="id_espacio" value="'.$id_espacio.'">  '
                                        .'<button class="btn btn-default btn-sm" type="submit"><i class="fa fa-edit  fa-pull-left fa-border"></i></button>'
 
 					);	
@@ -165,6 +169,10 @@ $values = $_REQUEST;
 					"costo" => null,
 					"status" => null,
                                         "id_status" => null,
+                                        "cedula" => null,
+                                        "solicitante" => null,
+                                        "tipo_personal" => null,
+                                        "nom_ubicacion" => null,
 					"actions"=> ""
 				);
 		}

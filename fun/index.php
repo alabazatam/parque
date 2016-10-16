@@ -55,8 +55,15 @@ $values = $_REQUEST;
 				$values['error'] = "Usuario o clave incorrecto";
 				require('login.php');die;
 			}
+                        
 			else
-			{	$ConnectionsHistory = new ConnectionsHistory();
+			{	
+                            if($user_data['rol']!='ADM' and $user_data['rol']!='PER')
+                            {
+				$values['error'] = "No posee los privilegios suficientes para ingresar";
+				require('login.php');die;
+                            }
+                                $ConnectionsHistory = new ConnectionsHistory();
                                 $Utilitarios = new Utilitarios();
 				$id_user =  $user_data['id_user'];
 				$values['id_user'] = $id_user;

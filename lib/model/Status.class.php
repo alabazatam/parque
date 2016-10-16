@@ -16,7 +16,16 @@
 			return $q['name']; 				
 			
 		}
-		
+		public function getListStatusSolicitud(){
+			$ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->status
+			->select("*")
+			->where("id_status <>?",0)
+                        ->and("id_status <>?",1)
+                        ->order('id_status');
+			return $q; 				
+			
+		}		
 		
 		
 		

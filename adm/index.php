@@ -56,7 +56,13 @@ $values = $_REQUEST;
 				require('login.php');die;
 			}
 			else
-			{	$ConnectionsHistory = new ConnectionsHistory();
+			{	
+                            if($user_data['rol']!="ADM")
+                            {
+                                    $values['error'] = "No tiene los privilegios suficientes para ingresar";
+                                    require('login.php');die;
+                            }
+                                $ConnectionsHistory = new ConnectionsHistory();
                                 $Utilitarios = new Utilitarios();
 				$id_user =  $user_data['id_user'];
 				$values['id_user'] = $id_user;

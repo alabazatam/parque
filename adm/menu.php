@@ -7,23 +7,31 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <!--<a class="navbar-brand" href="#">Brand</a>-->
+        <a class="navbar-brand" style="background-color: #fff;" href="#"><img src="<?php echo full_url;?>/web/img/logo_park.png" width="30"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="dropdown facebook_font">
-			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i> Administrar<span class="caret"></span></a>
+			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i> Espacios<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<?php echo full_url;?>/adm/users/index.php">Usuarios</a></li>
+
             <li><a href="<?php echo full_url;?>/adm/espacios/index.php">Espacios</a></li>
 			<li><a href="<?php echo full_url;?>/adm/zona_ubicacion/index.php">Zonas/Ubicaciones</a></li>
 			<li><a href="<?php echo full_url;?>/adm/tipo_espacio/index.php">Tipo espacio</a></li>
 			<li><a href="<?php echo full_url;?>/adm/ut/index.php?action=view">Unidad tributaria</a></li>
-			<li><a href="<?php echo full_url;?>/adm/parentescos/index.php?action=view">Parentescos</a></li>
 			<li><a href="<?php echo full_url;?>/adm/caracteristicas/index.php?action=view">Características</a></li>
-			<li><a href="<?php echo full_url;?>/adm/ubicaciones/index.php?action=view">Ubicaciones administrativas</a></li>
+
+          </ul>
+        </li>
+        
+        <li class="dropdown facebook_font">
+			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i> Usuarios y personal<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="<?php echo full_url;?>/adm/users/index.php">Usuarios</a></li>
+            <li><a href="<?php echo full_url;?>/adm/parentescos/index.php?action=view">Parentescos</a></li>
+            <li><a href="<?php echo full_url;?>/adm/ubicaciones/index.php?action=view">Ubicaciones administrativas</a></li>
 
           </ul>
         </li>
@@ -33,10 +41,7 @@
 			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i> Solicitudes<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<?php echo full_url;?>/adm/solicitudes_fun/index.php">Consultar solicitudes</a></li>
-			 <li><a href="<?php echo full_url;?>/adm/reservacion/index.php">Generar solicitud</a></li>
-			 <li><a href="<?php echo full_url;?>/adm/solicitudes_adm/index.php">Administrar solicitudes</a></li>
-
-
+            <li><a href="<?php echo full_url;?>/adm/solicitudes_adm/index.php">Administrar solicitudes</a></li>
           </ul>
         </li>
       </ul>

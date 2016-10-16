@@ -83,7 +83,7 @@ $status_cancelada = false;
 </div>
 
 <div class="">
-	<a href="<?php echo full_url?>/adm/solicitudes_adm/index.php" class=" btn btn-default"><i class="fa fa-arrow-left  fa-pull-left fa-border"></i> Regresar</a>
+	<a href="<?php echo full_url?>/adm/reporte_solicitudes/index.php" class=" btn btn-default"><i class="fa fa-arrow-left  fa-pull-left fa-border"></i> Regresar</a>
 	
 	<?php if($status_proximo!='' or $name_status_regresar !='' or $status_cancelada == true):?>
 	<button type="button" class="btn btn-default" id="aceptar_form"><i class="fa fa-save fa-pull-left fa-border"></i> Aceptar</button>

@@ -1,6 +1,6 @@
 <?php include('../../view_header.php')?>
 <?php include('../menu.php')?>
-<div class="container">
+
 	<div class="col-sm-12 col-md-12">
 		<div class="col-sm-3 col-md-3 alert alert-success" role="alert">Aceptada o Completada</div>
 		<div class="col-sm-3 col-md-3 alert alert-warning" role="alert">Esperando por su respuesta</div>
@@ -39,7 +39,6 @@
 			</tfoot>
 		</table>
 	<a class="btn btn-default"  href="<?php echo full_url."/adm/reservacion/index.php"?>"><i class="fa fa-file-o fa-pull-left fa-border"></i>Generar solicitud</a>
-</div>
 	<?php include('../../view_footer.php')?>
 <script>
 $(document).ready(function() {
