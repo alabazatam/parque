@@ -14,7 +14,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="dropdown facebook_font">
-			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i> Espacios<span class="caret"></span></a>
+			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-map-marker"></i> Espacios<span class="caret"></span></a>
           <ul class="dropdown-menu">
 
             <li><a href="<?php echo full_url;?>/adm/espacios/index.php">Espacios</a></li>
@@ -27,7 +27,7 @@
         </li>
         
         <li class="dropdown facebook_font">
-			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i> Usuarios y personal<span class="caret"></span></a>
+			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-users"></i> Usuarios y personal<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="<?php echo full_url;?>/adm/users/index.php">Usuarios</a></li>
             <li><a href="<?php echo full_url;?>/adm/parentescos/index.php?action=view">Parentescos</a></li>
@@ -38,9 +38,8 @@
       </ul>
       <ul class="nav navbar-nav">
         <li class="dropdown facebook_font">
-			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i> Solicitudes<span class="caret"></span></a>
+			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-o"></i> Solicitudes<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="<?php echo full_url;?>/adm/solicitudes_fun/index.php">Consultar solicitudes</a></li>
             <li><a href="<?php echo full_url;?>/adm/solicitudes_adm/index.php">Administrar solicitudes</a></li>
           </ul>
         </li>

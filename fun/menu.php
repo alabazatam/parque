@@ -7,14 +7,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <!--<a class="navbar-brand" href="#">Brand</a>-->
+        <a class="navbar-brand" style="background-color: #fff;" href="#"><img src="<?php echo full_url;?>/web/img/logo_park.png" width="30"></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="dropdown facebook_font">
-			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-gear"></i> Solicitudes<span class="caret"></span></a>
+			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-file-text-o"></i> Solicitudes<span class="caret"></span></a>
           <ul class="dropdown-menu">
 			 <li><a href="<?php echo full_url;?>/fun/reservacion/index.php">Generar solicitud</a></li>
             <li><a href="<?php echo full_url;?>/fun/solicitudes_fun/index.php">Consultar solicitudes</a></li>

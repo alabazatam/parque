@@ -29,7 +29,7 @@
 			$columns[6] = 'zona_ubicacion.des_zona_ubicacion';
 			$columns[7] = 'status.name';
 			$column_order = $columns[0];
-			$where = '1 = 1';
+			$where = "users_data.id_user = ".$_SESSION['id_user']."";
 			$order = 'asc';
 			$limit = $values['length'];
 			$offset = $values['start'];
@@ -58,14 +58,16 @@
 			->join("status","LEFT JOIN status on status.id_status = solicitudes.status")
 			->join("zona_ubicacion","LEFT JOIN zona_ubicacion on zona_ubicacion.id_zona_ubicacion = solicitudes.id_zona_ubicacion")
 			->join("tipo_espacio","LEFT JOIN tipo_espacio on tipo_espacio.id_tipo_espacio = solicitudes.id_tipo_espacio")
-			->order("$column_order $order")
+			->join("users_data","LEFT JOIN users_data on users_data.id_user = solicitudes.id_user")
+
+                        ->order("$column_order $order")
 			->where("$where")
 			->limit($limit,$offset);
 			return $q; 			
 		}
 		public function getCountSolicitudesFunList($values)
 		{	
-			$where = '1 = 1';
+			$where = "users_data.id_user = ".$_SESSION['id_user']."";
 			if(isset($values['search']['value']) and $values['search']['value'] !='')
 			{	
 				$str = $values['search']['value'];
@@ -83,7 +85,8 @@
 			->join("zona_ubicacion","LEFT JOIN zona_ubicacion on zona_ubicacion.id_zona_ubicacion = solicitudes.id_zona_ubicacion")
 			->join("tipo_espacio","LEFT JOIN tipo_espacio on tipo_espacio.id_tipo_espacio = solicitudes.id_tipo_espacio")
 			->join("status","LEFT JOIN status on status.id_status = espacios.status")
-			->where("$where")
+			->join("users_data","LEFT JOIN users_data on users_data.id_user = solicitudes.id_user")
+                        ->where("$where")
 			->fetch();
 			//echo $q['cuenta']."aaa";die;
 			return $q['cuenta']; 			
