@@ -36,7 +36,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
-        $('#datetimepicker1,#fec_reservacion,#fec_pago').datetimepicker({
+        $('#datetimepicker1,#fec_reservacion,#fec_pago,#desde, #hasta').datetimepicker({
 			 viewMode: 'days',
 			 locale: 'es',
 			 format: 'DD/MM/YYYY',

@@ -155,6 +155,74 @@
 			//echo $q['cuenta']."aaa";die;
 			return $q['cuenta']; 			
 		}
+/****************************************************************************************************************************/
+		
+		public function getSolicitudesReporteList($values)
+		{	
+			$columns = array();
+			$columns[0] = 'id_solicitud';
+			$columns[1] = 'nom_espacio';
+            $columns[2] = 'solicitudes.fec_reservacion';
+			$columns[3] = 'solicitudes.costo';
+			$columns[4] = 'status.name';
+			$column_order = $columns[0];
+			$where = '1 = 1 ';
+			$order = 'asc';
+			$limit = $values['length'];
+			$offset = $values['start'];
+			if(isset($values['search']['value']) and $values['search']['value'] !='')
+			{	
+				$str = $values['search']['value'];
+				$where = "upper(login) like upper('%$str%')"
+					. "or upper(status.name) like upper('%$str%') ";
+			}
+			if(isset($values['order'][0]['column']) and $values['order'][0]['column']!='0')
+			{
+				$column_order = $columns[$values['order'][0]['column']];
+			}
+			if(isset($values['order'][0]['dir']) and $values['order'][0]['dir']!='0')
+			{
+				$order = $values['order'][0]['dir'];//asc o desc
+			}
+			//echo $column_order;die;
+            $ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->solicitudes
+			->select("*,zona_ubicacion.*,tipo_espacio.*,status.name as status,TO_CHAR(solicitudes.fec_reservacion, 'dd/mm/YY') as fec_reservacion, TO_CHAR(solicitudes.date_created, 'dd/mm/YY') as fec_solicitud ")
+			->join("espacios","LEFT JOIN espacios on espacios.id_espacio = solicitudes.id_espacio")
+			->join("status","LEFT JOIN status on status.id_status = solicitudes.status")
+			->join("zona_ubicacion","LEFT JOIN zona_ubicacion on zona_ubicacion.id_zona_ubicacion = solicitudes.id_zona_ubicacion")
+			->join("tipo_espacio","LEFT JOIN tipo_espacio on tipo_espacio.id_tipo_espacio = solicitudes.id_tipo_espacio")
+			->order("$column_order $order")
+			->where("$where")
+			->limit($limit,$offset);
+			return $q; 			
+		}
+		public function getCountSolicitudesReporteList($values)
+		{	
+			$where = '1 = 1 ';
+			if(isset($values['search']['value']) and $values['search']['value'] !='')
+			{	
+				$str = $values['search']['value'];
+				$where = "upper(login) like upper('%$str%') "
+					. "or upper(status.name) like upper('%$str%') ";
+			}
+            $ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->solicitudes
+			->select("count(*) as cuenta")
+			->join("espacios","LEFT JOIN espacios on espacios.id_espacio = solicitudes.id_espacio")
+			->join("status","LEFT JOIN status on status.id_status = solicitudes.status")
+			->join("zona_ubicacion","LEFT JOIN zona_ubicacion on zona_ubicacion.id_zona_ubicacion = solicitudes.id_zona_ubicacion")
+			->join("tipo_espacio","LEFT JOIN tipo_espacio on tipo_espacio.id_tipo_espacio = solicitudes.id_tipo_espacio")
+			->join("status","LEFT JOIN status on status.id_status = espacios.status")
+			->where("$where")
+			->fetch();
+			//echo $q['cuenta']."aaa";die;
+			return $q['cuenta']; 			
+		}
+		
+
+/********************************************************************************************************************************/		
+		
 		public function getDisponibilidadEspacioById($id_espacio,$fec_reservacion){
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->solicitudes
@@ -222,8 +290,8 @@
 			->join("tipo_espacio","LEFT JOIN tipo_espacio on tipo_espacio.id_tipo_espacio = solicitudes.id_tipo_espacio")
 			->join("users_data","LEFT JOIN users_data on users_data.id_user = solicitudes.id_user")
 			->join("ubicaciones","LEFT JOIN ubicaciones on ubicaciones.id_ubicacion = users_data.id_ubicacion")
-                        ->join("motivos","LEFT JOIN motivos on motivos.des_motivo = solicitudes.motivo")
-
+            ->join("motivos","LEFT JOIN motivos on motivos.des_motivo = solicitudes.motivo")
+		    ->join("tipo_personal","LEFT JOIN tipo_personal on tipo_personal.des_tipo_personal = users_data.tipo_personal")
 			->where("id_solicitud=?",$values['id_solicitud'])->fetch();
 			return $q; 				
 			

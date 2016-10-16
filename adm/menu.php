@@ -40,6 +40,14 @@
           </ul>
         </li>
       </ul>
+      <ul class="nav navbar-nav">
+        <li class="dropdown facebook_font">
+			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-area-chart"></i> Reportes<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="<?php echo full_url;?>/adm/reporte_solicitudes/index.php">Solicitudes</a></li>
+          </ul>
+        </li>
+      </ul>
       <ul class="nav navbar-nav navbar-right">
 		<li class="dropdown facebook_font">
 			<a href="#" class="dropdown-toggle facebook_font" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i> Mi cuenta <span class="caret"></span></a>

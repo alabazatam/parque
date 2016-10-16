@@ -43,7 +43,7 @@
             // ---------------------------------------------------------
 
             // set font
-            $pdf->SetFont('freeserif', '', 12);
+            $pdf->SetFont('dejavusans', '', 12);
 
             // add a page
             $pdf->AddPage();
@@ -61,7 +61,7 @@
 		
 	</tr>	
 	<tr>
-		<td colspan="3" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Tipo de personal:</b></td>
+		<td colspan="3" style="border-style: solid; border-top-width: 0px; border-right-width: 0px; border-bottom-width: 0px; border-left-width: 0px"><b>Tipo de personal:</b> '.$data['des_tipo_personal'].'</td>
 		
 	</tr>
 	<tr>
@@ -217,7 +217,7 @@ $html = '
             $pdf->lastPage();
             
             // ---------------------------------------------------------
-	$pdf->SetFont('freeserif', '', 16);		
+	$pdf->SetFont('dejavusans', '', 14);		
                         $pdf->AddPage();
 			$pdf->ln();
 			
@@ -233,38 +233,41 @@ $html = '
         $pdf->lastPage();
             
             // ---------------------------------------------------------
-                        $pdf->SetFont('freeserif', '', 12);		
+                        $pdf->SetFont('dejavusans', '', 12);		
                         $pdf->AddPage();
-
-$html = '<table width="100%" border="1">
-    <tr>
-        <th>#</th>
-        <th>Nacionalidad</th>
-        <th>Cédula</th>
-        <th>Parentesco</th>
-        <th>Primer nombre</th>
-        <th>Segundo nombre</th>
-        <th>Primer apellido</th>
-        <th>Segundo apellido</th>
+$i = 0;
+$html = '
+	<h3 align="center">LISTA DE INVITADOS</h3>
+	<table width="100%" border="1">
+    <tr style="background-color: #CCC;">
+        <th width="20%"><b>Cédula</b></th>
+        <th width="20%"><b>Parentesco</b></th>
+        <th width="15%"><b>Primer nombre</b></th>
+        <th width="15%"><b>Segundo nombre</b></th>
+        <th width="15%"><b>Primer apellido</b></th>
+        <th width="15%"><b>Segundo apellido</b></th>
     </tr>';
 
     foreach($data_invitados as $data)
     {
      $html.='
     <tr>
-        <th>#</th>
-        <th>Nacionalidad</th>
-        <th>Cédula</th>
-        <th>Parentesco</th>
-        <th>Primer nombre</th>
-        <th>Segundo nombre</th>
-        <th>Primer apellido</th>
-        <th>Segundo apellido</th>
-    </tr>';   
+        <td  width="20%">'.$data['nacion']."-".$data['cedula'].'</td>
+		<td  width="20%">'.$data['nom_parentesco'].'</td>
+        <td  width="15%">'.$data['nombre1'].'</td>
+        <td  width="15%">'.$data['nombre2'].'</td>
+        <td  width="15%">'.$data['apellido1'].'</td>
+        <td  width="15%">'.$data['apellido2'].'</td>
         
+    </tr>';   
+    $i++;  
     }
-    $html.='</table>';
-
+    $html.='<tr>
+				<td colspan="6" align="right"><b>Total: </b>'.$i.'</td>
+       
+			</tr>
+			</table>';
+	
                         $pdf->writeHTML($html, true, false, true, false, '');
 			//$pdf->ln();
 			//fin otros datos	

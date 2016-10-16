@@ -166,5 +166,18 @@
 			return $q['capacidad']; 				
 			
 		}
+		public function getEspaciosListSelect($values)
+		{	
+			//echo $column_order;die;
+            $ConnectionORM = new ConnectionORM();
+			$q = $ConnectionORM->getConnect()->espacios
+			->select("*,espacios.status as status")
+			->join("status","LEFT JOIN status on status.id_status = espacios.status")
+			->join("zona_ubicacion","LEFT JOIN zona_ubicacion on zona_ubicacion.id_zona_ubicacion = espacios.id_zona_ubicacion")
+			->join("tipo_espacio","LEFT JOIN tipo_espacio on tipo_espacio.id_tipo_espacio = espacios.id_tipo_espacio")
+			->order("nom_espacio")
+			->where("espacios.status=?",1);
+			return $q; 			
+		}
 	}
 
