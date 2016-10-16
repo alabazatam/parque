@@ -131,15 +131,9 @@
 			
 		}
 		function updateEspacios($values){
-			unset($values['action'],$values['PHPSESSID'],$values['date_created']);
+			unset($values['action'],$values['PHPSESSID'],$values['date_created'], $values['precio']);
                         $values['date_updated'] = new NotORM_Literal("NOW()");
-			if(isset($values['password']) and $values['password']!='')
-			{
-				$values['password'] = hash('sha256', $values['password']);
-			}else
-			{
-				unset($values['password']);
-			}
+                        
 			$id_espacio = $values['id_espacio'];
 			$ConnectionORM = new ConnectionORM();
 			$q = $ConnectionORM->getConnect()->espacios("id_espacio", $id_espacio)->update($values);

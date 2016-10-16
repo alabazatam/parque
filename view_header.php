@@ -14,8 +14,5 @@
 	<link href="<?php echo full_url;?>/web/css/styles.css" rel="stylesheet">
 
 	<script src="<?php echo full_url;?>/web/js/jquery.js"></script>
-	
-		
-
 </head>
 <body>

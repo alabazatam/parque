@@ -2,9 +2,9 @@
 <?php include('../menu.php')?>
 <div class="container" id="">
 	
-	
 
 	<h1 class="text-center">Generar solicitud</h1>
+        
 	<table id="example" class="table table-striped table-bordered table-responsive" width="100%" cellspacing="0">
 			<thead>
 				<tr>

@@ -53,8 +53,10 @@ define("image_url",full_url."/web/images/");
  define('mail_from',"noreply@frbcomputersgroup.com.ve");
  define('message_updated',"Registro actualizado satisfactoriamente");
  define('message_created',"Registro creado satisfactoriamente");
-  define('max_list_text',"30");
-
+define('max_list_text',"30");
+define('banco',"BANCO MERCANTIL");
+define('num_cuenta',"0105063251489875");
+define('beneficiario',"SERSACON");
 //Class definition
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/notorm-master/NotORM.php");//se debe incluir una sola vez en todo el cms
 include($_SERVER["DOCUMENT_ROOT"]."/".main_folder."/lib/ConnectionORM.class.php");

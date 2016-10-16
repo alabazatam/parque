@@ -17,6 +17,9 @@
 			  </div>
 			</div>
 
+<br><br>
+ <div class="col-sm-12 alert alert-info">Recuerde efectuar su depósito en la Cuenta bancaria: <?php echo banco;?> <?php echo num_cuenta;?>, a nombre de <?php echo beneficiario;?>  </div>   
+
 </body>
 </html>
 <script src="<?php echo full_url;?>/web/js/datatables.js"></script>
