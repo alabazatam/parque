@@ -1,4 +1,5 @@
 <?php
+
 class StatusMail
 {
 	function notificaStatusMail($values){
