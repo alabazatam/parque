@@ -16,11 +16,11 @@ class StatusMail
 			
 			try{
 			//$smtp = "server-0116a.gconex.net";
-			$smtp = "mail.tugruero.com";
+			$smtp = "host.caracashosting50.com";
 			$port = 465;
 			$secure = "ssl";
-			$username = "prueba@tugruero.com";
-			$password = "marcos";
+			$username = "mdandrad@frbcomputersgroup.com.ve";
+			$password = "230386";
 			$mail_from = 'solicitud_parque@cgr.gob.ve'; 
 
 			$transport = Swift_SmtpTransport::newInstance( $smtp, $port, $secure)
